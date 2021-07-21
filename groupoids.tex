@@ -343,6 +343,24 @@ Alternatively, we could say that $H$ is a closed subgroup scheme of $G$
 if it is a group scheme over $S$ endowed with a morphism of group schemes
 $i : H \to G$ over $S$ which identifies $H$ with a closed subscheme of $G$.
 
+\begin{lemma}
+\label{lemma-closed-subgroup-scheme}
+Let $S$ be a scheme. Let $(G, m, e, i)$ be a group scheme over $S$.
+\begin{enumerate}
+\item A closed subscheme $H \subset G$ is a closed subgroup scheme
+if and only if $e : S \to G$, $m|_{H \times_S H} : H \times_S H \to G$,
+and $i|_H : H \to G$ factor through $H$.
+\item An open subscheme $H \subset G$ is an open subgroup scheme
+if and only if $e : S \to G$, $m|_{H \times_S H} : H \times_S H \to G$,
+and $i|_H : H \to G$ factor through $H$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Looking at $T$-valued points this translates into the well known
+conditions characterizing subsets of groups as subgroups.
+\end{proof}
+
 \begin{definition}
 \label{definition-smooth-group-scheme}
 Let $S$ be a scheme. Let $(G, m)$ be a group scheme over $S$.
@@ -617,8 +635,11 @@ Morphisms, Lemma \ref{morphisms-lemma-base-change-flat}.
 
 \begin{lemma}
 \label{lemma-group-scheme-module-differentials}
+\begin{reference}
+\cite[Proposition 3.15]{BookAV}
+\end{reference}
 Let $(G, m, e, i)$ be a group scheme over the scheme $S$.
-Denote $f : G \to S$ the structure morphism. Assume $f$ is flat.
+Denote $f : G \to S$ the structure morphism.
 Then there exist canonical isomorphisms
 $$
 \Omega_{G/S} \cong f^*\mathcal{C}_{S/G} \cong f^*e^*\Omega_{G/S}
@@ -629,25 +650,37 @@ $\Omega_{G/S}$ is a free $\mathcal{O}_G$-module.
 \end{lemma}
 
 \begin{proof}
-In
-Morphisms, Lemma \ref{morphisms-lemma-differentials-diagonal}
-we identified $\Omega_{G/S}$ with the conormal sheaf of the
-diagonal morphism $\Delta_{G/S}$. In the proof of
-Lemma \ref{lemma-group-scheme-separated}
-we showed that $\Delta_{G/S}$ is a base change of the immersion $e$
-by the morphism $(g, g') \mapsto m(i(g), g')$. This morphism
-is isomorphic to the morphism $(g, g') \mapsto m(g, g')$
-hence is flat by
-Lemma \ref{lemma-flat-action-on-group-scheme}.
-Hence we get the first isomorphism by
-Morphisms, Lemma \ref{morphisms-lemma-conormal-functorial-flat}.
-By
+By Morphisms, Lemma \ref{morphisms-lemma-base-change-differentials} we have
+$$
+\Omega_{G \times_S G/G} = \text{pr}_0^*\Omega_{G/S}
+$$
+where on the left hand side we view $G \times_S G$ as a scheme over $G$
+using $\text{pr}_1$.
+Let $\tau : G \times_S G \to G \times_S G$ be the ``shearing map''
+given by $(g, h) \mapsto (m(g, h), h)$ on points. This map is an automorphism
+of $G \times_S G$ viewed as a scheme over $G$ via the projection $\text{pr}_1$.
+Combining these two remarks we obtain an isomorphism
+$$
+\tau^*\text{pr}_0^*\Omega_{G/S} \to \text{pr}_0^*\Omega_{G/S}
+$$
+Since $\text{pr}_0 \circ \tau = m$ this can be rewritten as an isomorphism
+$$
+m^*\Omega_{G/S} \to \text{pr}_0^*\Omega_{G/S}
+$$
+Pulling back this isomorphism by
+$(e \circ f, \text{id}_G) : G \to G \times_S G$
+and using that $m \circ (e \circ f, \text{id}_G) = \text{id}_G$
+and $\text{pr}_0 \circ (e \circ f, \text{id}_G) = e \circ f$
+we obtain an isomorphism
+$$
+\Omega_{G/S} \to f^*e^*\Omega_{G/S}
+$$
+as desired. By
 Morphisms, Lemma \ref{morphisms-lemma-differentials-relative-immersion-section}
 we have $\mathcal{C}_{S/G} \cong e^*\Omega_{G/S}$.
-
-\medskip\noindent
-If $S$ is the spectrum of a field, then $G \to S$ is flat, and
-any $\mathcal{O}_S$-module on $S$ is free.
+If $S$ is the spectrum of a field, then
+any $\mathcal{O}_S$-module on $S$ is free
+and the final statement follows.
 \end{proof}
 
 \begin{lemma}
@@ -983,18 +1016,21 @@ subgroup scheme $G^0 \subset G$ with the following properties
 Let $G^0$ be the connected component of the identity with its canonical
 scheme structure (Morphisms, Definition
 \ref{morphisms-definition-scheme-structure-connected-component}).
+To show that $G^0$ is a closed subsgroup scheme we will use the
+criterion of Lemma \ref{lemma-closed-subgroup-scheme}.
+The morphism $e : \Spec(k) \to G$ factors through $G^0$ as we chose
+$G^0$ to be the connected component of $G$ containing $e$.
+Since $i : G \to G$ is an automorphism fixing $e$, we see that
+$i$ sends $G^0$ into itself.
 By Varieties, Lemma \ref{varieties-lemma-geometrically-connected-criterion}
-we see that $G^0$ is geometrically connected. Thus
-$G^0 \times_k G^0$ is connected
+the scheme $G^0$ is geometrically connected over $k$.
+Thus $G^0 \times_k G^0$ is connected
 (Varieties, Lemma \ref{varieties-lemma-bijection-connected-components}).
 Thus $m(G^0 \times_k G^0) \subset G^0$ set theoretically.
-To see that this holds scheme theoretically, note that
-$G^0 \times_k G^0 \to G \times_k G$ is a flat closed immersion.
-By Morphisms, Lemma \ref{morphisms-lemma-characterize-flat-closed-immersions}
-it follows that $G^0 \times_k G^0$ is a closed subscheme of
-$(G \times_k G) \times_{m, G} G^0$. Thus we see that
-$m|_{G^0 \times_k G^0} : G^0 \times_k G^0 \to G$ factors through
-$G^0$. Hence $G^0$ becomes a closed subgroup scheme of $G$.
+Thus $m|_{G^0 \times_k G^0} : G^0 \times_k G^0 \to G$
+factors through $G^0$ by
+Morphisms, Lemma \ref{morphisms-lemma-characterize-flat-closed-immersions}.
+Hence $G^0$ is a closed subgroup scheme of $G$.
 By Lemma \ref{lemma-connected-group-scheme-over-field-irreducible}
 we see that $G^0$ is irreducible. By
 Lemma \ref{lemma-group-scheme-field-geometrically-irreducible}
@@ -1735,7 +1771,7 @@ as well. Thus $\mathcal{N} = \mathcal{L} \otimes [-1]^*\mathcal{L}$
 is ample, see
 Properties, Lemma \ref{properties-lemma-ample-tensor-globally-generated}.
 Since $\mathcal{N} \cong [-1]^*\mathcal{N}$ we see that
-$[d]^*\mathcal{N} \cong \mathcal{N}^{\otimes n^2}$ by
+$[d]^*\mathcal{N} \cong \mathcal{N}^{\otimes d^2}$ by
 Lemma \ref{lemma-pullbacks-by-n}.
 
 \medskip\noindent
@@ -1781,7 +1817,7 @@ we see that $\deg([d]) = d^{2 \dim(A)}$.
 Multiplication by an integer on an abelian variety is an etale morphism
 if and only if the integer is invertible in the base field.
 \end{slogan}
-Let $k$ be a field. Let $A$ be an abelian variety over $k$.
+Let $k$ be a field. Let $A$ be a nonzero abelian variety over $k$.
 Then $[d] : A \to A$ is \'etale if and only if $d$ is invertible in $k$.
 \end{lemma}
 
@@ -1963,23 +1999,27 @@ a morphism of $G(T)$-sets.
 In situation (1) this means that the diagrams
 \begin{equation}
 \label{equation-action}
+\vcenter{
 \xymatrix{
 G \times_S G \times_S X \ar[r]_-{1_G \times a} \ar[d]_{m \times 1_X} &
 G \times_S X \ar[d]^a \\
 G \times_S X \ar[r]^a & X
 }
-\quad
+}
+\quad\quad
+\vcenter{
 \xymatrix{
 G \times_S X \ar[r]_-a & X \\
 X\ar[u]^{e \times 1_X} \ar[ru]_{1_X}
+}
 }
 \end{equation}
 are commutative. In situation (2) this just means that the diagram
 $$
 \xymatrix{
-G \times_S X \ar[r]_-{\text{id} \times f} \ar[d]_a &
+G \times_S X \ar[r]_-{\text{id} \times \psi} \ar[d]_a &
 G \times_S Y \ar[d]^a \\
-X \ar[r]^f & Y
+X \ar[r]^\psi & Y
 }
 $$
 commutes.
@@ -2160,8 +2200,8 @@ to the direction of the arrows chosen in the following definition.
 \label{definition-equivariant-module}
 Let $S$ be a scheme, let $(G, m)$ be a group scheme over $S$, and
 let $a : G \times_S X \to X$ be an action of the group scheme $G$
-on $X/S$. An {\it $G$-equivariant quasi-coherent $\mathcal{O}_X$-module},
-or simply a {\it equivariant quasi-coherent $\mathcal{O}_X$-module},
+on $X/S$. A {\it $G$-equivariant quasi-coherent $\mathcal{O}_X$-module},
+or simply an {\it equivariant quasi-coherent $\mathcal{O}_X$-module},
 is a pair $(\mathcal{F}, \alpha)$, where $\mathcal{F}$ is a quasi-coherent
 $\mathcal{O}_X$-module, and $\alpha$ is a $\mathcal{O}_{G \times_S X}$-module
 map
@@ -2203,8 +2243,9 @@ Let $S$ be a scheme. Let $G$ be a group scheme over $S$.
 Let $f : Y \to X$ be a $G$-equivariant morphism between $S$-schemes
 endowed with $G$-actions. Then pullback $f^*$ given by
 $(\mathcal{F}, \alpha) \mapsto (f^*\mathcal{F}, (1_G \times f)^*\alpha)$
-defines a functor from the category of $G$-equivariant sheaves on
-$X$ to the category of quasi-coherent $G$-equivariant sheaves on $Y$.
+defines a functor from the category of $G$-equivariant quasi-coherent
+$\mathcal{O}_X$-modules  to the category of
+$G$-equivariant quasi-coherent $\mathcal{O}_Y$-modules.
 \end{lemma}
 
 \begin{proof}
@@ -2426,7 +2467,7 @@ This is a nice exercise in the definitions.
 
 \begin{lemma}
 \label{lemma-equivalence-groupoid}
-Given an equivalence relation $j : R \to U$ over $S$
+Given an equivalence relation $j : R \to U \times_S U$ over $S$
 there is a unique way to extend it to a groupoid
 $(U, R, s, t, c)$ over $S$.
 \end{lemma}
@@ -4105,15 +4146,15 @@ $$
 of Lemma \ref{lemma-diagram}.
 Think of $f \in \Gamma(U, \mathcal{O}_U)$. The commutativity of the
 top part of the diagram shows that
-$pr_0^\sharp(t^\sharp(f)) = c^\sharp(t^\sharp(f))$ as elements of
+$\text{pr}_0^\sharp(t^\sharp(f)) = c^\sharp(t^\sharp(f))$ as elements of
 $\Gamma(R \times_{S, U, t} R, \mathcal{O})$.
 Looking at the right lower cartesian square
 the compatibility of the norm construction with base change shows that
 $s^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f))) =
-\text{Norm}_{\text{pr}_1}(c^\sharp(t^\sharp(f)))$.
+\text{Norm}_{\text{pr}_1^\sharp}(c^\sharp(t^\sharp(f)))$.
 Similarly we get
 $t^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f))) =
-\text{Norm}_{\text{pr}_1}(\text{pr}_0^\sharp(t^\sharp(f)))$.
+\text{Norm}_{\text{pr}_1^\sharp}(\text{pr}_0^\sharp(t^\sharp(f)))$.
 Hence by the first equality of this proof we see that
 $s^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f))) =
 t^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f)))$ as desired.
@@ -4239,8 +4280,8 @@ Thus also $\Spec(A') \to \Spec(C')$ is surjective
 as a base change of a surjective morphism
 (Morphisms, Lemma \ref{morphisms-lemma-base-change-surjective}).
 Hence $\Spec(C^1) \to \Spec(C')$ is surjective also.
-This implies that the kernel of $\varphi$ is contained in the
-Jacobson radical of the ring $C'$, i.e., (2)(b) holds.
+This implies (2)(b) holds for example by
+Algebra, Lemma \ref{algebra-lemma-image-dense-generic-points}.
 
 \medskip\noindent
 Proof of part (2)(a). By Lemma \ref{lemma-finite-locally-free-disjoint-free}
@@ -4546,7 +4587,7 @@ is an isomorphism. It is an \'etale morphism
 (Morphisms, Lemma \ref{morphisms-lemma-etale-permanence}).
 On the other hand, by base changing to strictly henselian local rings
 (as in the third paragraph of the proof) and using the bijectivity
-$U'_{p'} \to U_p$ esthablished in the course of the proof of the claim,
+$U'_{p'} \to U_p$ established in the course of the proof of the claim,
 we see that $U' \to M' \times_M U$ is universally bijective
 (some details omitted). However, a universally bijective
 \'etale morphism is an isomorphism

@@ -805,8 +805,7 @@ in cases A and B follows from
 Sites, Lemmas \ref{sites-lemma-cocontinuous-morphism-topoi} and
 \ref{sites-lemma-when-shriek}
 and
-Modules on Sites, Lemmas \ref{sites-modules-lemma-g-shriek-adjoint} and
-\ref{sites-modules-lemma-back-and-forth}.
+Modules on Sites, Lemma \ref{sites-modules-lemma-g-shriek-adjoint}.
 
 \medskip\noindent
 Proof of (3). Let $\mathcal{G}$ be a sheaf on $\mathcal{C}_n$.
@@ -993,7 +992,7 @@ $$
 a_{0, *}\mathcal{F}_0 \to
 a_{0, *}f_{\varphi, *} f_\varphi^{-1}\mathcal{F}_0
 \xrightarrow{\mathcal{F}(\varphi)}
-a_{0, *}f_{\varphi, *} \mathcal{F}_0 = a_{1, *}\mathcal{F}_1
+a_{0, *}f_{\varphi, *} \mathcal{F}_1 = a_{1, *}\mathcal{F}_1
 $$
 where the first arrow comes from $1 \to f_{\varphi, *} f_\varphi^{-1}$.
 Let $\mathcal{G}_\bullet$ denote the constant simplicial sheaf
@@ -1303,7 +1302,7 @@ Thus $\mathcal{H} = g_{n!}\mathcal{G}$ as desired.
 In Situation \ref{situation-simplicial-site}.
 Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}_{total}$.
 If $\mathcal{I}$ is injective in $\textit{Mod}(\mathcal{O})$, then
-$\mathcal{I}_n$ is a limp sheaf on $\mathcal{C}_n$.
+$\mathcal{I}_n$ is a totally acyclic sheaf on $\mathcal{C}_n$.
 \end{lemma}
 
 \begin{proof}
@@ -1907,7 +1906,7 @@ On the other hand, since restriction to $\mathcal{C}_p$ is exact
 (Lemma \ref{lemma-restriction-to-components-site})
 the complex $\mathcal{I}_p^\bullet$ represents $K_p$ in
 $D(\mathcal{C}_p)$. The sheaves $\mathcal{I}_p^q$
-are limp on $\mathcal{C}_p$
+are totally acyclic on $\mathcal{C}_p$
 (Lemma \ref{lemma-restriction-injective-to-component-limp}).
 Hence the cohomology of the columns computes the groups
 $H^q(\mathcal{C}_p, K_p)$ by Leray's acyclicity lemma
@@ -2136,7 +2135,7 @@ On the other hand, since restriction to $\mathcal{C}_p$ is exact
 (Lemma \ref{lemma-restriction-to-components-site})
 the complex $\mathcal{I}_p^\bullet$ represents $K_p$ in
 $D(\mathcal{C}_p)$. The sheaves $\mathcal{I}_p^q$
-are limp on $\mathcal{C}_p$
+are totally acyclic on $\mathcal{C}_p$
 (Lemma \ref{lemma-restriction-injective-to-component-limp}).
 Hence the cohomology of the columns are the sheaves
 $R^qa_{p, *}K_p$ by Leray's acyclicity lemma
@@ -2162,7 +2161,7 @@ Here is the definition.
 In Situation \ref{situation-simplicial-site}.
 \begin{enumerate}
 \item A sheaf $\mathcal{F}$ of sets or of abelian groups on
-$\mathcal{C}$ is {\it cartesian} if the maps
+$\mathcal{C}_{total}$ is {\it cartesian} if the maps
 $\mathcal{F}(\varphi) : f_\varphi^{-1}\mathcal{F}_m \to \mathcal{F}_n$
 are isomorphisms for all $\varphi : [m] \to [n]$.
 \item If $\mathcal{O}$ is a sheaf of rings on $\mathcal{C}_{total}$,
@@ -2476,7 +2475,7 @@ is an isomorphism for all $n$.
 \item Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}_{total}$
 such that the morphisms $f_\varphi^{-1}\mathcal{O}_n \to \mathcal{O}_m$
 are flat for all $\varphi : [n] \to [m]$. Then an object $K$ of
-$D(\mathcal{O})$ is cartesian if and only the canonical map
+$D(\mathcal{O})$ is cartesian if and only if the canonical map
 $$
 g_{n!}K_n \longrightarrow
 g_{n!}\mathcal{O}_n \otimes^\mathbf{L}_\mathcal{O} K
@@ -3229,7 +3228,7 @@ a family of sheaves $\mathcal{F}_i$ on $\mathcal{C}/U_i$, i.e.,
 $$
 \Sh(\mathcal{C}/K) = \prod\nolimits_{i \in I} \Sh(\mathcal{C}/U_i)
 $$
-This is occasionally usefull to understand what is going on.
+This is occasionally useful to understand what is going on.
 
 \medskip\noindent
 Let $\mathcal{C}$ be a site. Let $K = \{U_i\}_{i \in I}$ be an object of
@@ -4057,7 +4056,7 @@ and we conclude the lemma is true in this case.
 
 \medskip\noindent
 Unbounded case. We urge the reader to skip this, since the argument
-is that same as above, except that we use explicit representation
+is the same as above, except that we use explicit representation
 by double complexes to get around convergence issues.
 Let $E \in D(\mathcal{C})$.
 To show the map $E \to Ra_*a^{-1}E$ is an isomorphism,
@@ -5163,7 +5162,7 @@ of sheaves of modules may consult Cohomology on Sites, Lemma
 \noindent
 This section is the continuation of
 Cohomology, Section \ref{cohomology-section-glueing-complexes}.
-The goal is to prove a slight generalizaton of \cite[Theorem 3.2.4]{BBD}.
+The goal is to prove a slight generalization of \cite[Theorem 3.2.4]{BBD}.
 Our method will be a tiny bit different in that we use
 the material from Sections \ref{section-glueing} and
 \ref{section-glueing-modules}. We will also reprove the

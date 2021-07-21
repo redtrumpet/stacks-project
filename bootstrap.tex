@@ -406,11 +406,13 @@ Morphisms of Spaces, Lemmas
 \ref{spaces-morphisms-lemma-base-change-surjective},
 \ref{spaces-morphisms-lemma-base-change-quasi-compact},
 \ref{spaces-morphisms-lemma-base-change-etale},
+\ref{spaces-morphisms-lemma-base-change-smooth},
 \ref{spaces-morphisms-lemma-base-change-flat},
 \ref{spaces-morphisms-lemma-base-change-separated},
 \ref{spaces-morphisms-lemma-base-change-finite-type},
 \ref{spaces-morphisms-lemma-base-change-quasi-finite},
 \ref{spaces-morphisms-lemma-base-change-finite-presentation},
+\ref{spaces-morphisms-lemma-base-change-affine},
 \ref{spaces-morphisms-lemma-base-change-proper}, and
 Spaces, Lemma
 \ref{spaces-lemma-base-change-immersions}.
@@ -419,11 +421,13 @@ Descent on Spaces, Lemmas
 \ref{spaces-descent-lemma-descending-property-surjective},
 \ref{spaces-descent-lemma-descending-property-quasi-compact},
 \ref{spaces-descent-lemma-descending-property-etale},
+\ref{spaces-descent-lemma-descending-property-smooth},
 \ref{spaces-descent-lemma-descending-property-flat},
 \ref{spaces-descent-lemma-descending-property-separated},
 \ref{spaces-descent-lemma-descending-property-finite-type},
 \ref{spaces-descent-lemma-descending-property-quasi-finite},
 \ref{spaces-descent-lemma-descending-property-locally-finite-presentation},
+\ref{spaces-descent-lemma-descending-property-affine},
 \ref{spaces-descent-lemma-descending-property-proper}, and
 \ref{spaces-descent-lemma-descending-property-closed-immersion}.
 }
@@ -431,17 +435,20 @@ for example to the properties of being
 ``surjective'',
 ``quasi-compact'',
 ``\'etale'',
+``smooth'',
 ``flat'',
 ``separated'',
 ``(locally) of finite type'',
 ``(locally) quasi-finite'',
 ``(locally) of finite presentation'',
+``affine'',
 ``proper'', and
 ``a closed immersion''.
 In other words, $a$ is
 {\it surjective}
 (resp.\ {\it quasi-compact},
 {\it \'etale},
+{\it smooth},
 {\it flat},
 {\it separated},
 {\it (locally) of finite type},
@@ -471,22 +478,26 @@ Morphisms of Spaces,
 Lemma \ref{spaces-morphisms-lemma-surjective-local}
 (resp.\ \ref{spaces-morphisms-lemma-quasi-compact-local},
 \ref{spaces-morphisms-lemma-etale-local},
+\ref{spaces-morphisms-lemma-smooth-local},
 \ref{spaces-morphisms-lemma-flat-local},
 \ref{spaces-morphisms-lemma-separated-local},
 \ref{spaces-morphisms-lemma-finite-type-local},
 \ref{spaces-morphisms-lemma-quasi-finite-local},
 \ref{spaces-morphisms-lemma-finite-presentation-local},
+\ref{spaces-morphisms-lemma-affine-local},
 \ref{spaces-morphisms-lemma-proper-local},
 \ref{spaces-morphisms-lemma-closed-immersion-local})
 the definition of
 surjective
 (resp.\ quasi-compact,
 \'etale,
+smooth,
 flat,
 separated,
 (locally) of finite type,
 (locally) quasi-finite,
 (locally) of finite presentation,
+affine,
 proper,
 closed immersion)
 above agrees with the already existing definition of morphisms
@@ -609,6 +620,12 @@ Sites, Definition \ref{sites-definition-sheaves-injective-surjective}.
 \section{Bootstrapping the diagonal}
 \label{section-bootstrap-diagonal}
 
+\noindent
+In this section we prove that the diagonal of a sheaf $F$ on
+$(\Sch/S)_{fppf}$ is representable as soon as there exists
+an ``fppf cover'' of $F$ by a scheme or by an algebraic space, see
+Lemma \ref{lemma-bootstrap-diagonal}.
+
 \begin{lemma}
 \label{lemma-representable-diagonal}
 \begin{slogan}
@@ -640,7 +657,8 @@ The implication (3) $\Rightarrow$ (2) is trivial. Assume (2).
 Let $T$ be a scheme, and let $(a, b) : T \to F \times F$ be a morphism.
 Then
 $$
-F \times_{\Delta_F, F \times F} T = T \times_{a, F, b} T
+F \times_{\Delta_F, F \times F} T =
+(T \times_{a, F, b} T) \times_{T \times T, \Delta_T} T
 $$
 which is an algebraic space by assumption. Hence $\Delta_F$ is
 representable by algebraic spaces, i.e., (1) holds.
@@ -893,6 +911,12 @@ algebraic spaces, and
 \item there exists an algebraic space $X$
 and a map $X \to F$ which is surjective, and \'etale.
 \end{enumerate}
+or assume that
+\begin{enumerate}
+\item[(a)] the presheaf $F$ is a sheaf, and
+\item[(b)] there exists an algebraic space $X$ and a map $X \to F$
+which is representable by algebraic paces, surjective, and \'etale.
+\end{enumerate}
 Then $F$ is an algebraic space.
 \end{theorem}
 
@@ -900,26 +924,35 @@ Then $F$ is an algebraic space.
 We will use the remarks directly below
 Definition \ref{definition-property-transformation}
 without further mention.
-In the situation of the theorem, let $U \to X$ be a surjective \'etale morphism
-from a scheme towards $X$.
-By Lemma \ref{lemma-composition-transformation}
-$U \to F$ is surjective and \'etale also.
-Hence the theorem boils down to proving that
-$\Delta_F$ is representable.
-This follows immediately from
+
+\medskip\noindent
+Assume (1), (2), and (3) and let $X \to F$ be as in (3).
+By Lemma \ref{lemma-representable-diagonal} the morphism
+$X \to F$ is representable by algebraic spaces. Thus
+we see that (a) and (b) hold.
+
+\medskip\noindent
+Assume (a) and (b) and let $X \to F$ be as in (b).
+Let $U \to X$ be a surjective \'etale morphism from a scheme towards $X$.
+By Lemma \ref{lemma-composition-transformation} the transformation
+$U \to F$ is representable by algebraic spaces, surjective, and \'etale.
+Hence to prove that $F$ is an algebraic space boils down to proving that
+$\Delta_F$ is representable (Spaces, Definition
+\ref{spaces-definition-algebraic-space}). This follows immediately from
 Lemma \ref{lemma-bootstrap-diagonal}.
 On the other hand we can circumvent this lemma and show directly $F$
 is an algebraic space as in the next paragraph.
 
 \medskip\noindent
-Let $U$ be a scheme, and let $U \to F$ be surjective and \'etale.
-Set $R = U \times_F U$, which is an algebraic space (see
-Lemma \ref{lemma-representable-diagonal}).
+Namely, let $U$ be a scheme and let $U \to F$ be representable by algebraic
+spaces, surjective, and \'etale. Consider the fibre product $R = U \times_F U$.
+Both projections $R \to U$ are representable by algebraic spaces, surjective,
+and \'etale (Lemma \ref{lemma-base-change-transformation-property}).
+In particular $R$ is an algebraic space by
+Lemma \ref{lemma-representable-by-spaces-over-space}.
 The morphism of algebraic spaces $R \to U \times_S U$ is a monomorphism,
 hence separated (as the diagonal of a monomorphism is an isomorphism).
-Moreover, since $U \to F$ is \'etale, we see that $R \to U$ is \'etale, by
-Lemma \ref{lemma-base-change-transformation-property}.
-In particular, we see that $R \to U$ is locally quasi-finite, see
+Since $R \to U$ is \'etale, we see that $R \to U$ is locally quasi-finite, see
 Morphisms of Spaces,
 Lemma \ref{spaces-morphisms-lemma-etale-locally-quasi-finite}.
 We conclude that also $R \to U \times_S U$ is
@@ -929,8 +962,10 @@ Lemma \ref{spaces-morphisms-lemma-permanence-quasi-finite}.
 Hence
 Morphisms of Spaces, Proposition
 \ref{spaces-morphisms-proposition-locally-quasi-finite-separated-over-scheme}
-applies and $R$ is a scheme. Hence $F = U/R$ is an algebraic
-space according to
+applies and $R$ is a scheme. By
+Lemma \ref{lemma-surjective-flat-locally-finite-presentation}
+the map $U \to F$ is a surjection of sheaves. Thus $F = U/R$.
+We conclude that $F$ is an algebraic space by
 Spaces, Theorem \ref{spaces-theorem-presentation}.
 \end{proof}
 
@@ -2225,6 +2260,61 @@ of presheaves) since $R = U \times_X U$.
 It follows that $F \to X$ is an isomorphism of smooth ($=$ \'etale)
 sheaves, see Sites, Lemma \ref{sites-lemma-mono-epi-sheaves}
 which concludes the proof.
+\end{proof}
+
+\noindent
+Finally, here is the analogue of
+Spaces, Lemma \ref{spaces-lemma-etale-locally-representable-gives-space}
+with a smooth morphism covering the space.
+
+\begin{lemma}
+\label{lemma-spaces-smooth-locally-representable}
+Denote the common underlying category of $\Sch_{fppf}$ and $\Sch_\etale$ by
+$\Sch_\alpha$ (see Topologies, Remark \ref{topologies-remark-choice-sites}).
+Let $S$ be an object of $\Sch_\alpha$. Let
+$$
+F : (\Sch_\alpha/S)^{opp} \longrightarrow \textit{Sets}
+$$
+be a presheaf with the following properties:
+\begin{enumerate}
+\item $F$ is a sheaf for the \'etale topology,
+\item there exists an algebraic space $U$ over $S$
+and a map $U \to F$ which is representable by
+algebraic spaces, surjective, and smooth.
+\end{enumerate}
+Then $F$ is an algebraic space in the sense of
+Algebraic Spaces, Definition \ref{spaces-definition-algebraic-space}.
+\end{lemma}
+
+\begin{proof}
+The proof is identical to the proof of
+Lemma \ref{lemma-spaces-etale-locally-representable}.
+Set $R = U \times_F U$. This is an algebraic space as $U \to F$ is assumed
+representable by algebraic spaces. The projections $s, t : R \to U$ are
+smooth morphisms of algebraic spaces as $U \to F$ is assumed smooth.
+The map $j = (t, s) : R \to U \times_S U$ is a monomorphism and an
+equivalence relation as $R = U \times_F U$. By
+Theorem \ref{theorem-final-bootstrap}
+the fppf quotient sheaf $F' = U/R$ is an algebraic space.
+The morphism $U \to F'$ is surjective, flat, and locally of finite
+presentation by Lemma \ref{lemma-covering-quotient}.
+The map $R \to U \times_{F'} U$ is surjective as a map of fppf
+sheaves by Groupoids in Spaces, Lemma
+\ref{spaces-groupoids-lemma-quotient-pre-equivalence}
+and since $j$ is a monomorphism it is an isomorphism.
+Hence the base change of $U \to F'$ by $U \to F'$ is smooth,
+and we conclude that $U \to F'$ is smooth by
+Descent on Spaces, Lemma \ref{spaces-descent-lemma-descending-property-smooth}.
+Thus $U \to F'$ is surjective as a map of \'etale sheaves (as the
+smooth topology is equal to the \'etale topology by
+More on Morphisms, Lemma \ref{more-morphisms-lemma-etale-dominates-smooth}).
+This means that $F'$ is equal to the quotient sheaf $U/R$
+in the \'etale topology (small check omitted). Hence we obtain
+a canonical factorization $U \to F' \to F$ and $F' \to F$ is an injective
+map of sheaves. On the other hand, $U \to F$ is surjective as a map
+of \'etale sheaves (as the smooth topology is the same as the
+\'etale topology) and hence so is $F' \to F$. This means that $F' = F$
+and the proof is complete.
 \end{proof}
 
 

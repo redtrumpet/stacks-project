@@ -874,25 +874,7 @@ Then $f$ is formally unramified if and only if $\Omega_{X/S} = 0$.
 \end{lemma}
 
 \begin{proof}
-We give two proofs.
-
-\medskip\noindent
-First proof. It suffices to show that $\Omega_{X/S}$ is zero on the members of
-an affine open covering of $X$. Choose an affine open $U \subset X$
-with $f(U) \subset V$ where $V \subset S$ is an affine open of $S$. By
-Lemma \ref{lemma-formally-unramified-on-opens}
-the restriction $f_U : U \to V$ is formally unramified. By
-Morphisms, Lemma \ref{morphisms-lemma-differentials-affine}
-we see that $\Omega_{X/S}|_U$ is the quasi-coherent sheaf associated to
-the $\mathcal{O}_X(U)$-module $\Omega_{\mathcal{O}_X(U)/\mathcal{O}_S(V)}$. By
-Lemma \ref{lemma-affine-formally-unramified}
-we see that $\mathcal{O}_S(V) \to \mathcal{O}_X(U)$ is a formally unramified
-ring map. Hence by
-Algebra, Lemma \ref{algebra-lemma-characterize-formally-unramified}
-we conclude that $\Omega_{X/S}|_U = 0$ as desired.
-
-\medskip\noindent
-Second proof. We recall some of the arguments of the proof of
+We recall some of the arguments of the proof of
 Morphisms, Lemma \ref{morphisms-lemma-differentials-affine}.
 Let $W \subset X \times_S X$ be an open such that
 $\Delta : X \to X \times_S X$ induces a closed immersion into $W$.
@@ -3808,6 +3790,38 @@ finite projective for modules over rings
 \end{proof}
 
 \begin{lemma}
+\label{lemma-NL-etale}
+Let $f : X \to Y$ be a morphism of schemes. The following are equivalent
+\begin{enumerate}
+\item $f$ is \'etale, and
+\item $f$ is locally of finite presentation and
+$H^{-1}(\NL_{X/Y}) = H^0(\NL_{X/Y}) = 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This follows from the definition of an \'etale ring homomorphism
+(Algebra, Definition \ref{algebra-definition-etale}),
+Lemma \ref{lemma-NL-affine}, and
+the definition of an \'etale morphism of schemes
+(Morphisms, Definition \ref{morphisms-definition-etale}).
+\end{proof}
+
+
+\begin{lemma}
+\label{lemma-NL-immersion}
+Let $i : Z \to X$ be an immersion of schemes. Then $\NL_{Z/X}$
+is isomorphic to $\mathcal{C}_{Z/X}[1]$ in $D(\mathcal{O}_Z)$
+where $\mathcal{C}_{Z/X}$ is the conormal sheaf of $Z$ in $X$.
+\end{lemma}
+
+\begin{proof}
+This follows from Algebra, Lemma \ref{algebra-lemma-NL-surjection},
+Morphisms, Lemma \ref{morphisms-lemma-affine-conormal}, and
+Lemma \ref{lemma-NL-affine}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-exact-sequence-NL}
 Let $f : X \to Y$ and $g : Y \to Z$ be morphisms of schemes.
 There is a canonical six term exact sequence
@@ -3821,8 +3835,155 @@ of cohomology sheaves.
 \end{lemma}
 
 \begin{proof}
-Special case of Modules, Lemma \ref{modules-lemma-exact-sequence-NL}.
+Special case of
+Modules, Lemma \ref{modules-lemma-exact-sequence-NL-ringed-topoi}.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-get-triangle-NL}
+Let $f : X \to Y$ and $Y \to Z$ be morphisms of schemes. Assume
+$X \to Y$ is a complete intersection morphism. Then there is
+a canonical distinguished triangle
+$$
+f^*\NL_{Y/Z} \to \NL_{X/Z} \to \NL_{X/Y} \to f^*\NL_{Y/Z}[1]
+$$
+in $D(\mathcal{O}_X)$ which recovers the $6$-term exact sequence of
+Lemma \ref{lemma-exact-sequence-NL}.
+\end{lemma}
+
+\begin{proof}
+It suffices to show the canonical map
+$$
+f^*\NL_{Y/Z} \to \text{Cone}(\NL_{X/Y} \to \NL_{X/Z})[-1]
+$$
+of Modules, Lemma \ref{modules-lemma-exact-sequence-NL-ringed-topoi}
+is an isomorphism in $D(\mathcal{O}_X)$. In order to show this, it
+suffices to show that the $6$-term sequence has
+a zero on the left, i.e., that $H^{-1}(f^*\NL_{Y/Z}) \to H^{-1}(\NL_{X/Z})$
+is injective. Affine locally this follows from the corresponding
+algebra result in More on Algebra, Lemma
+\ref{more-algebra-lemma-transitive-lci-at-end}.
+To translate into algebra use Lemma \ref{lemma-NL-affine}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-smooth-etale-permanence}
+Let $X \to Y \to Z$ be morphisms of schemes. Assume $X \to Z$ smooth
+and $Y \to Z$ \'etale. Then $X \to Y$ is smooth.
+\end{lemma}
+
+\begin{proof}
+The morphism $X \to Y$ is locally of finite presentation by
+Morphisms, Lemma \ref{morphisms-lemma-finite-presentation-permanence}.
+By Lemma \ref{lemma-NL-smooth} we have $H^{-1}(\NL_{X/Z}) = 0$
+and the module $\Omega_{X/Z}$ is finite locally free.
+By Lemma \ref{lemma-NL-etale} we have
+$H^{-1}(\NL_{Y/Z}) = H^0(\NL_{Y/Z}) = 0$.
+By Lemma \ref{lemma-exact-sequence-NL} we get
+$H^{-1}(\NL_{X/Y}) = 0$ and $\Omega_{X/Y} \cong \Omega_{X/Z}$
+is finite locally free.
+By Lemma \ref{lemma-NL-smooth} the morphism $X \to Y$ is smooth.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-get-NL}
+Let $f : X \to Y$ be a morphism of schemes which factors
+as $f = g \circ i$ with $i$ an immersion and $g : P \to Y$
+formally smooth (for example smooth). Then there is a canonical isomorphism
+$$
+\NL_{X/Y} \cong \left(\mathcal{C}_{X/P} \to i^*\Omega_{P/Y}\right)
+$$
+in $D(\mathcal{O}_X)$ where the conormal sheaf $\mathcal{C}_{X/P}$
+is placed in degree $-1$.
+\end{lemma}
+
+\begin{proof}
+(For the parenthetical statement see Lemma \ref{lemma-smooth-formally-smooth}.)
+By Lemmas \ref{lemma-NL-immersion} and \ref{lemma-NL-formally-smooth} we have
+$\NL_{X/P} = \mathcal{C}_{X/P}[1]$ and $\NL_{P/Y} = \Omega_{P/Y}$ with
+$\Omega_{P/Y}$ locally projective. This implies that
+$i^*\NL_{P/Y} \to i^*\Omega_{P/Y}$ is a quasi-isomorphism too
+(small detail omitted; the reason is that $i^*\NL_{P/Y}$ is the
+same thing as $\tau_{\geq -1}Li^*\NL_{P/Y}$, see More on Algebra, Lemma
+\ref{more-algebra-lemma-tensor-NL}).
+Thus the canonical map
+$$
+i^*\NL_{P/Y} \to \text{Cone}(\NL_{X/Y} \to \NL_{X/P})[-1]
+$$
+of Modules, Lemma \ref{modules-lemma-exact-sequence-NL-ringed-topoi}
+is an isomorphism in $D(\mathcal{O}_X)$ because the cohomology
+group $H^{-1}(i^*\NL_{P/Y})$ is zero by what we said above.
+In other words, we have a distinguished triangle
+$$
+i^*\NL_{P/Y} \to \NL_{X/Y} \to \NL_{X/P} \to i^*\NL_{P/Y}[1]
+$$
+Clearly, this means that $\NL_{X/Y}$ is the cone on the map
+$\NL_{X/P}[-1] \to i^*\NL_{P/Y}$ which is equivalent to the
+statement of the lemma by our computation of the cohomology
+sheaves of these objects in the derived category given above.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-base-change-NL}
+Consider a cartesian diagram of schemes
+$$
+\xymatrix{
+X' \ar[r]_{g'} \ar[d] & X \ar[d] \\
+Y' \ar[r] & Y
+}
+$$
+The canonical map $(g')^*\NL_{X/Y} \to \NL_{X'/Y'}$ induces
+an isomorphism on $H^0$ and a surjection on $H^{-1}$.
+\end{lemma}
+
+\begin{proof}
+Translated into algebra this is
+More on Algebra, Lemma \ref{more-algebra-lemma-base-change-NL}.
+To do the translation use Lemma \ref{lemma-NL-affine}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-flat-base-change-NL}
+Consider a cartesian diagram of schemes
+$$
+\xymatrix{
+X' \ar[d] \ar[r]_{g'} & X \ar[d] \\
+Y' \ar[r] & Y
+}
+$$
+If $Y' \to Y$ is flat, then the canonical map
+$(g')^*\NL_{X/Y} \to \NL_{X'/Y'}$ is a quasi-isomorphism.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-NL-affine} this follows from
+Algebra, Lemma \ref{algebra-lemma-change-base-NL}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-base-change-NL-flat}
+Consider a cartesian diagram of schemes
+$$
+\xymatrix{
+X' \ar[r]_{g'} \ar[d] & X \ar[d] \\
+Y' \ar[r] & Y
+}
+$$
+If $X \to Y$ is flat, then the canonical map
+$(g')^*\NL_{X/Y} \to \NL_{X'/Y'}$ is a quasi-isomorphism.
+If in addition $\NL_{X/Y}$ has tor-amplitude in $[-1, 0]$
+then $L(g')^*\NL_{X/Y} \to \NL_{X'/Y'}$ is a quasi-isomorphism too.
+\end{lemma}
+
+\begin{proof}
+Translated into algebra this is
+More on Algebra, Lemma \ref{more-algebra-lemma-base-change-NL-flat}.
+To do the translation use Lemma \ref{lemma-NL-affine}
+and Derived Categories of Schemes, Lemmas
+\ref{perfect-lemma-affine-compare-bounded} and
+\ref{perfect-lemma-tor-dimension-affine}.
+\end{proof}
+
 
 
 
@@ -3929,34 +4090,25 @@ is local and we conclude also.
 
 \begin{lemma}
 \label{lemma-pushout-fpqc-local}
-Consider a commutative diagram of schemes
-$$
-\xymatrix{
-Z \ar[r]_i \ar[d]_j & X \ar[d]^a \\
-Y \ar[r]^-b & W
-}
-$$
-and set $c = a \circ i = b \circ j$. If there exists an fpqc covering
-$\{W_i \to W\}$ such that for all $i$ and $i'$ the diagrams
-$$
-\xymatrix{
-Z \times_{c, W} W_i \ar[r] \ar[d] & X \times_{a, W} W_i \ar[d] \\
-Y \times_{b, W} W_i \ar[r] & W_i
-}
-\quad
-\xymatrix{
-Z \times_{c, W} (W_i \times_W W_{i'}) \ar[r] \ar[d] &
-X \times_{a, W} (W_i \times_W W_{i'}) \ar[d] \\
-Y \times_{b, W} (W_i \times_W W_{i'}) \ar[r] &
-(W_i \times_W W_{i'})
-}
-$$
-are cocartesian, then so is the original diagram.
+Let $\mathcal{I} \to (\Sch/S)_{fppf}$, $i \mapsto X_i$ be a diagram of schemes.
+Let $(W, X_i \to W)$ be a cocone for the diagram in the category of schemes
+(Categories, Remark \ref{categories-remark-cones-and-cocones}).
+If there exists a fpqc covering $\{W_a \to W\}_{a \in A}$ of schemes such that
+\begin{enumerate}
+\item for all $a \in A$ we have
+$W_a = \colim X_i \times_W W_a$
+in the category of schemes, and
+\item for all $a, b \in A$ we have
+$W_a \times_W W_b = \colim X_i \times_W W_a \times_W W_b$
+in the category of schemes,
+\end{enumerate}
+then $W = \colim X_i$ in the category of schemes.
 \end{lemma}
 
 \begin{proof}
 Namely, for a scheme $T$ a morphism $W \to T$ is the same thing as
-a collection of morphism $W_i \to T$ which agree on overlaps, see
+collection of morphism $W_a \to T$, $a \in A$ which agree on the
+overlaps $W_a \times_W W_b$, see
 Descent, Lemma \ref{descent-lemma-fpqc-universal-effective-epimorphisms}.
 \end{proof}
 
@@ -4670,7 +4822,8 @@ Lemma \ref{lemma-integral-closure-smooth-pullback}.
 Let $X \to Y$ be a smooth morphism of schemes. Assume every quasi-compact
 open of $Y$ has finitely many irreducible components. Then the same
 is true for $X$ and there is a canonical isomorphism
-$X^\nu = X \times_Y Y^\nu$.
+$X^\nu = X \times_Y Y^\nu$ where $X^\nu$, $Y^\nu$ are the normalizations
+of $X$, $Y$.
 \end{lemma}
 
 \begin{proof}
@@ -5135,7 +5288,7 @@ at $f(x)$, then $g \circ f$ is Cohen-Macaulay at $x$.
 \item If $f$ and $g$ are Cohen-Macaulay, then $g \circ f$ is Cohen-Macaulay.
 \item If $g \circ f$ is Cohen-Macaulay at $x$ and $f$ is flat at $x$,
 then $f$ is Cohen-Macaulay at $x$ and $g$ is Cohen-Macaulay at $f(x)$.
-\item If $f \circ g$ is Cohen-Macaulay and $f$ is flat, then
+\item If $g \circ f$ is Cohen-Macaulay and $f$ is flat, then
 $f$ is Cohen-Macaulay and $g$ is Cohen-Macaulay at every point in
 the image of $f$.
 \end{enumerate}
@@ -5799,7 +5952,7 @@ Properties, Lemma \ref{properties-lemma-characterize-integral}.
 By
 Morphisms, Proposition \ref{morphisms-proposition-generic-flatness}
 there exists a nonempty affine open $V \subset Y$ such that
-$X_V \to V$ and $Z_V \to Z$ are flat and of finite presentation.
+$X_V \to V$ and $Z_V \to V$ are flat and of finite presentation.
 We claim that $V$ works.
 Pick $y \in V$. If $Z_y$ has a nonempty interior, then $Z_y$ contains
 a generic point $\xi$ of an irreducible component of $X_y$.
@@ -5957,22 +6110,21 @@ Choose an affine neighbourhood $\Spec(A) \subset Y$ of $\eta$.
 Choose an affine open $\Spec(B) \subset X$ mapping into $\Spec(A)$
 via the morphism $f$. Let $\mathfrak p \subset A$ be the minimal prime
 corresponding to $\eta$. Let $B_{red}$ be the quotient of $B$ by
-$\sqrt{(0)}$. The algebraic content of the lemma is that
-$B_{red} \otimes_A \kappa(\mathfrak p)$ is reduced. To prove this, suppose
-that $x \in B_{red} \otimes_A \kappa(\mathfrak p)$ is nilpotent. Say
-$x^n = 0$ for some $n > 0$.
-Pick an $f \in A$, $f \not \in \mathfrak p$ such that
-$fx$ is the image of $y \in B_{red}$. Then $gy^n \in \mathfrak pB_{red}$ for
-some $g \in A$, $g \not \in \mathfrak p$. By
-Algebra, Lemma \ref{algebra-lemma-minimal-prime-reduced-ring}
-we see that $\mathfrak pA_{\mathfrak p}$ is locally nilpotent. By
-Algebra, Lemma \ref{algebra-lemma-locally-nilpotent}
-we see that $\mathfrak p(B_{red})_{\mathfrak p}$ is locally nilpotent.
-Hence we conclude that $gy^n$ is nilpotent in $(B_{red})_{\mathfrak p}$.
-Thus there exists a $h \in A$, $h \not \in \mathfrak p$ and an $m > 0$
-such that $h(gy^n)^m = 0$ in $B_{red}$. This implies that
-$hgy$ is nilpotent in $B_{red}$, i.e., that $hgy = 0$. Of course this
-means that $x = 0$ as desired.
+the nilradical $\sqrt{(0)}$. The algebraic content of the lemma is that
+$C = B_{red} \otimes_A \kappa(\mathfrak p)$ is reduced.
+Denote $I \subset A$ the nilradical so that $A_{red} = A/I$.
+Denote $\mathfrak p_{red} = \mathfrak p/I$
+which is a minimal prime of $A_{red}$ with
+$\kappa(\mathfrak p) = \kappa(\mathfrak p_{red})$.
+Since $A \to B_{red}$ and $A \to \kappa(\mathfrak p)$
+both factor through $A \to A_{red}$ we have
+$C = B_{red} \otimes_{A_{red}} \kappa(\mathfrak p_{red})$.
+Now $\kappa(\mathfrak p_{red}) = (A_{red})_{\mathfrak p_{red}}$
+is a localization by 
+Algebra, Lemma \ref{algebra-lemma-minimal-prime-reduced-ring}.
+Hence $C$ is a localization of $B_{red}$
+(Algebra, Lemma \ref{algebra-lemma-tensor-localization})
+and hence reduced.
 \end{proof}
 
 \begin{lemma}
@@ -6827,7 +6979,7 @@ $$
 as in
 Lemma \ref{lemma-make-generic-fibre-geometrically-reduced}.
 Note that the generic fibre of $f'$ is the reduction of the
-geometric fibre of $f$ (see
+generic fibre of $f$ (see
 Lemma \ref{lemma-reduction-generic-fibre})
 and hence is geometrically irreducible.
 Suppose that the lemma holds for the morphism $f'$. Then after shrinking
@@ -7276,7 +7428,7 @@ one equivalence class. Now if $y \in V$ and $K \supset \kappa(y)$
 is a separably closed extension, then the irreducible components
 of $(X_y)_K$ are the fibres $(X_{i, y})_K$. Moreover, we see by
 construction and $y \in V$ that $(X_{i, y})_K$ meets $(X_{j, y})_K$
-if and only $(i, j) \in J$. Hence the remark on equivalence classes
+if and only if $(i, j) \in J$. Hence the remark on equivalence classes
 shows that $(X_y)_K$ is connected and we win.
 \end{proof}
 
@@ -7394,7 +7546,7 @@ Then the generic fibre $X_\eta$ is connected.
 \end{lemma}
 
 \begin{proof}
-Write $Y = \Spec(R)$ and let $\pi \in R$ be a uniformizer.
+Write $S = \Spec(R)$ and let $\pi \in R$ be a uniformizer.
 To get a contradiction assume that $X_\eta$ is disconnected.
 This means there exists a nontrivial idempotent
 $e \in \Gamma(X_\eta, \mathcal{O}_{X_\eta})$.
@@ -7786,6 +7938,302 @@ Immediate consequence of
 Lemmas \ref{lemma-dimension-fibres-flat} and
 \ref{lemma-dimension-fibres-proper}.
 \end{proof}
+
+
+
+
+
+
+\section{Bertini theorems}
+\label{section-bertini}
+
+\noindent
+We continue the discussion started in
+Varieties, Section \ref{varieties-section-bertini}.
+In this section we prove that general hyperplane sections
+of geometrically irreducible varieties are geometrically irreducible
+following the remarkable argument given in \cite{Jou}.
+
+\begin{lemma}
+\label{lemma-amazing-bertini-lemma}
+\begin{reference}
+See pages 71 and 72 of \cite{Jou}
+\end{reference}
+Let $K/k$ be a geometrically irreducible and finitely generated
+field extension. Let $n \geq 1$.
+Let $g_1, \ldots, g_n \in K$ be elements such that there
+exist $c_1, \ldots, c_n \in k$ such that the elements
+$$
+x_1, \ldots, x_n, \sum g_ix_i, \sum c_ig_i \in K(x_1, \ldots, x_n)
+$$
+are algebraically independent over $k$. Then
+$K(x_1, \ldots, x_n)$ is geometrically irreducible over
+$k(x_1, \ldots, x_n, \sum g_ix_i)$.
+\end{lemma}
+
+\begin{proof}
+Let $c_1, \ldots, c_n \in k$ be as in the statement of the lemma.
+Write $\xi = \sum g_ix_i$ and $\delta = \sum c_ig_i$.
+For $a \in k$ consider the automorphism $\sigma_a$
+of $K(x_1, \ldots, x_n)$ given by the identity on $K$ and the rules
+$$
+\sigma_a(x_i) = x_i + a c_i
+$$
+Observe that $\sigma_a(\xi) = \xi + a \delta$ and $\sigma_a(\delta) = \delta$.
+Consider the tower of fields
+$$
+K_0 = k(x_1, \ldots, x_n) \subset
+K_1 = K_0(\xi) \subset
+K_2 = K_0(\xi, \delta) \subset K(x_1, \ldots, x_n) = \Omega
+$$
+Observe that $\sigma_a(K_0) = K_0$ and $\sigma_a(K_2) = K_2$.
+Let $\theta \in \Omega$ be separable algebraic over $K_1$.
+We have to show $\theta \in K_1$, see Algebra, Lemma
+\ref{algebra-lemma-geometrically-irreducible-separable-elements}.
+
+\medskip\noindent
+Denote $K'_2$ the separable algebraic closure of $K_2$ in $\Omega$.
+Since $K'_2/K_2$ is finite (Algebra, Lemma
+\ref{algebra-lemma-make-geometrically-irreducible}) and
+separable there are only a finite number of fields in
+between $K'_2$ and $K_2$ (Fields, Lemma \ref{fields-lemma-primitive-element}).
+If $k$ is infinite\footnote{We will deal with the finite field case in the
+last paragraph of the proof.}, then we can find distinct elements
+$a_1, a_2$ of $k$ such that
+$$
+K_2(\sigma_{a_1}(\theta)) = K_2(\sigma_{a_2}(\theta))
+$$
+as subfields of $\Omega$. Write $\theta_i = \sigma_{a_i}(\theta)$
+and $\xi_i = \sigma_{a_i}(\xi) = \xi + a_i \delta$. Observe that
+$$
+K_2 = K_0(\xi_1, \xi_2)
+$$
+as we have $\xi_i = \xi + a_i \delta$,
+$\xi = (a_2 \xi_1 - a_1 \xi_2)/(a_2 - a_1)$, and
+$\delta = (\xi_1 - \xi_2)/(a_1 - a_2)$.
+Since $K_2/K_0$ is purely transcendental of degree $2$ we conclude
+that $\xi_1$ and $\xi_2$ are algebraically indepedent over $K_0$.
+Since $\theta_1$ is algebraic over $K_0(\xi_1)$ we conclude that
+$\xi_2$ is transcendental over $K_0(\xi_1, \theta_1)$.
+
+\medskip\noindent
+By assumption $K/k$ is geometrically irreducible. This implies
+that $K(x_1, \ldots, x_n)/K_0$ is geometrically irreducible
+(Algebra, Lemma
+\ref{algebra-lemma-geometrically-irreducible-base-change-transcendental}).
+This in turn implies that $K_0(\xi_1, \theta_1)/K_0$
+is geometrically irreducible as a subextension
+(Algebra, Lemma \ref{algebra-lemma-subalgebra-geometrically-irreducible}).
+Since $\xi_2$ is transcendental over $K_0(\xi_1, \theta_1)$
+we conclude that $K_0(\xi_1, \xi_2, \theta_1)/K_0(\xi_2)$
+is geometrically irreducible (Algebra, Lemma
+\ref{algebra-lemma-geometrically-irreducible-add-transcendental}).
+By our choice of $a_1, a_2$ above we have
+$$
+K_0(\xi_1, \xi_2, \theta_1) =
+K_2(\sigma_{a_1}(\theta)) =
+K_2(\sigma_{a_2}(\theta)) =
+K_0(\xi_1, \xi_2, \theta_2)
+$$
+Since $\theta_2$ is separably algebraic over $K_0(\xi_2)$
+we conclude by Algebra, Lemma
+\ref{algebra-lemma-geometrically-irreducible-separable-elements} again that
+$\theta_2 \in K_0(\xi_2)$. Taking $\sigma_{a_2}^{-1}$
+of this relation givens $\theta \in K_0(\xi) = K_1$ as desired.
+
+\medskip\noindent
+This finishes the proof in case $k$ is infinite. If $k$ is finite,
+then we can choose a variable $t$ and consider the extension
+$K(t)/k(t)$ which is geometrically irreducible by
+Algebra, Lemma
+\ref{algebra-lemma-geometrically-irreducible-base-change-transcendental}.
+Since it is still be true that
+$x_1, \ldots, x_n, \sum g_ix_i, \sum c_ig_i$
+in $K(t, x_1, \ldots, x_n)$ are algebraically independent over $k(t)$
+we conclude that $K(t, x_1, \ldots, x_n)$
+is geometrically irreducible over
+$k(t, x_1, \ldots, x_n, \sum g_ix_i)$
+by the argument already given.
+Then using Algebra, Lemma
+\ref{algebra-lemma-geometrically-irreducible-base-change-transcendental}
+once more finishes the job.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-algebraically-independent}
+Let $A$ be a domain of finite type over a field $k$. Let $n \geq 2$.
+Let $g_1, \ldots, g_n \in A$ be elements such that $V(g_1, g_2)$
+has an irreducible component of dimension $\dim(A) - 2$.
+Then there exist $c_1, \ldots, c_n \in k$ such that the elements
+$$
+x_1, \ldots, x_n, \sum g_ix_i, \sum c_ig_i \in
+\text{Frac}(A)(x_1, \ldots, x_n)
+$$
+are algebraically independent over $k$.
+\end{lemma}
+
+\begin{proof}
+The algebraic independence over $k$ means that the morphism
+$$
+T = \Spec(A[x_1, \ldots, x_n])
+\longrightarrow
+\Spec(k[x_1, \ldots, x_n, y, z]) = S
+$$
+given by $y = \sum g_ix_i$ and $z = \sum c_ig_i$ is dominant.
+Set $d = \dim(A)$. If $T \to S$ is not dominant, then the image
+has dimension $< n + 2$ and hence every irreducible component
+of every fibre has dimension $> d + n - (n + 2) = d - 2$, see
+Varieties, Lemma
+\ref{varieties-lemma-dimension-fibres-locally-algebraic}.
+Choose a closed point $u \in V(g_1, g_2)$ contained in an irreducible component
+of dimension $d - 2$ and in no other component of $V(g_1, g_2)$.
+Consider the closed point $t = (u, 1, 0, \ldots 0)$
+of $T$ lying over $u$. Set $(c_1, \ldots, c_n) = (0, 1, 0, \ldots, 0)$.
+Then $t$ maps to the point $s = (1, 0, \ldots, 0)$ of $S$.
+The fibre of $T \to S$ over $s$ is cut out by
+$$
+x_1 - 1, x_2, \ldots, x_n, \sum x_ig_i, g_2
+$$
+and hence equivalently is cut out by
+$$
+x_1 - 1, x_2, \ldots, x_n, g_1, g_2
+$$
+By our condition on $g_1, g_2$ this subscheme has an irreducible component
+of dimension $d - 2$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-bertini-irreducible}
+\begin{reference}
+\cite[Theorem 6.3 part 4)]{Jou}
+\end{reference}
+In Varieties, Situation \ref{varieties-situation-family-divisors} assume
+\begin{enumerate}
+\item $X$ is of finite type over $k$,
+\item $X$ is geometrically irreducible over $k$,
+\item there exist $v_1, v_2, v_3 \in V$ and an irreducible component
+$Z$ of $H_{v_2} \cap H_{v_3}$ such that $Z \not \subset H_{v_1}$ and
+$\text{codim}(Z, X) = 2$, and
+\item every irreducible component $Y$ of $\bigcap_{v \in V} H_v$
+has $\text{codim}(Y, X) \geq 2$.
+\end{enumerate}
+Then for general $v \in V \otimes_k k'$
+the scheme $H_v$ is geometrically irreducible over $k'$.
+\end{lemma}
+
+\begin{proof}
+In order for assumption (3) to hold, the elements $v_1, v_2, v_3$
+must be $k$-linearly independent in $V$ (small detail omitted).
+Thus we may choose a basis $v_1, \ldots, v_r$ of $V$ incorporating
+these elements as the first $3$. Recall that
+$H_{univ} \subset \mathbf{A}^r_k \times_k X$ is the ``universal divisor''.
+Consider the projection $q : H_{univ} \to \mathbf{A}^r_k$
+whose scheme theoretic fibres are the divisors $H_v$. By
+Lemma \ref{lemma-geom-irreducible-generic-fibre}
+it suffices to show that the generic fibre of $q$ is geometrically
+irreducible.
+To prove this we may replace $X$ by its reduction, hence
+we may assume $X$ is an integral scheme of finite type over $k$.
+
+\medskip\noindent
+Let $U \subset X$ be a nonempty affine open such that
+$\mathcal{L}|_U \cong \mathcal{O}_U$. Write $U = \Spec(A)$.
+Denote $f_i \in A$ the element corresponding to section $\psi(v_i)|_U$
+via the isomorphism $\mathcal{L}|_U \cong \mathcal{O}_U$.
+Then $H_{univ} \cap (\mathbf{A}^r_k \times_k U)$ is given by
+$$
+H_U = \Spec(A[x_1, \ldots, x_r]/(x_1f_1 + \ldots + x_rf_r))
+$$
+By our choice of basis we see that $f_1$ cannot be zero because this
+would mean $v_1 = 0$ and hence $H_{v_1} = X$ which contradicts
+assumption (3). Hence $\sum x_if_i$ is a nonzerodivisor in
+$A[x_1, \ldots, x_r]$.
+It follows that every irreducible component of $H_U$ has dimension
+$d + r - 1$ where $d = \dim(X) = \dim(A)$. If $U' = U \cap D(f_1)$
+then we see that
+$$
+H_{U'} =
+\Spec(A_{f_1}[x_1, \ldots, x_r]/(x_1f_1 + \ldots + x_rf_r)) \cong
+\Spec(A_{f_1}[x_2, \ldots x_r]) =
+\mathbf{A}^{r - 1}_k \times_k U'
+$$
+is irreducible. On the other hand, we have
+$$
+H_U \setminus H_{U'} =
+\Spec(A/(f_1)[x_1, \ldots, x_r]/(x_2f_2 + \ldots + x_rf_r))
+$$
+which has dimension at most $d + r - 2$. Namely, for $i \not = 1$
+the scheme $(H_U \setminus H_{U'}) \times_U D(f_i)$ is either empty
+(if $f_i = 0$) or by the same argument as above isomorphic to an $r - 1$
+dimensional affine space over an open of $\Spec(A/(f_1))$ and hence has
+dimension at most $d + r - 2$.
+On the other hand, $(H_U \setminus H_{U'}) \times_U V(f_2, \ldots, f_r)$
+is an $r$ dimensional affine space over $\Spec(A/(f_1, \ldots, f_r))$
+and hence assumption (4) tells us this has dimension at most
+$d + r - 2$. We conclude that $H_U$ is irreducible for every $U$ as above.
+It follows that $H_{univ}$ is irreducible.
+
+\medskip\noindent
+Thus it suffices to show that the generic point of $H_{univ}$
+is geometrically irreducible over the generic point of $\mathbf{A}^r_k$, see
+Varieties, Lemma
+\ref{varieties-lemma-geometrically-irreducible-function-field}.
+Choose a nonempty affine open $U = \Spec(A)$ of $X$
+contained in $X \setminus H_{v_1}$ which meets the irreducible
+component $Z$ of $H_{v_2} \cap H_{v_3}$ whose existence is asserted in
+assumption (3). With notation as above we have to prove that
+the field extension
+$$
+\text{Frac}(A[x_1, \ldots, x_r]/(x_1f_1 + \ldots + x_rf_r))/
+k(x_1, \ldots , x_r)
+$$
+is geometrically irreducible. Observe that $f_1$ is invertible in $A$
+by our choice of $U$.
+Set $K = \text{Frac}(A)$ equal to the fraction field of $A$.
+Eliminating the variable $x_1$ as above,
+we find that we have to show that the field extension
+$$
+K(x_2, \ldots, x_r)/
+k(x_2, \ldots, x_r, -\sum\nolimits_{i = 2, \ldots, r} f_1^{-1}f_i x_i)
+$$
+is geometrically irreducible. By Lemma \ref{lemma-amazing-bertini-lemma}
+it suffices to show that for some $c_2, \ldots, c_r \in k$ the elements
+$$
+x_2, \ldots, x_r, \sum\nolimits_{i = 2, \ldots, r} f_1^{-1}f_i x_i,
+\sum\nolimits_{i = 2, \ldots, r} c_if_1^{-1}f_i
+$$
+are algebraically independent over $k$ in the fraction field of
+$A[x_2, \ldots, x_r]$. This follows from
+Lemma \ref{lemma-algebraically-independent}
+and the fact that $Z \cap U$ is an irreducible
+component of $V(f_1^{-1}f_2, f_1^{-1}f_3) \subset U$.
+\end{proof}
+
+\begin{remark}
+\label{remark-geometric-proof-bertini-irreducible}
+Let us sketch a ``geometric'' proof of a special case of
+Lemma \ref{lemma-bertini-irreducible}. Namely, say $k$
+is an algebraically closed field and $X \subset \mathbf{P}^n_k$ is smooth and
+irreducible of dimension $\geq 2$. Then we claim there is a
+hyperplane $H \subset \mathbf{P}^n_k$ such that $X \cap H$ is
+smooth and irreducible. Namely, by
+Varieties, Lemma \ref{varieties-lemma-bertini}
+for a general $v \in V = kT_0 \oplus \ldots \oplus kT_n$
+the corresponding hyperplane section $X \cap H_v$ is smooth.
+On the other hand, by Enriques-Severi-Zariski the scheme
+$X \cap H_v$ is connected, see
+Varieties, Lemma \ref{varieties-lemma-connectedness-ample-divisor}.
+Hence $X \cap H_v$ is smooth and irreducible.
+\end{remark}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8238,7 +8686,7 @@ $\mathcal{L}$ is trivial over $(X \times_S Y)_U$.
 By K\"unneth (Varieties, Lemma \ref{varieties-lemma-kunneth})
 the map
 $$
-H^1(X_s \times_{\Spec(\kappa(s)} Y_s, \mathcal{O}) \to
+H^1(X_s \times_{\Spec(\kappa(s))} Y_s, \mathcal{O}) \to
 H^1(X_s, \mathcal{O}) \oplus H^1(Y_s, \mathcal{O})
 $$
 is injective. Thus we may
@@ -8254,6 +8702,25 @@ to conclude.
 
 \begin{theorem}[Theorem of the cube]
 \label{theorem-of-the-cube}
+Let $S$ be a scheme. Let $X$, $Y$, and $Z$ be schemes over $S$.
+Let $x : S \to X$ and $y : S \to Y$ be sections of the structure morphisms.
+Let $\mathcal{L}$ be an invertible module on $X \times_S Y \times_S Z$. If
+\begin{enumerate}
+\item $X \to S$ and $Y \to S$ are flat, proper morphisms
+of finite presentation with geometrically integral fibres,
+\item the pullbacks of $\mathcal{L}$ by
+$x \times \text{id}_Y \times \text{id}_Z$ and
+$\text{id}_X \times y \times \text{id}_Z$
+are trivial over $Y \times_S Z$ and $X \times_S Z$,
+\item there is a point $z \in Z$ such that $\mathcal{L}$
+restricted to $X \times_S Y \times_S z$ is trivial, and
+\item $Z$ is connected,
+\end{enumerate}
+then $\mathcal{L}$ is trivial.
+\end{theorem}
+
+\noindent
+An often used special case is the following.
 Let $k$ be a field. Let $X, Y, Z$ be varieties with
 $k$-rational points $x, y, z$. Let $\mathcal{L}$ be an invertible
 module on $X \times Y \times Z$. If
@@ -8263,31 +8730,44 @@ $x \times Y \times Z$, $X \times y \times Z$, and $X \times Y \times z$, and
 \item $X$ and $Y$ are geometrically integral and proper over $k$,
 \end{enumerate}
 then $\mathcal{L}$ is trivial.
-\end{theorem}
 
 \begin{proof}
-Since $X$ and $Y$ are geometrically integral and proper over $k$
-the product $X \times_k Y$ is geometrically integral and proper over $k$.
-This implies that $H^0(X \times Y, \mathcal{O}_{X \times Y}) = k$
-and that the same remains true after any base change.
-Thus we may apply Lemma \ref{lemma-diagonal-picard-flat-proper}
-to the morphism
+Observe that the morphism $X \times_S Y \to S$ is a flat, proper morphism
+of finite presentation whose geometrically integral fibres
+(see Varieties, Lemmas \ref{varieties-lemma-geometrically-integral},
+\ref{varieties-lemma-bijection-irreducible-components},
+and \ref{varieties-lemma-geometrically-reduced-any-base-change} for the
+statement about the fibres). By Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-proper-flat-geom-red-connected}
+we see that the pushforward of the structure sheaf by $X \to S$, $Y \to S$, or
+$X \times_S Y \to S$ is the structure sheaf of $S$ and the same remains true
+after any base change. Thus we may apply
+Lemma \ref{lemma-diagonal-picard-flat-proper} to the morphism
 $$
-p : X \times Y \times Z \longrightarrow Z
+p : X \times_S Y \times_S Z \longrightarrow Z
 $$
-and the invertible module $\mathcal{L}$ to get a locally closed
-subscheme $Z' \subset Z$ such that $\mathcal{L}|_{X \times Y \times Z'}$
-is the pullback of an invertible module $\mathcal{N}$ on $Z'$. By
+and the invertible module $\mathcal{L}$ to get a ``universal'' locally closed
+subscheme $Z' \subset Z$ such that $\mathcal{L}|_{X \times_S Y \times_S Z'}$
+is the pullback of an invertible module $\mathcal{N}$ on $Z'$.
+The existence of $z$ shows that $Z'$ is nonempty. By
 Lemma \ref{lemma-get-a-closed}
 we see that $Z' \subset Z$ is a closed subscheme.
-Hence if $Z'$ contains an open neighbourhood of $z$, then
-$Z' = Z$ and we see that $\mathcal{L} = p^*\mathcal{N}$.
-Restricting to $x \times y \times Z$ we find that
-$\mathcal{N} \cong \mathcal{O}_Z$ and $\mathcal{L}$ is trivial.
-To get the desired open neighbourhood of $z$ apply
-Lemma \ref{lemma-pic-of-product}
-to the morphism $p$, the point $z$, and the sections
-$\sigma : Z \to X \times Z$ and $\tau : Z \to Y \times Z$ given by $x$ and $y$.
+Let $z' \in Z'$ be a point.
+Observe that we may write $p$ as the product morphism
+$$
+(X \times_S Z) \times_Z (Y \times_S Z) \longrightarrow Z
+$$
+Hence we may apply Lemma \ref{lemma-pic-of-product}
+to the morphism $p$, the point $z'$, and the sections
+$\sigma : Z \to X \times_S Z$ and $\tau : Z \to Y \times_S Z$
+given by $x$ and $y$. We conclude that $Z'$ is open.
+Hence $Z' = Z$ and $\mathcal{L} = p^*\mathcal{N}$
+for some invertible module $\mathcal{N}$ on $Z$.
+Pulling back via
+$x \times y \times \text{id}_Z : Z  \to X \times_S Y \times_S Z$
+we obtain on the one hand $\mathcal{N}$ and on the other hand
+we obtain the trivial invertible module by assumption (2).
+Thus $\mathcal{N} = \mathcal{O}_Z$ and the proof is complete.
 \end{proof}
 
 
@@ -8677,6 +9157,14 @@ $\varphi : (U, u) \to (S, s)$ such that $\kappa(s) = \kappa(u)$.
 \end{definition}
 
 \noindent
+The notion of an elementary \'etale neighbourhood has many different
+names in the literature, for example these are sometimes called
+``\'etale neighbourhoods'' (\cite[Page 36]{Milne} or
+``strongly \'etale'' (\cite[Page 108]{KPR}).
+Here we follow the convention of the paper
+\cite{GruRay} by calling them elementary \'etale neighbourhoods.
+
+\medskip\noindent
 If $f : (V, v) \to (U, u)$ is a morphism of \'etale
 neighbourhoods, then $f$ is automatically \'etale, see
 Morphisms, Lemma \ref{morphisms-lemma-etale-permanence}.
@@ -8845,6 +9333,680 @@ This proves the lemma.
 
 
 
+
+
+
+
+
+
+\section{\'Etale neighbourhoods and branches}
+\label{section-etale-nbhds-branches}
+
+\noindent
+The number of (geometric) branches of a scheme at a point was
+defined in Properties, Section \ref{properties-section-unibranch}.
+In Varieties, Section \ref{varieties-section-number-of-branches}
+we related this to fibres of the normalization morphism.
+In this section we discuss a characterization of this number in terms of
+\'etale neighbourhoods.
+
+\begin{lemma}
+\label{lemma-nr-minimal-primes}
+Let $R = \colim R_i$ be colimit of a directed system of rings
+whose transition maps are faithfully flat.
+Then the number of minimal primes of $R$
+taken as an element of $\{0, 1, 2, \ldots, \infty\}$
+is the supremum of the numbers of minimal primes of the $R_i$.
+\end{lemma}
+
+\begin{proof}
+If $A \to B$ is a flat ring map, then $\Spec(B) \to \Spec(A)$
+maps minimal primes to minimal primes by going down
+(Algebra, Lemma \ref{algebra-lemma-flat-going-down}).
+If $A \to B$ is faithfully flat, then every minimal
+prime is the image of a minimal prime (by
+Algebra, Lemma \ref{algebra-lemma-ff-rings} and
+\ref{algebra-lemma-minimal-prime-image-minimal-prime}).
+Hence the number of minimal primes of $R_i$ is
+$\geq$ the number of minimal primes of $R_{i'}$ if $i \leq i'$.
+By Algebra, Lemma \ref{algebra-lemma-colimit-faithfully-flat}
+each of the maps $R_i \to R$ is
+faithfully flat and we also see that
+the number of minimal primes of $R$ is
+$\geq$ the number of minimal primes of $R_i$.
+Finally, suppose that $\mathfrak q_1, \ldots, \mathfrak q_n$
+are pairwise distinct minimal primes of $R$. Then we can
+find an $i$ such that $R_i \cap \mathfrak q_1, \ldots, R_i \cap \mathfrak q_n$
+are pairwise distinct (as sets and hence as prime ideals).
+This implies the lemma.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-nr-branches}
+Let $X$ be a scheme and $x \in X$ a point. Then
+\begin{enumerate}
+\item the number of branches of $X$ at $x$ is equal to
+the supremum of the number of irreducible components of $U$
+passing through $u$ taken over elementary \'etale neighbourhoods
+$(U, u) \to (X, x)$,
+\item the number of geometric branches of $X$ at $x$ is equal to
+the supremum of the number of irreducible components of $U$
+passing through $u$ taken over \'etale neighbourhoods
+$(U, u) \to (X, x)$,
+\item $X$ is unibranch at $x$ if and only if for every
+elementary \'etale neighbourhood $(U, u) \to (X, x)$ there
+is exactly one irreducible component of $U$ passing through $u$, and
+\item $X$ is geometrically unibranch at $x$ if and only if for every
+\'etale neighbourhood $(U, u) \to (X, x)$ there
+is exactly one irreducible component of $U$ passing through $u$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Parts (3) and (4) follow from parts (1) and (2) via
+Properties, Lemma \ref{properties-lemma-number-of-branches-1}.
+
+\medskip\noindent
+Proof of (1). Let $\Spec(A)$ be an affine open neighbourhood
+of $x$ and let $\mathfrak p \subset A$ be the prime ideal
+corresponding to $x$. We may replace $X$ by $\Spec(A)$ and
+it suffices to consider affine elementary \'etale neighbourhoods
+$(U, u)$ in the supremum as they form a cofinal subsystem.
+Recall that the henselization $A_\mathfrak p^h$
+is the colimit of the rings $B_\mathfrak q$ over the category
+of pairs $(B, \mathfrak q)$ where $B$ is an \'etale $A$-algebra
+and $\mathfrak q$ is a prime lying over $\mathfrak p$ with
+$\kappa(\mathfrak q) = \kappa(\mathfrak p)$, see
+Algebra, Lemma \ref{algebra-lemma-henselization-different}.
+These pairs $(B, \mathfrak q)$ correspond exactly to
+the affine elementary \'etale neighbourhoods $(U, u)$
+by the correspondence between rings and affine schemes.
+Observe that irreducible components of $\Spec(B)$
+passing through $\mathfrak q$ are exactly the minimal
+prime ideals of $B_\mathfrak q$. The number of minimal
+primes of $A_\mathfrak p^h$ is the number of branches
+of $X$ at $x$ by Properties, Definition
+\ref{properties-definition-number-of-branches}.
+Observe that the transition
+maps $B_\mathfrak q \to B'_{\mathfrak q'}$ in the system
+are all flat. Since a flat local ring map is faithfully flat
+(Algebra, Lemma \ref{algebra-lemma-local-flat-ff})
+we see that the lemma follows
+from Lemma \ref{lemma-nr-minimal-primes}.
+
+\medskip\noindent
+Proof of (2). The proof is the same as the proof of (1), except that we use
+Algebra, Lemma \ref{algebra-lemma-strict-henselization-different}.
+There is a tiny difference: given a separable algebraic closure
+$\kappa^{sep}$ of $\kappa(x)$ for every \'etale neighbourhood
+$(U, u)$ we can choose a $\kappa(x)$-embedding
+$\phi : \kappa(u) \to \kappa^{sep}$
+because $\kappa(u)/\kappa(x)$ is finite separable
+(Morphisms, Lemma \ref{morphisms-lemma-etale-at-point}).
+Hence we can look at the supremum over all triples
+$(U, u, \phi)$ where $(U, u) \to (X, x)$ is an affine
+\'etale neighbourhood and $\phi : \kappa(u) \to \kappa^{sep}$
+is a $\kappa(x)$-embedding. These triples correspond
+exactly to the triples in
+Algebra, Lemma \ref{algebra-lemma-strict-henselization-different}
+and the rest of the proof is exactly the same.
+\end{proof}
+
+\noindent
+We will need a relative variant of the lemma above.
+
+\begin{lemma}
+\label{lemma-nr-branches-fibre}
+Let $X \to S$ be a morphism of schemes and $x \in X$ a point with image $s$.
+Then
+\begin{enumerate}
+\item the number of branches of the fibre $X_s$ at $x$ is equal to
+the supremum of the number of irreducible components of the fibre $U_s$
+passing through $u$ taken over elementary \'etale neighbourhoods
+$(U, u) \to (X, x)$,
+\item the number of geometric branches of the fibre $X_s$ at $x$ is equal to
+the supremum of the number of irreducible components of the fibre $U_s$
+passing through $u$ taken over \'etale neighbourhoods
+$(U, u) \to (X, x)$,
+\item the fibre $X_s$ is unibranch at $x$ if and only if for every
+elementary \'etale neighbourhood $(U, u) \to (X, x)$ there is
+exactly one irreducible component of the fibre $U_s$ passing through $u$, and
+\item $X$ is geometrically unibranch at $x$ if and only if for every
+\'etale neighbourhood $(U, u) \to (X, x)$ there
+is exactly one irreducible component of $U_s$ passing through $u$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Combine Lemmas \ref{lemma-nr-branches} and
+\ref{lemma-lift-etale-neighbourhood-fibre}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-number-of-branches-and-smooth}
+Let $X \to S$ be a smooth morphism of schemes.
+Let $x \in X$ with image $s \in S$.
+Then
+\begin{enumerate}
+\item The number of geometric branches of $X$ at $x$
+is equal to the number of geometric branches of $S$ at $s$.
+\item If $\kappa(x)/\kappa(s)$ is a purely inseparable\footnote{In fact,
+it would suffice if $\kappa(x)$ is geometrically irreducible over
+$\kappa(s)$. If we ever need this we will add a detailed proof.}
+extension of fields, then number of branches of $X$ at $x$
+is equal to the number of branches of $S$ at $s$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Follows immediately from More on Algebra, Lemma
+\ref{more-algebra-lemma-invariance-number-branches-smooth}
+and the definitions.
+\end{proof}
+
+
+
+
+\section{Slicing smooth morphisms}
+\label{section-etale-over-smooth}
+
+\noindent
+In this section we explain a result that roughly states that
+smooth coverings of a scheme $S$ can be refined by \'etale coverings.
+The technique to prove this relies on a slicing argument.
+
+\begin{lemma}
+\label{lemma-slice-smooth-given-element}
+Let $f : X \to S$ be a morphism of schemes.
+Let $x \in X$ be a point with image $s \in S$.
+Let $h \in \mathfrak m_x \subset \mathcal{O}_{X, x}$.
+Assume
+\begin{enumerate}
+\item $f$ is smooth at $x$, and
+\item the image $\text{d}\overline{h}$ of $\text{d}h$ in
+$$
+\Omega_{X_s/s, x} \otimes_{\mathcal{O}_{X_s, x}} \kappa(x) =
+\Omega_{X/S, x} \otimes_{\mathcal{O}_{X, x}} \kappa(x)
+$$
+is nonzero.
+\end{enumerate}
+Then there exists an affine open neighbourhood $U \subset X$ of $x$
+such that $h$ comes from $h \in \Gamma(U, \mathcal{O}_U)$ and such
+that $D = V(h)$ is an effective Cartier divisor in $U$ with $x \in D$ and
+$D \to S$ smooth.
+\end{lemma}
+
+\begin{proof}
+As $f$ is smooth at $x$ we may assume, after replacing $X$ by an open
+neighbourhood of $x$ that $f$ is smooth. In particular we see that
+$f$ is flat and locally of finite presentation. By
+Lemma \ref{lemma-slice-given-element}
+we already know there exists an open neighbourhood $U \subset X$ of $x$
+such that $h$ comes from $h \in \Gamma(U, \mathcal{O}_U)$ and such
+that $D = V(h)$ is an effective Cartier divisor in $U$ with $x \in D$ and
+$D \to S$ flat and of finite presentation. By
+Morphisms, Lemma \ref{morphisms-lemma-differentials-relative-immersion}
+we have a short exact sequence
+$$
+\mathcal{C}_{D/U} \to i^*\Omega_{U/S} \to \Omega_{D/S} \to 0
+$$
+where $i : D \to U$ is the closed immersion and $\mathcal{C}_{D/U}$
+is the conormal sheaf of $D$ in $U$. As $D$ is an effective Cartier
+divisor cut out by $h \in \Gamma(U, \mathcal{O}_U)$ we see that
+$\mathcal{C}_{D/U} = h \cdot \mathcal{O}_S$. Since $U \to S$ is smooth
+the sheaf $\Omega_{U/S}$ is finite locally free, hence its pullback
+$i^*\Omega_{U/S}$ is finite locally free also. The first arrow of
+the sequence maps the free generator $h$ to the section $\text{d}h|_D$
+of $i^*\Omega_{U/S}$ which has nonzero value in the fibre
+$\Omega_{U/S, x} \otimes \kappa(x)$ by assumption. By right exactness
+of $\otimes \kappa(x)$ we conclude that
+$$
+\dim_{\kappa(x)} \left( \Omega_{D/S, x} \otimes \kappa(x) \right)
+=
+\dim_{\kappa(x)} \left( \Omega_{U/S, x} \otimes \kappa(x) \right) - 1.
+$$
+By
+Morphisms, Lemma \ref{morphisms-lemma-smooth-at-point}
+we see that $\Omega_{U/S, x} \otimes \kappa(x)$ can be generated by
+at most $\dim_x(U_s)$ elements. By the displayed formula we see that
+$\Omega_{D/S, x} \otimes \kappa(x)$ can be generated by at most
+$\dim_x(U_s) - 1$ elements. Note that
+$\dim_x(D_s) = \dim_x(U_s) - 1$ for example because
+$\dim(\mathcal{O}_{D_s, x}) = \dim(\mathcal{O}_{U_s, x}) - 1$ by
+Algebra, Lemma \ref{algebra-lemma-one-equation}
+(also $D_s \subset U_s$ is effective Cartier, see
+Divisors, Lemma \ref{divisors-lemma-relative-Cartier})
+and then using
+Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-at-a-point}.
+Thus we conclude that $\Omega_{D/S, x} \otimes \kappa(x)$ can be generated
+by at most $\dim_x(D_s)$ elements and we conclude that $D \to S$
+is smooth at $x$ by
+Morphisms, Lemma \ref{morphisms-lemma-smooth-at-point}
+again. After shrinking $U$ we get that $D \to S$ is smooth and we win.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-slice-smooth-once}
+Let $f : X \to S$ be a morphism of schemes.
+Let $x \in X$ be a point with image $s \in S$.
+Assume
+\begin{enumerate}
+\item $f$ is smooth at $x$, and
+\item the map
+$$
+\Omega_{X_s/s, x} \otimes_{\mathcal{O}_{X_s, x}} \kappa(x)
+\longrightarrow
+\Omega_{\kappa(x)/\kappa(s)}
+$$
+has a nonzero kernel.
+\end{enumerate}
+Then there exists an affine open neighbourhood $U \subset X$ of $x$
+and an effective Cartier divisor $D \subset U$ containing $x$ such that
+$D \to S$ is smooth.
+\end{lemma}
+
+\begin{proof}
+Write $k = \kappa(s)$ and $R = \mathcal{O}_{X_s, x}$.
+Denote $\mathfrak m$ the maximal ideal of $R$ and
+$\kappa = R/\mathfrak m$ so that $\kappa = \kappa(x)$.
+As formation of modules of differentials commutes with localization (see
+Algebra, Lemma \ref{algebra-lemma-differentials-localize})
+we have $\Omega_{X_s/s, x} = \Omega_{R/k}$. By
+Algebra, Lemma \ref{algebra-lemma-differential-seq}
+there is an exact sequence
+$$
+\mathfrak m/\mathfrak m^2 \xrightarrow{\text{d}}
+\Omega_{R/k} \otimes_R \kappa \to
+\Omega_{\kappa/k} \to 0.
+$$
+Hence if (2) holds, there exists an element $\overline{h} \in \mathfrak m$
+such that $\text{d}\overline{h}$ is nonzero. Choose a lift
+$h \in \mathcal{O}_{X, x}$ of $\overline{h}$ and apply
+Lemma \ref{lemma-slice-smooth-given-element}.
+\end{proof}
+
+\begin{remark}
+\label{remark-necessary-condition-slice-smooth}
+The second condition in
+Lemma \ref{lemma-slice-smooth-once}
+is necessary even if $x$ is a closed point of a positive
+dimensional fibre. An example is the following: Let $k$ be a field
+of characteristic $p > 0$ which is imperfect. Let $a \in k$ be an
+element which is not a $p$th power. Let
+$\mathfrak m = (x, y^p - a) \subset k[x, y]$. This corresponds to a closed
+point $w$ of $X = \mathbf{A}^2_k$. Set $S = \mathbf{A}^1_k$ and
+let $f : X \to S$ be the morphism corresponding to $k[x] \to k[x, y]$.
+Then there does not exist any commutative diagram
+$$
+\xymatrix{
+S' \ar[rr]_h \ar[rd]_g & & X \ar[ld]^f \\
+& S
+}
+$$
+with $g$ \'etale and $w$ in the image of $h$. This is clear as the residue
+field extension $\kappa(f(w)) \subset \kappa(w)$ is purely inseparable,
+but for any $s' \in S'$ with $g(s') = f(w)$ the extension
+$\kappa(f(w)) \subset \kappa(s')$ would be separable.
+\end{remark}
+
+\noindent
+If you assume the residue field extension is separable then the
+phenomenon of
+Remark \ref{remark-necessary-condition-slice-smooth}
+does not happen. Here is the precise result.
+
+\begin{lemma}
+\label{lemma-slice-smooth-once-separable-residue-field-extension}
+Let $f : X \to S$ be a morphism of schemes.
+Let $x \in X$ be a point with image $s \in S$.
+Assume
+\begin{enumerate}
+\item $f$ is smooth at $x$,
+\item the residue field extension $\kappa(s) \subset \kappa(x)$
+is separable, and
+\item $x$ is not a generic point of $X_s$.
+\end{enumerate}
+Then there exists an affine open neighbourhood $U \subset X$ of $x$
+and an effective Cartier divisor $D \subset U$ containing $x$ such that
+$D \to S$ is smooth.
+\end{lemma}
+
+\begin{proof}
+Write $k = \kappa(s)$ and $R = \mathcal{O}_{X_s, x}$.
+Denote $\mathfrak m$ the maximal ideal of $R$ and
+$\kappa = R/\mathfrak m$ so that $\kappa = \kappa(x)$.
+As formation of modules of differentials commutes with localization (see
+Algebra, Lemma \ref{algebra-lemma-differentials-localize})
+we have $\Omega_{X_s/s, x} = \Omega_{R/k}$. By assumption (2) and
+Algebra, Lemma \ref{algebra-lemma-computation-differential}
+the map
+$$
+\text{d} :
+\mathfrak m/\mathfrak m^2
+\longrightarrow
+\Omega_{R/k} \otimes_R \kappa(\mathfrak m)
+$$
+is injective. Assumption (3) implies that
+$\mathfrak m/\mathfrak m^2 \not = 0$.
+Thus there exists an element $\overline{h} \in \mathfrak m$
+such that $\text{d}\overline{h}$ is nonzero. Choose a lift
+$h \in \mathcal{O}_{X, x}$ of $\overline{h}$ and apply
+Lemma \ref{lemma-slice-smooth-given-element}.
+\end{proof}
+
+\noindent
+The subscheme $Z$ constructed in the following lemma is really a complete
+intersection in an affine open neighbourhood of $x$. If we ever need this
+we will explicitly formulate a separate lemma stating this fact.
+
+\begin{lemma}
+\label{lemma-slice-smooth}
+Let $f : X \to S$ be a morphism of schemes.
+Let $x \in X$ be a point with image $s \in S$.
+Assume
+\begin{enumerate}
+\item $f$ is smooth at $x$, and
+\item $x$ is a closed point of $X_s$ and $\kappa(s) \subset \kappa(x)$
+is separable.
+\end{enumerate}
+Then there exists an immersion $Z \to X$ containing $x$ such that
+\begin{enumerate}
+\item $Z \to S$ is \'etale, and
+\item $Z_s = \{x\}$ set theoretically.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We may and do replace $S$ by an affine open neighbourhood of $s$.
+We may and do replace $X$ by an affine open neighbourhood of $x$
+such that $X \to S$ is smooth.
+We will prove the lemma for smooth morphisms of affines
+by induction on $d = \dim_x(X_s)$.
+
+\medskip\noindent
+The case $d = 0$. In this case we show that we may take $Z$ to be
+an open neighbourhood of $x$. Namely, if $d = 0$, then $X \to S$
+is quasi-finite at $x$, see
+Morphisms, Lemma \ref{morphisms-lemma-locally-quasi-finite-rel-dimension-0}.
+Hence there exists an affine open neighbourhood $U \subset X$ such
+that $U \to S$ is quasi-finite, see
+Morphisms, Lemma \ref{morphisms-lemma-quasi-finite-points-open}.
+Thus after replacing $X$ by $U$ we see that
+$X$ is quasi-finite and smooth over $S$, hence
+smooth of relative dimension $0$ over $S$, hence
+\'etale over $S$. Moreover, the fibre $X_s$ is a finite
+discrete set. Hence after replacing $X$ by a further affine open neighbourhood
+of $X$ we see that $f^{-1}(\{s\}) = \{x\}$ (because the topology
+on $X_s$ is induced from the topology on $X$, see
+Schemes, Lemma \ref{schemes-lemma-fibre-topological}).
+This proves the lemma in this case.
+
+\medskip\noindent
+Next, assume $d > 0$. Note that because $x$ is a closed point of its
+fibre the extension $\kappa(s) \subset \kappa(x)$ is finite (by the
+Hilbert Nullstellensatz, see
+Morphisms, Lemma \ref{morphisms-lemma-closed-point-fibre-locally-finite-type}).
+Thus we see $\Omega_{\kappa(x)/\kappa(s)} = 0$ as this holds for
+algebraic separable field extensions.
+Thus we may apply
+Lemma \ref{lemma-slice-smooth-once}
+to find a diagram
+$$
+\xymatrix{
+D \ar[r] \ar[rrd] & U \ar[r] \ar[rd] & X \ar[d] \\
+& & S
+}
+$$
+with $x \in D$. Note that
+$\dim_x(D_s) = \dim_x(X_s) - 1$ for example because
+$\dim(\mathcal{O}_{D_s, x}) = \dim(\mathcal{O}_{X_s, x}) - 1$ by
+Algebra, Lemma \ref{algebra-lemma-one-equation}
+(also $D_s \subset X_s$ is effective Cartier, see
+Divisors, Lemma \ref{divisors-lemma-relative-Cartier})
+and then using
+Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-at-a-point}.
+Thus the morphism $D \to S$ is smooth with
+$\dim_x(D_s) = \dim_x(X_s) - 1 = d - 1$. By induction hypothesis
+we can find an immersion $Z \to D$ as desired, which finishes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-etale-nbhd-dominates-smooth}
+Let $f : X \to S$ be a smooth morphism of schemes.
+Let $s \in S$ be a point in the image of $f$.
+Then there exists an \'etale neighbourhood $(S', s') \to (S, s)$
+and a $S$-morphism $S' \to X$.
+\end{lemma}
+
+\begin{proof}[First proof of Lemma \ref{lemma-etale-nbhd-dominates-smooth}]
+By assumption $X_s \not = \emptyset$. By
+Varieties, Lemma \ref{varieties-lemma-smooth-separable-closed-points-dense}
+there exists a closed point $x \in X_s$ such that $\kappa(x)$
+is a finite separable field extension of $\kappa(s)$.
+Hence by
+Lemma \ref{lemma-slice-smooth}
+there exists an immersion $Z \to X$ such that $Z \to S$ is \'etale and such
+that $x \in Z$. Take $(S' , s') = (Z, x)$.
+\end{proof}
+
+\begin{proof}[Second proof of Lemma \ref{lemma-etale-nbhd-dominates-smooth}]
+Pick a point $x \in X$ with $f(x) = s$.
+Choose a diagram
+$$
+\xymatrix{
+X \ar[d] & U \ar[l] \ar[d] \ar[r]_-\pi & \mathbf{A}^d_V \ar[ld] \\
+S & V \ar[l]
+}
+$$
+with $\pi$ \'etale, $x \in U$ and $V = \Spec(R)$ affine, see
+Morphisms, Lemma \ref{morphisms-lemma-smooth-etale-over-affine-space}.
+In particular $s \in V$. The morphism
+$\pi : U \to \mathbf{A}^d_V$ is open, see
+Morphisms, Lemma \ref{morphisms-lemma-etale-open}.
+Thus $W = \pi(U) \cap \mathbf{A}^d_s$ is a nonempty open subset of
+$\mathbf{A}^d_s$. Let $w \in W$ be a point with $\kappa(s) \subset \kappa(w)$
+finite separable, see
+Varieties, Lemma \ref{varieties-lemma-affine-space-over-field}.
+By
+Algebra, Lemma \ref{algebra-lemma-dim-affine-space}
+there exist $d$ elements
+$\overline{f}_1, \ldots, \overline{f}_d \in \kappa(s)[x_1, \ldots, x_d]$
+which generate the maximal ideal corresponding to $w$ in
+$\kappa(s)[x_1, \ldots, x_d]$.
+After replacing $R$ by a principal localization
+we may assume there are $f_1, \ldots, f_d \in R[x_1, \ldots, x_d]$
+which map to
+$\overline{f}_1, \ldots, \overline{f}_d \in \kappa(s)[x_1, \ldots, x_d]$.
+Consider the $R$-algebra
+$$
+R' = R[x_1, \ldots, x_d]/(f_1, \ldots, f_d)
+$$
+and set $S' = \Spec(R')$. By construction we have a closed
+immersion $j : S' \to \mathbf{A}^d_V$ over $V$.
+By construction the fibre of $S' \to V$ over $s$ is a single
+point $s'$ whose residue field is finite separable over $\kappa(s)$.
+Let $\mathfrak q' \subset R'$ be the corresponding prime. By
+Algebra, Lemma \ref{algebra-lemma-localize-relative-complete-intersection}
+we see that $(R')_g$ is a relative global complete intersection over $R$
+for some $g \in R'$, $g \not \in \mathfrak q$.
+Thus $S' \to V$ is flat and of finite presentation in a
+neighbourhood of $s'$, see
+Algebra, Lemma \ref{algebra-lemma-relative-global-complete-intersection}.
+By construction the scheme theoretic fibre
+of $S' \to V$ over $s$ is $\Spec(\kappa(s'))$. Hence it follows from
+Morphisms, Lemma \ref{morphisms-lemma-etale-at-point}
+that $S' \to S$ is \'etale at $s'$. Set
+$$
+S'' = U \times_{\pi, \mathbf{A}^d_V, j} S'.
+$$
+By construction there exists a point $s'' \in S''$ which maps to
+$s'$ via the projection $p : S'' \to S'$. Note that $p$ is \'etale
+as the base change of the \'etale morphism $\pi$, see
+Morphisms, Lemma \ref{morphisms-lemma-base-change-etale}.
+Choose a small affine neighbourhood $S''' \subset S''$ of $s''$
+which maps into the nonempty open neighbourhood of $s' \in S'$
+where the morphism $S' \to S$ is \'etale. Then the \'etale neighbourhood
+$(S''', s'') \to (S, s)$ is a solution to the problem posed by the lemma.
+\end{proof}
+
+\noindent
+The following lemma shows that sheaves for the smooth topology are
+the same thing as sheaves for the \'etale topology.
+
+\begin{lemma}
+\label{lemma-etale-dominates-smooth}
+Let $S$ be a scheme. Let $\mathcal{U} = \{S_i \to S\}_{i \in I}$ be a smooth
+covering of $S$, see
+Topologies, Definition \ref{topologies-definition-smooth-covering}.
+Then there exists an \'etale covering $\mathcal{V} = \{T_j \to S\}_{j \in J}$
+(see
+Topologies, Definition \ref{topologies-definition-etale-covering})
+which refines (see
+Sites, Definition \ref{sites-definition-morphism-coverings})
+$\mathcal{U}$.
+\end{lemma}
+
+\begin{proof}
+For every $s \in S$ there exists an $i \in I$ such that $s$ is in
+the image of $S_i \to S$. By
+Lemma \ref{lemma-etale-nbhd-dominates-smooth}
+we can find an \'etale morphism $g_s : T_s \to S$ such that $s \in g_s(T_s)$
+and such that $g_s$ factors through $S_i \to S$. Hence
+$\{T_s \to S\}$ is an \'etale covering of $S$ that refines $\mathcal{U}$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-cover-smooth-by-special}
+Let $f : X \to S$ be a smooth morphism of schemes. Then there exists an
+\'etale covering $\{U_i \to X\}_{i \in I}$ such that $U_i \to S$
+factors as $U_i \to V_i \to S$ where $V_i \to S$ is \'etale and
+$U_i \to V_i$ is a smooth morphism of affine schemes, which
+has a section, and has geometrically connected fibres.
+\end{lemma}
+
+\begin{proof}
+Let $s \in S$. By
+Varieties, Lemma \ref{varieties-lemma-smooth-separable-closed-points-dense}
+the set of closed points $x \in X_s$ such that $\kappa(x)/\kappa(s)$
+is separable is dense in $X_s$. Thus it suffices to construct an
+\'etale morphism $U \to X$ with $x$ in the image
+such that $U \to S$ factors in the manner described in the lemma.
+To do this, choose an immersion $Z \to X$ passing through $x$
+such that $Z \to S$ is \'etale (Lemma \ref{lemma-slice-smooth}).
+After replacing $S$ by $Z$ and $X$ by $Z \times_S X$
+we see that we may assume $X \to S$ has a section $\sigma : S \to X$
+with $\sigma(s) = x$. Then we can first replace $S$ by an affine
+open neighbourhood of $s$ and next replace $X$ by an affine open
+neighbourhood of $x$. Then finally, we consider the subset
+$X^0 \subset X$ of Section \ref{section-connected-components}.
+By Lemmas \ref{lemma-connected-along-section-open} and
+\ref{lemma-connected-along-section-locally-constructible}
+this is a retrocompact open subscheme containing $\sigma$
+such that the fibres $X^0 \to S$ are geometrically connected.
+If $X^0$ is not affine, then we choose an affine open $U \subset X^0$
+containing $x$. Since $X^0 \to S$ is smooth, the image of $U$
+is open. Choose an affine open neighbourhood $V \subset S$ of $s$
+contained in $\sigma^{-1}(U)$ and in the image of $U \to S$.
+Finally, the reader sees that $U \cap f^{-1}(V) \to V$
+has all the desired properties. For example $U \cap f^{-1}(V)$
+is equal to $U \times_S V$ is affine as a fibre product of affine
+schemes. Also, the geometric fibres of $U \cap f^{-1}(V) \to V$ are
+nonempty open subschemes of the irreducible fibres of $X^0 \to S$
+and hence connected. Some details omitted.
+\end{proof}
+
+\noindent
+The following lemma should probably be somewhere else.
+
+\begin{lemma}
+\label{lemma-etale-local-structure}
+Let $S$ be a scheme. Let $Y \to X$ be a closed immersion of schemes
+smooth over $S$. For every $y \in Y$ there exist integers
+$0 \leq m, n$ and a commutative diagram
+$$
+\xymatrix{
+Y \ar[d] &
+V \ar[l] \ar[d] \ar[r] &
+\mathbf{A}^m_S
+\ar[d]^{(a_1, \ldots, a_m) \mapsto (a_1, \ldots, a_m, 0 \ldots, 0)} \\
+X &
+U \ar[l] \ar[r]^-\pi &
+\mathbf{A}^{m + n}_S
+}
+$$
+where $U \subset X$ is open, $V = Y \cap U$,
+$\pi$ is \'etale, $V = \pi^{-1}(\mathbf{A}^m_S)$, and $y \in V$.
+\end{lemma}
+
+\begin{proof}
+The question is local on $X$ hence we may replace $X$ by
+an open neighbourhood of $y$. Since $Y \to X$ is a regular immersion
+by Divisors, Lemma
+\ref{divisors-lemma-immersion-smooth-into-smooth-regular-immersion}
+we may assume $X = \Spec(A)$ is affine and there exists a regular sequence
+$f_1, \ldots, f_n \in A$ such that $Y = V(f_1, \ldots, f_n)$.
+After shrinking $X$ (and hence $Y$) further
+we may assume there exists an \'etale morphism $Y \to \mathbf{A}^m_S$, see
+Morphisms, Lemma \ref{morphisms-lemma-smooth-etale-over-affine-space}.
+Let $\overline{g}_1, \ldots, \overline{g}_m$ in $\mathcal{O}_Y(Y)$
+be the coordinate functions of this \'etale morphism.
+Choose lifts $g_1, \ldots, g_m \in A$ of these functions
+and consider the morphism
+$$
+(g_1, \ldots, g_m, f_1, \ldots, f_n) :
+X
+\longrightarrow
+\mathbf{A}^{m + n}_S
+$$
+over $S$. This is a morphism of schemes locally of finite presentation
+over $S$ and hence is locally of finite presentation
+(Morphisms, Lemma \ref{morphisms-lemma-finite-presentation-permanence}).
+The restriction of this morphism to
+$\mathbf{A}^m_S \subset \mathbf{A}^{m + n}_S$
+is \'etale by construction. Thus, in order to show that
+$X \to \mathbf{A}^{m + n}_S$ is \'etale at $y$
+it suffices to show that $X \to \mathbf{A}^{m + n}_S$ is flat at $y$,
+see Morphisms, Lemma \ref{morphisms-lemma-etale-at-point}.
+Let $s \in S$ be the image of $y$. It suffices to check that
+$X_s \to \mathbf{A}^{m + n}_s$ is flat at $y$, see
+Theorem \ref{theorem-criterion-flatness-fibre}.
+Let $z \in \mathbf{A}^{m + n}_s$ be the image of $y$.
+The local ring map
+$$
+\mathcal{O}_{\mathbf{A}^{m + n}_s, z}
+\longrightarrow
+\mathcal{O}_{X_s, y}
+$$
+is flat by Algebra, Lemma \ref{algebra-lemma-CM-over-regular-flat}.
+Namely, schemes smooth over fields are regular and regular rings
+are Cohen-Macaulay, see Varieties, Lemma \ref{varieties-lemma-smooth-regular}
+and Algebra, Lemma \ref{algebra-lemma-regular-ring-CM}.
+Thus both source and target are regular local rings (and hence CM).
+The source and target have the same dimension: namely, we have
+$\dim(\mathcal{O}_{Y_s, y}) = \dim(\mathcal{O}_{\mathbf{A}^m_s, z})$
+by More on Algebra, Lemma \ref{more-algebra-lemma-dimension-etale-extension},
+we have $\dim(\mathcal{O}_{\mathbf{A}^{m + n}_s, z}) = n +
+\dim(\mathcal{O}_{\mathbf{A}^m_s, z})$, and we have
+$\dim(\mathcal{O}_{X_s, y}) = n + \dim(\mathcal{O}_{Y_s, y})$
+because $\mathcal{O}_{Y_s, y}$ is the quotient of
+$\mathcal{O}_{X_s, y}$ by the regular sequence $f_1, \ldots, f_n$
+of length $n$ (see
+Divisors, Remark \ref{divisors-remark-relative-regular-immersion-elements}).
+Finally, the fibre ring of the displayed arrow is finite over $\kappa(z)$
+since $Y_s \to \mathbf{A}^m_s$ is \'etale at $y$.
+This finishes the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
 \section{\'Etale neighbourhoods and Artin approximation}
 \label{section-etale-nbhds-artin}
 
@@ -8865,7 +10027,7 @@ Assume further we are given a local $\mathcal{O}_{S, s}$-algebra map
 $$
 \varphi : \mathcal{O}_{Y, y} \longrightarrow \mathcal{O}_{X, x}^\wedge
 $$
-between the complete local rings. For every $N \geq 1$
+For every $N \geq 1$
 there exists an elementary \'etale neighbourhood
 $(U, u) \to (X, x)$ and an $S$-morphism
 $f : U \to Y$ mapping $u$ to $y$ such that the diagram
@@ -8981,6 +10143,151 @@ that $f$ induces isomorphisms
 $\mathcal{O}_{Y, y}/\mathfrak m_y^n \to \mathcal{O}_{U, u}/\mathfrak m_u^n$
 for all $n$ which is what we wanted to show.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-relative-map-approximation-pre}
+Let $X \to S$, $Y \to T$, $x$, $s$, $y$, $t$, $\sigma$, $y_\sigma$, and
+$\varphi$ be given as follows: we have morphisms of schemes
+$$
+\vcenter{
+\xymatrix{
+X \ar[d] & Y \ar[d] \\
+S & T
+}
+}
+\quad\text{with points}\quad
+\vcenter{
+\xymatrix{
+x \ar[d] & y \ar[d] \\
+s & t
+}
+}
+$$
+Here $S$ is locally Noetherian and $T$ is of finite type over $\mathbf{Z}$.
+The morphisms $X \to S$ and $Y \to T$ are locally of finite type.
+The local ring $\mathcal{O}_{S, s}$ is a G-ring. The map
+$$
+\sigma : \mathcal{O}_{T, t} \longrightarrow \mathcal{O}_{S, s}^\wedge
+$$
+is a local homomorphism. Set
+$Y_\sigma = Y \times_{T, \sigma} \Spec(\mathcal{O}_{S, s}^\wedge)$.
+Next, $y_\sigma$ is a point of $Y_\sigma$ mapping to $y$ and
+the closed point of $\Spec(\mathcal{O}_{S, s}^\wedge)$. Finally
+$$
+\varphi :
+\mathcal{O}_{X, x}^\wedge
+\longrightarrow
+\mathcal{O}_{Y_\sigma, y_\sigma}^\wedge
+$$
+is an isomorphism of $\mathcal{O}_{S, s}^\wedge$-algebras.
+In this situation there exists a commutative diagram
+$$
+\xymatrix{
+X \ar[d] &
+W \ar[l] \ar[rd] \ar[rr] & &
+Y \times_{T, \tau} V \ar[r] \ar[ld] & Y \ar[d] \\
+S & &
+V \ar[ll] \ar[rr]^\tau & &
+T
+}
+$$
+of schemes and points $w \in W$, $v \in V$ such that
+\begin{enumerate}
+\item $(V, v) \to (S, s)$ is an elementary \'etale neighbourhood,
+\item $(W, w) \to (X, x)$ is an elementary \'etale neighbourhood, and
+\item $\tau(v) = t$.
+\end{enumerate}
+Let $y_\tau \in Y \times_T V$ correspond to $y_\sigma$
+via the identification $(Y_\sigma)_s = (Y \times_T V)_v$.
+Then
+\begin{enumerate}
+\item[(4)] $(W, w) \to (Y \times_{T, \tau} V, y_\tau)$ is an elementary
+\'etale neighbourhood.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Denote $X_\sigma = X \times_S \Spec(\mathcal{O}_{S, s}^\wedge)$
+and $x_\sigma \in X_\sigma$ the unique point lying over $x$.
+Observe that $\mathcal{O}_{S, s}^\wedge$ is a G-ring by
+More on Algebra, Proposition
+\ref{more-algebra-proposition-Noetherian-complete-G-ring}.
+By Lemma \ref{lemma-isomorphism-approximation}
+we can choose
+$$
+(X_\sigma, x_\sigma) \leftarrow (U, u) \rightarrow (Y_\sigma, y_\sigma)
+$$
+where both arrows are elementary \'etale neighbourhoods.
+
+\medskip\noindent
+After replacing $S$ by an open neighbourhood of $s$, we may
+assume $S = \Spec(R)$ is affine. Since $\mathcal{O}_{S, s}$
+is a G-ring by Smoothing Ring Maps, Theorem \ref{smoothing-theorem-popescu}
+the ring $\mathcal{O}_{S, s}^\wedge$ is a filtered colimit of smooth
+$R$-algebras. Thus we can write
+$$
+\Spec(\mathcal{O}_{S, s}^\wedge) = \lim S_i
+$$
+as a directed limit of affine schemes $S_i$ smooth over $S$.
+Denote $s_i \in S_i$ the image of the closed point of
+$\Spec(\mathcal{O}_{S, s}^\wedge)$. Observe that $\kappa(s) = \kappa(s_i)$.
+Set $X_i = X \times_S S_i$ and denote $x_i \in X_i$ the unique
+point mapping to $x$. Note that $\kappa(x) = \kappa(x_i)$.
+Since $T$ is of finite type over $\mathbf{Z}$ by Limits, Proposition
+\ref{limits-proposition-characterize-locally-finite-presentation}
+we can choose an $i$ and a morphism $\sigma_i : (S_i, s_i) \to (T, t)$
+of pointed schemes whose composition with
+$\Spec(\mathcal{O}_{S, s}^\wedge) \to S_i$ is equal to $\sigma$.
+Set $Y_i = Y \times_T S_i$ and denote $y_i$ the
+image of $y_\sigma$. Note that $\kappa(y_i) = \kappa(y_\sigma)$.
+By Limits, Lemma \ref{limits-lemma-descend-finite-presentation}
+we can choose an $i$ and a diagram
+$$
+\xymatrix{
+X_i \ar[rd] &
+U_i \ar[l] \ar[d] \ar[r] &
+Y_i \ar[ld] \\
+& S_i
+}
+$$
+whose base change to $\Spec(\mathcal{O}_{S, s}^\wedge)$
+recovers $X_\sigma \leftarrow U \rightarrow Y_\sigma$.
+By Limits, Lemma \ref{limits-lemma-descend-etale}
+after increasing $i$ we may assume the morphisms
+$X_i \leftarrow U_i \rightarrow Y_i$ are \'etale.
+Let $u_i \in U_i$ be the image of $u$. Then $u_i \mapsto x_i$
+hence
+$\kappa(x) = \kappa(x_\sigma) = \kappa(u) \supset \kappa(u_i) \supset
+\kappa(x_i) = \kappa(x)$ and we see that $\kappa(u_i) = \kappa(x_i)$.
+Hence $(X_i, x_i) \leftarrow (U_i, u_i)$ is an elementary
+\'etale neighbourhood. Since also $\kappa(y_i) = \kappa(y_\sigma) = \kappa(u)$
+we see that also $(U_i, u_i) \to (Y_i, y_i)$ is an elementary
+\'etale neighbourhood.
+
+\medskip\noindent
+At this point we have constructed a diagram
+$$
+\xymatrix{
+X \ar[d] &
+X \times_S S_i \ar[l] \ar[rd] &
+U_i \ar[l] \ar[r] \ar[d] &
+Y \times_T S_i \ar[r] \ar[ld] &
+Y \ar[d] \\
+S & &
+S_i \ar[ll] \ar[rr] & &
+T
+}
+$$
+as in the statement of the lemma, except that $S_i \to S$ is smooth.
+By Lemma \ref{lemma-slice-smooth} and after shrinking $S_i$
+we can assume there exists a closed subscheme $V \subset S_i$ passing
+through $s_i$ such that $V \to S$ is \'etale.
+Setting $W$ equal to the scheme theoretic inverse image of $V$
+in $U_i$ we conclude.
+\end{proof}
+
+\noindent
+We strongly encourage the reader to skip the rest of this section.
 
 \begin{lemma}
 \label{lemma-relative-map-approximation}
@@ -9499,581 +10806,11 @@ must be injective as well as surjective which finishes the proof.
 
 
 
-\section{\'Etale neighbourhoods and branches}
-\label{section-etale-nbhds-branches}
-
-\noindent
-The number of (geometric) branches of a scheme at a point was
-defined in Properties, Section \ref{properties-section-unibranch}.
-In Varieties, Section \ref{varieties-section-number-of-branches}
-we related this to fibres of the normalization morphism.
-In this section we discuss a characterization of this number in terms of
-\'etale neighbourhoods.
-
-\begin{lemma}
-\label{lemma-nr-minimal-primes}
-Let $R = \colim R_i$ be colimit of a directed system of rings
-whose transition maps are faithfully flat.
-Then the number of minimal primes of $R$
-taken as an element of $\{0, 1, 2, \ldots, \infty\}$
-is the supremum of the numbers of minimal primes of the $R_i$.
-\end{lemma}
-
-\begin{proof}
-If $A \to B$ is a flat ring map, then $\Spec(B) \to \Spec(A)$
-maps minimal primes to minimal primes by going down
-(Algebra, Lemma \ref{algebra-lemma-flat-going-down}).
-If $A \to B$ is faithfully flat, then every minimal
-prime is the image of a minimal prime (by
-Algebra, Lemma \ref{algebra-lemma-ff-rings} and
-\ref{algebra-lemma-minimal-prime-image-minimal-prime}).
-Hence the number of minimal primes of $R_i$ is
-$\geq$ the number of minimal primes of $R_{i'}$ if $i \leq i'$.
-By Algebra, Lemma \ref{algebra-lemma-colimit-faithfully-flat}
-each of the maps $R_i \to R$ is
-faithfully flat and we also see that
-the number of minimal primes of $R$ is
-$\geq$ the number of minimal primes of $R_i$.
-Finally, suppose that $\mathfrak q_1, \ldots, \mathfrak q_n$
-are pairwise distinct minimal primes of $R$. Then we can
-find an $i$ such that $R_i \cap \mathfrak q_1, \ldots, R_i \cap \mathfrak q_n$
-are pairwise distinct (as sets and hence as prime ideals).
-This implies the lemma.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-nr-branches}
-Let $X$ be a scheme and $x \in X$ a point. Then
-\begin{enumerate}
-\item the number of branches of $X$ at $x$ is equal to
-the supremum of the number of irreducible components of $U$
-passing through $u$ taken over elementary \'etale neighbourhoods
-$(U, u) \to (X, x)$,
-\item the number of geometric branches of $X$ at $x$ is equal to
-the supremum of the number of irreducible components of $U$
-passing through $u$ taken over \'etale neighbourhoods
-$(U, u) \to (X, x)$,
-\item $X$ is unibranch at $x$ if and only if for every
-elementary \'etale neighbourhood $(U, u) \to (X, x)$ there
-is exactly one irreducible component of $U$ passing through $u$, and
-\item $X$ is geometrically unibranch at $x$ if and only if for every
-\'etale neighbourhood $(U, u) \to (X, x)$ there
-is exactly one irreducible component of $U$ passing through $u$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-Parts (3) and (4) follow from parts (1) and (2) via
-Properties, Lemma \ref{properties-lemma-number-of-branches-1}.
-
-\medskip\noindent
-Proof of (1). Let $\Spec(A)$ be an affine open neighbourhood
-of $x$ and let $\mathfrak p \subset A$ be the prime ideal
-corresponding to $x$. We may replace $X$ by $\Spec(A)$ and
-it suffices to consider affine elementary \'etale neighbourhoods
-$(U, u)$ in the supremum as they form a cofinal subsystem.
-Recall that the henselization $A_\mathfrak p^h$
-is the colimit of the rings $B_\mathfrak q$ over the category
-of pairs $(B, \mathfrak q)$ where $B$ is an \'etale $A$-algebra
-and $\mathfrak q$ is a prime lying over $\mathfrak p$ with
-$\kappa(\mathfrak q) = \kappa(\mathfrak p)$, see
-Algebra, Lemma \ref{algebra-lemma-henselization-different}.
-These pairs $(B, \mathfrak q)$ correspond exactly to
-the affine elementary \'etale neighbourhoods $(U, u)$
-by the correspondence between rings and affine schemes.
-Observe that irreducible components of $\Spec(B)$
-passing through $\mathfrak q$ are exactly the minimal
-prime ideals of $B_\mathfrak q$. The number of minimal
-primes of $A_\mathfrak p^h$ is the number of branches
-of $X$ at $x$ by Properties, Definition
-\ref{properties-definition-number-of-branches}.
-Observe that the transition
-maps $B_\mathfrak q \to B'_{\mathfrak q'}$ in the system
-are all flat. Since a flat local ring map is faithfully flat
-(Algebra, Lemma \ref{algebra-lemma-local-flat-ff})
-we see that the lemma follows
-from Lemma \ref{lemma-nr-minimal-primes}.
-
-\medskip\noindent
-Proof of (2). The proof is the same as the proof of (1), except that we use
-Algebra, Lemma \ref{algebra-lemma-strict-henselization-different}.
-There is a tiny difference: given a separable algebraic closure
-$\kappa^{sep}$ of $\kappa(x)$ for every \'etale neighbourhood
-$(U, u)$ we can choose a $\kappa(x)$-embedding
-$\phi : \kappa(u) \to \kappa^{sep}$
-because $\kappa(u)/\kappa(x)$ is finite separable
-(Morphisms, Lemma \ref{morphisms-lemma-etale-at-point}).
-Hence we can look at the supremum over all triples
-$(U, u, \phi)$ where $(U, u) \to (X, x)$ is an affine
-\'etale neighbourhood and $\phi : \kappa(u) \to \kappa^{sep}$
-is a $\kappa(x)$-embedding. These triples correspond
-exactly to the triples in
-Algebra, Lemma \ref{algebra-lemma-strict-henselization-different}
-and the rest of the proof is exactly the same.
-\end{proof}
-
-\noindent
-We will need a relative variant of the lemma above.
-
-\begin{lemma}
-\label{lemma-nr-branches-fibre}
-Let $X \to S$ be a morphism of schemes and $x \in X$ a point with image $s$.
-Then
-\begin{enumerate}
-\item the number of branches of the fibre $X_s$ at $x$ is equal to
-the supremum of the number of irreducible components of the fibre $U_s$
-passing through $u$ taken over elementary \'etale neighbourhoods
-$(U, u) \to (X, x)$,
-\item the number of geometric branches of the fibre $X_s$ at $x$ is equal to
-the supremum of the number of irreducible components of the fibre $U_s$
-passing through $u$ taken over \'etale neighbourhoods
-$(U, u) \to (X, x)$,
-\item the fibre $X_s$ is unibranch at $x$ if and only if for every
-elementary \'etale neighbourhood $(U, u) \to (X, x)$ there is
-exactly one irreducible component of the fibre $U_s$ passing through $u$, and
-\item $X$ is geometrically unibranch at $x$ if and only if for every
-\'etale neighbourhood $(U, u) \to (X, x)$ there
-is exactly one irreducible component of $U_s$ passing through $u$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-Combine Lemmas \ref{lemma-nr-branches} and
-\ref{lemma-lift-etale-neighbourhood-fibre}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-number-of-branches-and-smooth}
-Let $X \to S$ be a smooth morphism of schemes.
-Let $x \in X$ with image $s \in S$.
-Then
-\begin{enumerate}
-\item The number of geometric branches of $X$ at $x$
-is equal to the number of geometric branches of $S$ at $s$.
-\item If $\kappa(x)/\kappa(s)$ is a purely inseparable\footnote{In fact,
-it would suffice if $\kappa(x)$ is geometrically irreducible over
-$\kappa(s)$. If we ever need this we will add a detailed proof.}
-extension of fields, then number of branches of $X$ at $x$
-is equal to the number of branches of $S$ at $s$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-Follows immediately from More on Algebra, Lemma
-\ref{more-algebra-lemma-invariance-number-branches-smooth}
-and the definitions.
-\end{proof}
 
 
 
 
-\section{Slicing smooth morphisms}
-\label{section-etale-over-smooth}
 
-\noindent
-In this section we explain a result that roughly states that
-smooth coverings of a scheme $S$ can be refined by \'etale coverings.
-The technique to prove this relies on a slicing argument.
-
-\begin{lemma}
-\label{lemma-slice-smooth-given-element}
-Let $f : X \to S$ be a morphism of schemes.
-Let $x \in X$ be a point with image $s \in S$.
-Let $h \in \mathfrak m_x \subset \mathcal{O}_{X, x}$.
-Assume
-\begin{enumerate}
-\item $f$ is smooth at $x$, and
-\item the image $\text{d}\overline{h}$ of $\text{d}h$ in
-$$
-\Omega_{X_s/s, x} \otimes_{\mathcal{O}_{X_s, x}} \kappa(x) =
-\Omega_{X/S, x} \otimes_{\mathcal{O}_{X, x}} \kappa(x)
-$$
-is nonzero.
-\end{enumerate}
-Then there exists an affine open neighbourhood $U \subset X$ of $x$
-such that $h$ comes from $h \in \Gamma(U, \mathcal{O}_U)$ and such
-that $D = V(h)$ is an effective Cartier divisor in $U$ with $x \in D$ and
-$D \to S$ smooth.
-\end{lemma}
-
-\begin{proof}
-As $f$ is smooth at $x$ we may assume, after replacing $X$ by an open
-neighbourhood of $x$ that $f$ is smooth. In particular we see that
-$f$ is flat and locally of finite presentation. By
-Lemma \ref{lemma-slice-given-element}
-we already know there exists an open neighbourhood $U \subset X$ of $x$
-such that $h$ comes from $h \in \Gamma(U, \mathcal{O}_U)$ and such
-that $D = V(h)$ is an effective Cartier divisor in $U$ with $x \in D$ and
-$D \to S$ flat and of finite presentation. By
-Morphisms, Lemma \ref{morphisms-lemma-differentials-relative-immersion}
-we have a short exact sequence
-$$
-\mathcal{C}_{D/U} \to i^*\Omega_{U/S} \to \Omega_{D/S} \to 0
-$$
-where $i : D \to U$ is the closed immersion and $\mathcal{C}_{D/U}$
-is the conormal sheaf of $D$ in $U$. As $D$ is an effective Cartier
-divisor cut out by $h \in \Gamma(U, \mathcal{O}_U)$ we see that
-$\mathcal{C}_{D/U} = h \cdot \mathcal{O}_S$. Since $U \to S$ is smooth
-the sheaf $\Omega_{U/S}$ is finite locally free, hence its pullback
-$i^*\Omega_{U/S}$ is finite locally free also. The first arrow of
-the sequence maps the free generator $h$ to the section $\text{d}h|_D$
-of $i^*\Omega_{U/S}$ which has nonzero value in the fibre
-$\Omega_{U/S, x} \otimes \kappa(x)$ by assumption. By right exactness
-of $\otimes \kappa(x)$ we conclude that
-$$
-\dim_{\kappa(x)} \left( \Omega_{D/S, x} \otimes \kappa(x) \right)
-=
-\dim_{\kappa(x)} \left( \Omega_{U/S, x} \otimes \kappa(x) \right) - 1.
-$$
-By
-Morphisms, Lemma \ref{morphisms-lemma-smooth-at-point}
-we see that $\Omega_{U/S, x} \otimes \kappa(x)$ can be generated by
-at most $\dim_x(U_s)$ elements. By the displayed formula we see that
-$\Omega_{D/S, x} \otimes \kappa(x)$ can be generated by at most
-$\dim_x(U_s) - 1$ elements. Note that
-$\dim_x(D_s) = \dim_x(U_s) - 1$ for example because
-$\dim(\mathcal{O}_{D_s, x}) = \dim(\mathcal{O}_{U_s, x}) - 1$ by
-Algebra, Lemma \ref{algebra-lemma-one-equation}
-(also $D_s \subset U_s$ is effective Cartier, see
-Divisors, Lemma \ref{divisors-lemma-relative-Cartier})
-and then using
-Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-at-a-point}.
-Thus we conclude that $\Omega_{D/S, x} \otimes \kappa(x)$ can be generated
-by at most $\dim_x(D_s)$ elements and we conclude that $D \to S$
-is smooth at $x$ by
-Morphisms, Lemma \ref{morphisms-lemma-smooth-at-point}
-again. After shrinking $U$ we get that $D \to S$ is smooth and we win.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-slice-smooth-once}
-Let $f : X \to S$ be a morphism of schemes.
-Let $x \in X$ be a point with image $s \in S$.
-Assume
-\begin{enumerate}
-\item $f$ is smooth at $x$, and
-\item the map
-$$
-\Omega_{X_s/s, x} \otimes_{\mathcal{O}_{X_s, x}} \kappa(x)
-\longrightarrow
-\Omega_{\kappa(x)/\kappa(s)}
-$$
-has a nonzero kernel.
-\end{enumerate}
-Then there exists an affine open neighbourhood $U \subset X$ of $x$
-and an effective Cartier divisor $D \subset U$ containing $x$ such that
-$D \to S$ is smooth.
-\end{lemma}
-
-\begin{proof}
-Write $k = \kappa(s)$ and $R = \mathcal{O}_{X_s, x}$.
-Denote $\mathfrak m$ the maximal ideal of $R$ and
-$\kappa = R/\mathfrak m$ so that $\kappa = \kappa(x)$.
-As formation of modules of differentials commutes with localization (see
-Algebra, Lemma \ref{algebra-lemma-differentials-localize})
-we have $\Omega_{X_s/s, x} = \Omega_{R/k}$. By
-Algebra, Lemma \ref{algebra-lemma-differential-seq}
-there is an exact sequence
-$$
-\mathfrak m/\mathfrak m^2 \xrightarrow{\text{d}}
-\Omega_{R/k} \otimes_R \kappa \to
-\Omega_{\kappa/k} \to 0.
-$$
-Hence if (2) holds, there exists an element $\overline{h} \in \mathfrak m$
-such that $\text{d}\overline{h}$ is nonzero. Choose a lift
-$h \in \mathcal{O}_{X, x}$ of $\overline{h}$ and apply
-Lemma \ref{lemma-slice-smooth-given-element}.
-\end{proof}
-
-\begin{remark}
-\label{remark-necessary-condition-slice-smooth}
-The second condition in
-Lemma \ref{lemma-slice-smooth-once}
-is necessary even if $x$ is a closed point of a positive
-dimensional fibre. An example is the following: Let $k$ be a field
-of characteristic $p > 0$ which is imperfect. Let $a \in k$ be an
-element which is not a $p$th power. Let
-$\mathfrak m = (x, y^p - a) \subset k[x, y]$. This corresponds to a closed
-point $w$ of $X = \mathbf{A}^2_k$. Set $S = \mathbf{A}^1_k$ and
-let $f : X \to S$ be the morphism corresponding to $k[x] \to k[x, y]$.
-Then there does not exist any commutative diagram
-$$
-\xymatrix{
-S' \ar[rr]_h \ar[rd]_g & & X \ar[ld]^f \\
-& S
-}
-$$
-with $g$ \'etale and $w$ in the image of $h$. This is clear as the residue
-field extension $\kappa(f(w)) \subset \kappa(w)$ is purely inseparable,
-but for any $s' \in S'$ with $g(s') = f(w)$ the extension
-$\kappa(f(w)) \subset \kappa(s')$ would be separable.
-\end{remark}
-
-\noindent
-If you assume the residue field extension is separable then the
-phenomenon of
-Remark \ref{remark-necessary-condition-slice-smooth}
-does not happen. Here is the precise result.
-
-\begin{lemma}
-\label{lemma-slice-smooth-once-separable-residue-field-extension}
-Let $f : X \to S$ be a morphism of schemes.
-Let $x \in X$ be a point with image $s \in S$.
-Assume
-\begin{enumerate}
-\item $f$ is smooth at $x$,
-\item the residue field extension $\kappa(s) \subset \kappa(x)$
-is separable, and
-\item $x$ is not a generic point of $X_s$.
-\end{enumerate}
-Then there exists an affine open neighbourhood $U \subset X$ of $x$
-and an effective Cartier divisor $D \subset U$ containing $x$ such that
-$D \to S$ is smooth.
-\end{lemma}
-
-\begin{proof}
-Write $k = \kappa(s)$ and $R = \mathcal{O}_{X_s, x}$.
-Denote $\mathfrak m$ the maximal ideal of $R$ and
-$\kappa = R/\mathfrak m$ so that $\kappa = \kappa(x)$.
-As formation of modules of differentials commutes with localization (see
-Algebra, Lemma \ref{algebra-lemma-differentials-localize})
-we have $\Omega_{X_s/s, x} = \Omega_{R/k}$. By assumption (2) and
-Algebra, Lemma \ref{algebra-lemma-computation-differential}
-the map
-$$
-\text{d} :
-\mathfrak m/\mathfrak m^2
-\longrightarrow
-\Omega_{R/k} \otimes_R \kappa(\mathfrak m)
-$$
-is injective. Assumption (3) implies that
-$\mathfrak m/\mathfrak m^2 \not = 0$.
-Thus there exists an element $\overline{h} \in \mathfrak m$
-such that $\text{d}\overline{h}$ is nonzero. Choose a lift
-$h \in \mathcal{O}_{X, x}$ of $\overline{h}$ and apply
-Lemma \ref{lemma-slice-smooth-given-element}.
-\end{proof}
-
-\noindent
-The subscheme $Z$ constructed in the following lemma is really a complete
-intersection in an affine open neighbourhood of $x$. If we ever need this
-we will explicitly formulate a separate lemma stating this fact.
-
-\begin{lemma}
-\label{lemma-slice-smooth}
-Let $f : X \to S$ be a morphism of schemes.
-Let $x \in X$ be a point with image $s \in S$.
-Assume
-\begin{enumerate}
-\item $f$ is smooth at $x$, and
-\item $x$ is a closed point of $X_s$ and $\kappa(s) \subset \kappa(x)$
-is separable.
-\end{enumerate}
-Then there exists an immersion $Z \to X$ containing $x$ such that
-\begin{enumerate}
-\item $Z \to S$ is \'etale, and
-\item $Z_s = \{x\}$ set theoretically.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-We may and do replace $S$ by an affine open neighbourhood of $s$.
-We may and do replace $X$ by an affine open neighbourhood of $x$
-such that $X \to S$ is smooth.
-We will prove the lemma for smooth morphisms of affines
-by induction on $d = \dim_x(X_s)$.
-
-\medskip\noindent
-The case $d = 0$. In this case we show that we may take $Z$ to be
-an open neighbourhood of $x$. Namely, if $d = 0$, then $X \to S$
-is quasi-finite at $x$, see
-Morphisms, Lemma \ref{morphisms-lemma-locally-quasi-finite-rel-dimension-0}.
-Hence there exists an affine open neighbourhood $U \subset X$ such
-that $U \to S$ is quasi-finite, see
-Morphisms, Lemma \ref{morphisms-lemma-quasi-finite-points-open}.
-Thus after replacing $X$ by $U$ we see that
-$X$ is quasi-finite and smooth over $S$, hence
-smooth of relative dimension $0$ over $S$, hence
-\'etale over $S$. Moreover, the fibre $X_s$ is a finite
-discrete set. Hence after replacing $X$ by a further affine open neighbourhood
-of $X$ we see that $f^{-1}(\{s\}) = \{x\}$ (because the topology
-on $X_s$ is induced from the topology on $X$, see
-Schemes, Lemma \ref{schemes-lemma-fibre-topological}).
-This proves the lemma in this case.
-
-\medskip\noindent
-Next, assume $d > 0$. Note that because $x$ is a closed point of its
-fibre the extension $\kappa(s) \subset \kappa(x)$ is finite (by the
-Hilbert Nullstellensatz, see
-Morphisms, Lemma \ref{morphisms-lemma-closed-point-fibre-locally-finite-type}).
-Thus we see $\Omega_{\kappa(x)/\kappa(s)} = 0$ as this holds for
-algebraic separable field extensions.
-Thus we may apply
-Lemma \ref{lemma-slice-smooth-once}
-to find a diagram
-$$
-\xymatrix{
-D \ar[r] \ar[rrd] & U \ar[r] \ar[rd] & X \ar[d] \\
-& & S
-}
-$$
-with $x \in D$. Note that
-$\dim_x(D_s) = \dim_x(X_s) - 1$ for example because
-$\dim(\mathcal{O}_{D_s, x}) = \dim(\mathcal{O}_{X_s, x}) - 1$ by
-Algebra, Lemma \ref{algebra-lemma-one-equation}
-(also $D_s \subset X_s$ is effective Cartier, see
-Divisors, Lemma \ref{divisors-lemma-relative-Cartier})
-and then using
-Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-at-a-point}.
-Thus the morphism $D \to S$ is smooth with
-$\dim_x(D_s) = \dim_x(X_s) - 1 = d - 1$. By induction hypothesis
-we can find an immersion $Z \to D$ as desired, which finishes the proof.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-etale-nbhd-dominates-smooth}
-Let $f : X \to S$ be a smooth morphism of schemes.
-Let $s \in S$ be a point in the image of $f$.
-Then there exists an \'etale neighbourhood $(S', s') \to (S, s)$
-and a $S$-morphism $S' \to X$.
-\end{lemma}
-
-\begin{proof}[First proof of Lemma \ref{lemma-etale-nbhd-dominates-smooth}]
-By assumption $X_s \not = \emptyset$. By
-Varieties, Lemma \ref{varieties-lemma-smooth-separable-closed-points-dense}
-there exists a closed point $x \in X_s$ such that $\kappa(x)$
-is a finite separable field extension of $\kappa(s)$.
-Hence by
-Lemma \ref{lemma-slice-smooth}
-there exists an immersion $Z \to X$ such that $Z \to S$ is \'etale and such
-that $x \in Z$. Take $(S' , s') = (Z, x)$.
-\end{proof}
-
-\begin{proof}[Second proof of Lemma \ref{lemma-etale-nbhd-dominates-smooth}]
-Pick a point $x \in X$ with $f(x) = s$.
-Choose a diagram
-$$
-\xymatrix{
-X \ar[d] & U \ar[l] \ar[d] \ar[r]_-\pi & \mathbf{A}^d_V \ar[ld] \\
-S & V \ar[l]
-}
-$$
-with $\pi$ \'etale, $x \in U$ and $V = \Spec(R)$ affine, see
-Morphisms, Lemma \ref{morphisms-lemma-smooth-etale-over-affine-space}.
-In particular $s \in V$. The morphism
-$\pi : U \to \mathbf{A}^d_V$ is open, see
-Morphisms, Lemma \ref{morphisms-lemma-etale-open}.
-Thus $W = \pi(V) \cap \mathbf{A}^d_s$ is a nonempty open subset of
-$\mathbf{A}^d_s$. Let $w \in W$ be a point with $\kappa(s) \subset \kappa(w)$
-finite separable, see
-Varieties, Lemma \ref{varieties-lemma-affine-space-over-field}.
-By
-Algebra, Lemma \ref{algebra-lemma-dim-affine-space}
-there exist $d$ elements
-$\overline{f}_1, \ldots, \overline{f}_d \in \kappa(s)[x_1, \ldots, x_d]$
-which generate the maximal ideal corresponding to $w$ in
-$\kappa(s)[x_1, \ldots, x_d]$.
-After replacing $R$ by a principal localization
-we may assume there are $f_1, \ldots, f_d \in R[x_1, \ldots, x_d]$
-which map to
-$\overline{f}_1, \ldots, \overline{f}_d \in \kappa(s)[x_1, \ldots, x_d]$.
-Consider the $R$-algebra
-$$
-R' = R[x_1, \ldots, x_d]/(f_1, \ldots, f_d)
-$$
-and set $S' = \Spec(R')$. By construction we have a closed
-immersion $j : S' \to \mathbf{A}^d_V$ over $V$.
-By construction the fibre of $S' \to V$ over $s$ is a single
-point $s'$ whose residue field is finite separable over $\kappa(s)$.
-Let $\mathfrak q' \subset R'$ be the corresponding prime. By
-Algebra, Lemma \ref{algebra-lemma-localize-relative-complete-intersection}
-we see that $(R')_g$ is a relative global complete intersection over $R$
-for some $g \in R'$, $g \not \in \mathfrak q$.
-Thus $S' \to V$ is flat and of finite presentation in a
-neighbourhood of $s'$, see
-Algebra, Lemma \ref{algebra-lemma-relative-global-complete-intersection}.
-By construction the scheme theoretic fibre
-of $S' \to V$ over $s$ is $\Spec(\kappa(s'))$. Hence it follows from
-Morphisms, Lemma \ref{morphisms-lemma-etale-at-point}
-that $S' \to S$ is \'etale at $s'$. Set
-$$
-S'' = U \times_{\pi, \mathbf{A}^d_V, j} S'.
-$$
-By construction there exists a point $s'' \in S''$ which maps to
-$s'$ via the projection $p : S'' \to S'$. Note that $p$ is \'etale
-as the base change of the \'etale morphism $\pi$, see
-Morphisms, Lemma \ref{morphisms-lemma-base-change-etale}.
-Choose a small affine neighbourhood $S''' \subset S''$ of $s''$
-which maps into the nonempty open neighbourhood of $s' \in S'$
-where the morphism $S' \to S$ is \'etale. Then the \'etale neighbourhood
-$(S''', s'') \to (S, s)$ is a solution to the problem posed by the lemma.
-\end{proof}
-
-\noindent
-The following lemma shows that sheaves for the smooth topology are
-the same thing as sheaves for the \'etale topology.
-
-\begin{lemma}
-\label{lemma-etale-dominates-smooth}
-Let $S$ be a scheme. Let $\mathcal{U} = \{S_i \to S\}_{i \in I}$ be a smooth
-covering of $S$, see
-Topologies, Definition \ref{topologies-definition-smooth-covering}.
-Then there exists an \'etale covering $\mathcal{V} = \{T_j \to S\}_{j \in J}$
-(see
-Topologies, Definition \ref{topologies-definition-etale-covering})
-which refines (see
-Sites, Definition \ref{sites-definition-morphism-coverings})
-$\mathcal{U}$.
-\end{lemma}
-
-\begin{proof}
-For every $s \in S$ there exists an $i \in I$ such that $s$ is in
-the image of $S_i \to S$. By
-Lemma \ref{lemma-etale-nbhd-dominates-smooth}
-we can find an \'etale morphism $g_s : T_s \to S$ such that $s \in g_s(T_s)$
-and such that $g_s$ factors through $S_i \to S$. Hence
-$\{T_s \to S\}$ is an \'etale covering of $S$ that refines $\mathcal{U}$.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-cover-smooth-by-special}
-Let $f : X \to S$ be a smooth morphism of schemes. Then there exists an
-\'etale covering $\{U_i \to X\}_{i \in I}$ such that $U_i \to S$
-factors as $U_i \to V_i \to S$ where $V_i \to S$ is \'etale and
-$U_i \to V_i$ is a smooth morphism of affine schemes, which
-has a section, and has geometrically connected fibres.
-\end{lemma}
-
-\begin{proof}
-Let $s \in S$. By
-Varieties, Lemma \ref{varieties-lemma-smooth-separable-closed-points-dense}
-the set of closed points $x \in X_s$ such that $\kappa(x)/\kappa(s)$
-is separable is dense in $X_s$. Thus it suffices to construct an
-\'etale morphism $U \to X$ with $x$ in the image
-such that $U \to S$ factors in the manner described in the lemma.
-To do this, choose an immersion $Z \to X$ passing through $x$
-such that $Z \to S$ is \'etale (Lemma \ref{lemma-slice-smooth}).
-After replacing $S$ by $Z$ and $X$ by $Z \times_S X$
-we see that we may assume $X \to S$ has a section $\sigma : S \to X$
-with $\sigma(s) = x$. Then we can first replace $S$ by an affine
-open neighbourhood of $s$ and next replace $X$ by an affine open
-neighbourhood of $x$. Then finally, we consider the subset
-$X^0 \subset X$ of Section \ref{section-connected-components}.
-By Lemmas \ref{lemma-connected-along-section-open} and
-\ref{lemma-connected-along-section-locally-constructible}
-this is a retrocompact open subscheme containing $\sigma$
-such that the fibres $X^0 \to S$ are geometrically connected.
-If $X^0$ is not affine, then we choose an affine open $U \subset X^0$
-containing $x$. Since $X^0 \to S$ is smooth, the image of $U$
-is open. Choose an affine open neighbourhood $V \subset S$ of $s$
-contained in $\sigma^{-1}(U)$ and in the image of $U \to S$.
-Finally, the reader sees that $U \cap f^{-1}(V) \to V$
-has all the desired properties. For example $U \cap f^{-1}(V)$
-is equal to $U \times_S V$ is affine as a fibre product of affine
-schemes. Also, the geometric fibres of $U \cap f^{-1}(V) \to V$ are
-nonempty open subschemes of the irreducible fibres of $X^0 \to S$
-and hence connected. Some details omitted.
-\end{proof}
 
 
 
@@ -10691,6 +11428,9 @@ The claim follows and we win.
 
 \begin{lemma}
 \label{lemma-quasi-finite-separated-quasi-affine}
+\begin{slogan}
+Quasi-finite, separated morphisms are quasi-affine
+\end{slogan}
 Let $f : X \to S$ be a morphism of schemes.
 Assume $f$ is quasi-finite and separated.
 Let $S'$ be the normalization of $S$ in $X$, see
@@ -10709,7 +11449,7 @@ In particular $f$ is quasi-affine.
 \begin{proof}
 This follows from Lemma \ref{lemma-finite-type-separated}. Namely, by
 that lemma there exists an open subscheme $U' \subset S'$ such that
-$(f')^{-1}(U') = X$ (!) and $X \to U'$ is an isomorphism! In other
+$(f')^{-1}(U') = X$ and $X \to U'$ is an isomorphism. In other
 words, $f'$ is an open immersion. Note that $f'$ is quasi-compact as
 $f$ is quasi-compact and $\nu : S' \to S$ is separated
 (Schemes, Lemma \ref{schemes-lemma-quasi-compact-permanence}).
@@ -10772,7 +11512,7 @@ With notation and hypotheses as in
 Lemma \ref{lemma-quasi-finite-separated-pass-through-finite}.
 Assume moreover that $f$ is locally of finite presentation. Then we can
 choose the factorization such that $T$ is finite and of
-finite presentation over $Y$.
+finite presentation over $S$.
 \end{lemma}
 
 \begin{proof}
@@ -10828,7 +11568,7 @@ Morphisms, Lemmas \ref{morphisms-lemma-quasi-finite-locally-quasi-compact} and
 \ref{morphisms-lemma-quasi-finite}.
 
 \medskip\noindent
-Assume (3). Pick $s \in S$. By
+Assume (4). Pick $s \in S$. By
 Morphisms, Lemma \ref{morphisms-lemma-finite-fibre} we
 see that all the finitely many points of $X_s$ are isolated in $X_s$.
 Choose an elementary \'etale neighbourhood $(U, u) \to (S, s)$
@@ -11253,7 +11993,7 @@ Since $X$ is quasi-compact, there exist finitely many affine opens
 $U_i \subset U$ such that $U' = \coprod U_i \to X$ is surjective.
 After replacing $U$ by $U'$, we see that we may assume $U$ is affine.
 In particular $U \to X$ is separated
-(Morphisms, Lemma \ref{morphisms-lemma-affine-separated}).
+(Schemes, Lemma \ref{schemes-lemma-affine-separated}).
 Then there exists an integer $d$ bounding the degree of the geometric
 fibres of $U \to X$ (see Morphisms, Lemma
 \ref{morphisms-lemma-locally-quasi-finite-qc-source-universally-bounded}).
@@ -11940,8 +12680,8 @@ $W_j \to U_j$, and for each $j$ a Zariski open covering
 $\{W_{j, k} \to W_j\}$ such that the family
 $\{W_{j, k} \to S\}$ refines the \'etale covering
 $\{S'_a \to S\}$, i.e., for each pair $j, k$ there exists
-an $a(j, k)$ and a factorization $W_{j, K} \to S'_a \to S$
-of the morphism $W_{j, K} \to S$. Set
+an $a(j, k)$ and a factorization $W_{j, k} \to S'_a \to S$
+of the morphism $W_{j, k} \to S$. Set
 $T_{j, k} = W_{j, k} \times_{S'_a} V_a$ and everything is clear.
 \end{proof}
 
@@ -12572,8 +13312,9 @@ $$
 $$
 This isomorphism is compatible with further localization.
 Taking $m' = 0$ we see that $\pi_*\mathcal{O}_L$ is the
-direct sum of $\mathcal{O}_P(m)$ for $m \geq 0$. We conclude
-$L$ is idendified with the relative spectrum:
+direct sum of $\mathcal{O}_P(m)$ for $m \geq 0$\footnote{It similarly follows
+that $\pi_*\mathcal{O}_L(i) = \bigoplus_{m \geq -i} \mathcal{O}_P(m)$.}.
+We conclude $L$ is idendified with the relative spectrum:
 $$
 L = \underline{\Spec}_P
 \left(
@@ -13429,28 +14170,28 @@ and we conclude that $V(I) = S'$ as desired.
 \begin{lemma}
 \label{lemma-stein-universally-closed-residue-fields}
 In Lemma \ref{lemma-stein-universally-closed} assume in addition that
-$f$ is locally of finite type. Then for $y \in Y$ the fibre
-$\pi^{-1}(\{y\}) = \{y_1, \ldots, y_n\}$ is finite and the field extensions
-$\kappa(y_i)/\kappa(y)$ are finite.
+$f$ is locally of finite type. Then for $s \in S$ the fibre
+$\pi^{-1}(\{s\}) = \{s_1, \ldots, s_n\}$ is finite and the field extensions
+$\kappa(s_i)/\kappa(s)$ are finite.
 \end{lemma}
 
 \begin{proof}
-Recall that there are no specializations among the points of $\pi^{-1}(\{y\})$,
+Recall that there are no specializations among the points of $\pi^{-1}(\{s\})$,
 see Algebra, Lemma \ref{algebra-lemma-integral-no-inclusion}.
-As $f'$ is surjective, we find that $|X_y| \to \pi^{-1}(\{y\})$ is surjective.
-Observe that $X_y$ is a quasi-separated scheme of finite type
+As $f'$ is surjective, we find that $|X_s| \to \pi^{-1}(\{s\})$ is surjective.
+Observe that $X_s$ is a quasi-separated scheme of finite type
 over a field (quasi-compactness was shown in the proof of the
-referenced lemma). Thus $X_y$ is Noetherian
+referenced lemma). Thus $X_s$ is Noetherian
 (Morphisms, Lemma \ref{morphisms-lemma-finite-type-noetherian}).
-A topological argument (omitted) now shows that $\pi^{-1}(\{y\})$ is finite.
-For each $i$ we can pick a finite type point $x_i \in X_y$ mapping to $y_i$
+A topological argument (omitted) now shows that $\pi^{-1}(\{s\})$ is finite.
+For each $i$ we can pick a finite type point $x_i \in X_s$ mapping to $s_i$
 (Morphisms, Lemma \ref{morphisms-lemma-enough-finite-type-points}).
-We conclude that $\kappa(y_i)/\kappa(y)$ is finite:
-$x_i$ can be represented by a morphism $\Spec(k_i) \to X_y$
+We conclude that $\kappa(s_i)/\kappa(s)$ is finite:
+$x_i$ can be represented by a morphism $\Spec(k_i) \to X_s$
 of finite type (by our definition of finite type points)
-and hence $\Spec(k_i) \to y = \Spec(\kappa(y))$ is of finite type
+and hence $\Spec(k_i) \to s = \Spec(\kappa(s))$ is of finite type
 (as a composition of finite type morphisms),
-hence $k_i/\kappa(y)$ is finite (Morphisms, Lemma
+hence $k_i/\kappa(s)$ is finite (Morphisms, Lemma
 \ref{morphisms-lemma-point-finite-type}).
 \end{proof}
 
@@ -13532,15 +14273,20 @@ and that also $(f_U)_*\mathcal{O}_{X_U} = \mathcal{O}_U$
 (Cohomology of Schemes, Lemma \ref{coherent-lemma-flat-base-change-cohomology}).
 Hence after replacing
 $(f : X \to S, s)$ by the base change $(f_U : X_U \to U, u)$
-it suffices to prove that the fibre $X_s$ is connected.
+it suffices to prove that the fibre $X_s$ is connected when
+$f_*\mathcal{O}_X = \mathcal{O}_S$. We can deduce this
+from Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-proper-idempotent-on-fibre}
+(by looking at idempotents in the structure sheaf of $X_s$)
+but we will also give a direct argument below.
 
 \medskip\noindent
-At this point we apply the theorem on formal functions,
+Namely, we apply the theorem on formal functions,
 more precisely Cohomology of Schemes, Lemma
 \ref{coherent-lemma-formal-functions-stalk}.
 It tells us that
 $$
-\mathcal{O}^\wedge_{S, s} =
+\mathcal{O}^\wedge_{S, s} = (f_*\mathcal{O}_X)_s^\wedge =
 \lim_n H^0(X_n, \mathcal{O}_{X_n})
 $$
 where $X_n$ is the $n$th infinitesimal neighbourhood of $X_s$.
@@ -13611,33 +14357,15 @@ $S = \Spec(R)$ affine, $X \to S$ proper with $\Gamma(X, \mathcal{O}_X) = R$
 and $s \in S$ is a point, the fibre $X_s$ is connected.
 
 \medskip\noindent
-By Limits, Lemma
-\ref{limits-lemma-proper-limit-of-proper-finite-presentation-noetherian}
-we can write $(X \to S) = \lim (X_i \to S_i)$ with $X_i \to S_i$
-proper and of finite presentation and $S_i$ Noetherian. For $i$ large
-enough $S_i$ is affine (Limits, Lemma \ref{limits-lemma-limit-affine}).
-Say $S_i = \Spec(R_i)$. Let $R'_i = \Gamma(X_i, \mathcal{O}_{X_i})$.
-Observe that we have ring maps $R_i \to R_i' \to R$. Namely, we have
-the first because $X_i$ is a scheme over $R_i$ and the second because
-we have $X \to X_i$ and $R = \Gamma(X, \mathcal{O}_X)$. Note that
-$R = \colim R'_i$ by Limits, Lemma \ref{limits-lemma-descend-section}.
-Then 
-$$
-\xymatrix{
-X \ar[d]  \ar[r] & X_i \ar[d] \\
-S \ar[r] & S'_i \ar[r] & S_i
-}
-$$
-is commutative with $S'_i = \Spec(R'_i)$.
-Let $s'_i \in S'_i$ be the image of $s$.
-We have $X_s = \lim X_{i, s'_i}$ because $X = \lim X_i$,
-$S = \lim S'_i$, and $\kappa(s) = \colim \kappa(s'_i)$.
-Now let $X_s = U \amalg V$ with $U$ and $V$ open and closed.
-Then $U, V$ are the inverse images of opens $U_i, V_i$ in $X_{i, s'_i}$
-(Limits, Lemma \ref{limits-lemma-descend-opens}).
-By Theorem \ref{theorem-stein-factorization-Noetherian} the fibres
-of $X_i \to S'_i$ are connected, hence either $U$ or $V$ is empty.
-This finishes the proof.
+To do this it suffices to show that the only idempotents
+$e \in H^0(X_s, \mathcal{O}_{X_s})$ are $0$ and $1$ (we already
+know that $X_s$ is nonempty by Lemma \ref{lemma-stein-universally-closed}).
+By Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-proper-idempotent-on-fibre}
+after replacing $R$ by a principal localization
+we may assume $e$ is the image of an element of $R$.
+Since $R \to H^0(X_s, \mathcal{O}_{X_s})$ factors through
+$\kappa(s)$ we conclude.
 \end{proof}
 
 \noindent
@@ -13645,34 +14373,34 @@ Here is an application.
 
 \begin{lemma}
 \label{lemma-geometrically-connected-fibres-towards-normal}
-Let $f : X \to Y$ be a morphism of schemes. Assume
+Let $f : X \to S$ be a morphism of schemes. Assume
 \begin{enumerate}
 \item $f$ is proper,
-\item $Y$ is integral with generic point $\xi$,
-\item $Y$ is normal,
+\item $S$ is integral with generic point $\xi$,
+\item $S$ is normal,
 \item $X$ is reduced,
 \item every generic point of an irreducible component of $X$ maps to $\xi$,
 \item we have $H^0(X_\xi, \mathcal{O}) = \kappa(\xi)$.
 \end{enumerate}
-Then $f_*\mathcal{O}_X = \mathcal{O}_Y$ and $f$
+Then $f_*\mathcal{O}_X = \mathcal{O}_S$ and $f$
 has geometrically connected fibres.
 \end{lemma}
 
 \begin{proof}
 Apply Theorem \ref{theorem-stein-factorization-general} to get a
-factorization $X \to Y' \to Y$. It is enough to show that $Y' = Y$.
+factorization $X \to S' \to S$. It is enough to show that $S' = S$.
 This will follow from Morphisms, Lemma
 \ref{morphisms-lemma-finite-birational-over-normal}.
-Namely, $Y'$ is reduced because $X$ is reduced
+Namely, $S'$ is reduced because $X$ is reduced
 (Morphisms, Lemma \ref{morphisms-lemma-normalization-in-reduced}).
-The morphism $Y' \to Y$ is integral by the theorem cited above.
-Every generic point of $Y'$ lies over $\xi$ by
+The morphism $S' \to S$ is integral by the theorem cited above.
+Every generic point of $S'$ lies over $\xi$ by
 Morphisms, Lemma \ref{morphisms-lemma-normalization-generic}
-and assumption (5). On the other hand, since $Y'$ is the relative
+and assumption (5). On the other hand, since $S'$ is the relative
 spectrum of $f_*\mathcal{O}_X$ we see that the scheme theoretic fibre
-$Y'_\xi$ is the spectrum of $H^0(X_\xi, \mathcal{O})$ which is
-equal to $\kappa(\xi)$ by assumption. Hence $Y'$ is an integral
-scheme with function field equal to the function field of $Y$.
+$S'_\xi$ is the spectrum of $H^0(X_\xi, \mathcal{O})$ which is
+equal to $\kappa(\xi)$ by assumption. Hence $S'$ is an integral
+scheme with function field equal to the function field of $S$.
 This finishes the proof.
 \end{proof}
 
@@ -13682,7 +14410,7 @@ Here is another application.
 \begin{lemma}
 \label{lemma-proper-flat-nr-geom-conn-comps-lower-semicontinuous}
 Let $X \to S$ be a flat proper morphism of finite presentation. Let
-$n_{X/S}$ be the function on $Y$ counting the numbers of geometric
+$n_{X/S}$ be the function on $S$ counting the numbers of geometric
 connected components of fibres of $f$ introduced in
 Lemma \ref{lemma-base-change-fibres-nr-geometrically-connected-components}.
 Then $n_{X/S}$ is lower semi-continuous.
@@ -13832,6 +14560,194 @@ with $W'$ and $V'$ open and closed and
 with $Y' = W'_0$ and $Z' = V'_0$.
 Let $W$ be the inverse image in $X$
 to finish the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+\section{Improving morphisms of relative dimension one}
+\label{section-make-good-curves}
+
+\noindent
+We can make any curve be smooth and projective after extending the
+ground field, compactifying, and normalizing. This also implies
+results about finite type morphisms whose generic fibres have dimension $1$.
+
+\begin{lemma}
+\label{lemma-make-good-curves}
+Let $f : X \to S$ be a morphism of schemes. Let $\eta \in S$ be a
+generic point of an irreducible component of $S$. Assume $f$ is
+separated, of finite presentation, and $\dim(X_\eta) \leq 1$.
+Then there exists a commutative diagram
+$$
+\xymatrix{
+\overline{Y}_1 \amalg \ldots \amalg \overline{Y}_n \ar[rd] &
+Y_1 \amalg \ldots \amalg Y_n \ar[r]_-\nu \ar[d] \ar[l]^j &
+X_V \ar[r] \ar[d] &
+X_U \ar[r] \ar[d] &
+X \ar[d]^f \\
+& T_1 \amalg \ldots \amalg T_n \ar[r] &
+V \ar[r] &
+U \ar[r] &
+S
+}
+$$
+of schemes with the following properties:
+\begin{enumerate}
+\item $U \subset X$ is an open neighbourhood of $\eta$,
+\item $V \to U$ is a finite, surjective, universally injective morphism,
+\item $X_U = U \times_S X$ and $X_V = V \times_S X$ are the base changes,
+\item $\nu$ is finite, surjective, and there is an open $W \subset X_V$
+such that
+\begin{enumerate}
+\item $W$ is dense in all fibres of $X_V \to V$,
+\item $\nu^{-1}(W) \cap Y_i$ is dense in all fibres of $Y_i \to T_i$, and
+\item $\nu^{-1}(W) \to W$ is a thickening,
+\end{enumerate}
+\item $j$ is an open immersion,
+\item $T_i \to V$ is finite \'etale,
+\item $Y_i \to T_i$ is surjective and smooth,
+\item $\overline{Y}_i \to T_i$ is smooth, proper, with geometrically
+connected fibres of dimension $\leq 1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+It is clear that we may replace $S$ by an open neighbourhood of $\eta$
+and $X$ by the restriction to this open.
+Moreover, we may replace $S$ by its reduction and $X$ by
+the base change to this reduction.
+Thus we may assume $S = \Spec(A)$ where $A$ is a reduced ring
+and $\eta$ corresponds to a minimal prime ideal $\mathfrak p$.
+Recall that the local ring $\mathcal{O}_{S, \eta} = A_\mathfrak p$
+is equal to $\kappa(\mathfrak p)$ in this case, see
+Algebra, Lemma \ref{algebra-lemma-minimal-prime-reduced-ring}.
+
+\medskip\noindent
+Apply Varieties, Lemma
+\ref{varieties-lemma-dim-1-projective-completion-after-insep}
+to the scheme $X_\eta$ over $k = \kappa(\eta)$.
+Denote $k'/k$ the purely inseparable field extension this produces.
+In the next paragraph we reduce to the case $k' = k$.
+(This step corresponds to finding the morphism $V \to U$ in
+the statement of the lemma; in particular we can take $V = U$
+if the characteristic of $\kappa(\mathfrak p)$ is zero.)
+
+\medskip\noindent
+If the characteristic of $k = \kappa(\mathfrak p)$ is zero, then
+$k' = k$. If the characteristic of $k = \kappa(\mathfrak p)$
+is $p > 0$, then $p$ maps to zero in $A_\mathfrak p = \kappa(\mathfrak p)$.
+Hence after replacing $A$ by a principal localization (i.e.,
+shrinking $S$) we may assume $p = 0$ in $A$. If $k' \not = k$, then
+there exists an $\beta \in k'$, $\beta \not \in k$
+such that $\beta^p \in k$. After replacing $A$ by a principal
+localization we may assume there exists an $a \in A$ such
+that $\beta^p = a$. Set $A' = A[x]/(x^p - a)$.
+Then $S' = \Spec(A') \to \Spec(A) = S$ is finite, surjective, and
+universally injective. Moreover, if $\mathfrak p' \subset A'$
+denotes the unique prime ideal lying over $\mathfrak p$,
+then $A'_{\mathfrak p'} = k(\beta)$ and $k'/k(\beta)$
+has smaller degree. Thus after replacing $S$ by $S'$
+and $\eta$ by the point $\eta'$ corresponding to $\mathfrak p'$
+we see that the degree of $k'$ over the residue field of $\eta$
+has decreased. Continuing like this, by induction we reduce
+to the case $k' = \kappa(\mathfrak p) = \kappa(\eta)$.
+
+\medskip\noindent
+Thus we may assume $S$ is affine, reduced, and that we have a diagram
+$$
+\xymatrix{
+\overline{Y}_{1, \eta} \amalg \ldots \amalg \overline{Y}_{n, \eta} \ar[rd] &
+Y_{1, \eta} \amalg \ldots \amalg Y_{n, \eta} \ar[r]_-\nu \ar[d] \ar[l]^j &
+X_\eta \ar[d] \\
+& \Spec(k_1) \amalg \ldots \amalg \Spec(k_n) \ar[r] &
+\eta
+}
+$$
+of schemes with the following properties:
+\begin{enumerate}
+\item $\nu$ is the normalization of $X_\eta$,
+\item $j$ is an open immersion with dense image,
+\item $k_i/\kappa(\eta)$
+is a finite separable extension for $i = 1, \ldots, n$,
+\item $\overline{Y}_{i, \eta}$ is smooth, projective, and
+geometrically irreducible of dimension $\leq 1$ over $k_i$.
+\end{enumerate}
+Recall that $\kappa(\eta) = \kappa(\mathfrak p) = A_\mathfrak p$ is
+the filtered colimit of $A_a$ for $a \in A$, $a \not \in \mathfrak p$.
+See Algebra, Lemma \ref{algebra-lemma-localization-colimit}.
+Thus we can descend the diagram above to a corresponding diagram
+over $\Spec(A_a)$ for some $a \in A$, $a \not \in \mathfrak p$.
+More precisely, after replacing $S$ by $\Spec(A_a)$
+we may assume we have a commutative diagram
+$$
+\xymatrix{
+\overline{Y}_1 \amalg \ldots \amalg \overline{Y}_n \ar[rd] &
+Y_1 \amalg \ldots \amalg Y_n \ar[r]_-\nu \ar[d] \ar[l]^j &
+X \ar[d] \\
+& T_1 \amalg \ldots \amalg T_n \ar[r] & S
+}
+$$
+of schemes whose base change to $\eta$ is the diagram above
+with the following properties
+\begin{enumerate}
+\item $\nu$ is a finite, surjective morphism,
+\item $j$ is an open immersion,
+\item $T_i \to S$ is finite \'etale for $i = 1, \ldots, n$,
+\item $Y_i \to T_i$ is smooth and surjective,
+\item $\overline{Y}_i \to T_i$ is smooth and proper and has
+geometrically connected fibres of dimension $\leq 1$.
+\end{enumerate}
+For this we first use
+Limits, Lemma \ref{limits-lemma-descend-finite-presentation}
+to obtain the diagram base changing to the previous diagram.
+Then we use Limits, Lemmas \ref{limits-lemma-descend-etale},
+\ref{limits-lemma-descend-smooth},
+\ref{limits-lemma-descend-finite-finite-presentation},
+\ref{limits-lemma-limit-affine},
+\ref{limits-lemma-descend-open-immersion},
+\ref{limits-lemma-eventually-proper}, and
+\ref{limits-lemma-descend-surjective}
+to obtain $\nu$ finite, surjective, $j$ open immersion, $T_i \to S$ finite
+\'etale, $Y_i \to T$ smooth, $\overline{Y}_i \to T_i$ proper and
+smooth. Since $Y_i$ cannot be empty, since smooth morphisms
+are open, and since $T_i \to S$ is finite \'etale, after shrinking $S$
+we may assume $Y_i \to T_i$ is surjective. Finally, the fibre of
+$\overline{Y}_i \to T_i$ over the unique point $\eta_i = \Spec(k_i)$ 
+of $T_i$ lying over $\eta$ is geometrically connected.
+Hence by another shrinking we may assume the same thing is
+true for all fibres, see
+Lemma \ref{lemma-proper-flat-geom-red}.
+
+\medskip\noindent
+It remains to prove the existence of an open $W \subset X$
+satisfying (a), (b), and (c). Since $\nu_\eta : \coprod Y_{i, \eta} \to X_\eta$
+is the normalization morphism, we know by
+Varieties, Lemma \ref{varieties-lemma-normalization-locally-algebraic}
+there exists a dense open $W_\eta \subset X_\eta$
+such that $\nu^{-1}(W_\eta) \to W_\eta$ is equal to
+the inclusion of the reduction of $W_\eta$ into $W_\eta$.
+Let $W \subset X$ be a quasi-compact open whose fibre
+over $\eta$ is the open $W_\eta$ we just found.
+After replacing $A = \Gamma(S, \mathcal{O}_S)$
+by another localization we may assume $\nu^{-1}(W) \to W$
+is a closed immersion, see Limits, Lemma
+\ref{limits-lemma-descend-closed-immersion-finite-presentation}.
+Since $\nu$ is also surjective we conclude
+$\nu^{-1}(W) \to W$ is a thickening.
+Set $W_i = \nu^{-1}(W) \cap Y_i$.
+Shrinking $S$ once more we can assume $W_i \to T_i$ is
+surjective for all $i$ (same argument as above).
+Then we find that $W_i \subset Y_i$
+is dense in all fibres of $Y_i \to T_i$ as $Y_i \to T_i$ has
+geometrically irreducible fibres.
+Since $\nu$ is finite and surjective, it then follows
+that $W = \nu(\nu^{-1}(W))$ is dense in all fibres
+of $X \to S$ too.
 \end{proof}
 
 
@@ -15538,6 +16454,25 @@ Thus $A \to B$ is a perfect ring map by definition.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-perfect-closed-immersion-perfect-direct-image}
+Let $i : Z \to X$ be a perfect closed immersion of schemes.
+Then $i_*\mathcal{O}_X$ is a perfect $\mathcal{O}_X$-module, i.e.,
+it is a perfect object of $D(\mathcal{O}_X)$.
+\end{lemma}
+
+\begin{proof}
+This is more or less immediate from the definition. Namely, let
+$U = \Spec(A)$ be an affine open of $X$. Then $i^{-1}(U) = \Spec(A/I)$
+for some ideal $I \subset A$ and $A/I$ has a finite resolution by
+finite projective $A$-modules by
+More on Algebra, Lemma \ref{more-algebra-lemma-perfect-ring-map}.
+Hence $i_*\mathcal{O}_Z|_U$ can be represented by a finite
+length complex of finite locally free $\mathcal{O}_U$-modules.
+This is what we had to show, see
+Cohomology, Section \ref{cohomology-section-perfect}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-perfect-proper-perfect-direct-image}
 Let $S$ be a Noetherian scheme. Let $f : X \to S$ be a perfect proper
 morphism of schemes. Let $E \in D(\mathcal{O}_X)$ be perfect. Then
@@ -15617,7 +16552,7 @@ In
 Divisors, Section \ref{divisors-section-regular-immersions}
 we have defined 4 different types of regular immersions: regular,
 Koszul-regular, $H_1$-regular, and quasi-regular. In this section
-we consider morphisms $f : X \to S$ which locally on $X$ factors as
+we consider morphisms $f : X \to S$ which locally on $X$ factor as
 $$
 \xymatrix{
 X \ar[rr]_i \ar[rd] & & \mathbf{A}^n_S \ar[ld] \\
@@ -15986,6 +16921,144 @@ By our initial remarks, this finishes the proof.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-lci-to-regular}
+Let
+$$
+\xymatrix{
+X \ar[rr]_f \ar[rd] & & Y \ar[ld] \\
+& S
+}
+$$
+be a commutative diagram of morphisms of schemes. Assume
+$S$ is locally Noetherian, $Y \to S$ is locally of finite type,
+$Y$ is regular, and $X \to S$ is a local complete intersection morphism.
+Then $f : X \to Y$ is a local complete intersection morphism
+and $Y \to S$ is Koszul at $f(x)$ for all $x \in X$.
+\end{lemma}
+
+\begin{proof}
+This is a special case of Lemma \ref{lemma-lci-avramov}
+in view of Lemma \ref{lemma-regular-target-perfect}
+(and Morphisms, Lemma \ref{morphisms-lemma-permanence-finite-type}).
+\end{proof}
+
+\begin{lemma}
+\label{lemma-perfect-conormal-free-lci}
+Let $i : X \to Y$ be an immersion. If
+\begin{enumerate}
+\item $i$ is perfect,
+\item $Y$ is locally Noetherian, and
+\item the conormal sheaf $\mathcal{C}_{X/Y}$ is finite locally free,
+\end{enumerate}
+then $i$ is a regular immersion.
+\end{lemma}
+
+\begin{proof}
+Translated into algebra, this is
+Divided Power Algebra, Proposition \ref{dpa-proposition-regular-ideal}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-lci-NL}
+Let $f : X \to Y$ be a local complete intersection homomorphism.
+Then the naive cotangent complex $\NL_{X/Y}$ is a perfect object
+of $D(\mathcal{O}_X)$ of tor-amplitude in $[-1, 0]$.
+\end{lemma}
+
+\begin{proof}
+Translated into algebra this is
+More on Algebra, Lemma \ref{more-algebra-lemma-lci-NL}.
+To do the translation use
+Lemmas \ref{lemma-affine-lci} and
+\ref{lemma-NL-affine} as well as
+Derived Categories of Schemes, Lemmas
+\ref{perfect-lemma-affine-compare-bounded},
+\ref{perfect-lemma-tor-dimension-affine} and
+\ref{perfect-lemma-perfect-affine}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-perfect-NL-lci}
+Let $f : X \to Y$ be a perfect morphism of locally Noetherian schemes.
+The following are equivalent
+\begin{enumerate}
+\item $f$ is a local complete intersection morphism,
+\item $\NL_{X/Y}$ has tor-amplitude in $[-1, 0]$, and
+\item $\NL_{X/Y}$ is perfect with tor-amplitude in $[-1, 0]$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Translated into algebra this is
+Divided Power Algebra, Lemma \ref{dpa-lemma-perfect-NL-lci}.
+To do the translation use
+Lemmas \ref{lemma-affine-lci} and
+\ref{lemma-NL-affine} as well as
+Derived Categories of Schemes, Lemmas
+\ref{perfect-lemma-affine-compare-bounded},
+\ref{perfect-lemma-tor-dimension-affine} and
+\ref{perfect-lemma-perfect-affine}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-flat-fp-NL-lci}
+Let $f : X \to Y$ be a flat morphism of finite presentation.
+The following are equivalent
+\begin{enumerate}
+\item $f$ is a local complete intersection morphism,
+\item $f$ is syntomic,
+\item $\NL_{X/Y}$ has tor-amplitude in $[-1, 0]$, and
+\item $\NL_{X/Y}$ is perfect with tor-amplitude in $[-1, 0]$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Translated into algebra this is
+Divided Power Algebra, Lemma \ref{dpa-lemma-flat-fp-NL-lci}.
+To do the translation use
+Lemmas \ref{lemma-affine-lci} and
+\ref{lemma-NL-affine} as well as
+Derived Categories of Schemes, Lemmas
+\ref{perfect-lemma-affine-compare-bounded},
+\ref{perfect-lemma-tor-dimension-affine} and
+\ref{perfect-lemma-perfect-affine}.
+\end{proof}
+
+\noindent
+The following lemma gives a characterization of smooth morphisms as flat
+morphisms whose diagonal is perfect.
+
+\begin{lemma}
+\label{lemma-smooth-diagonal-perfect}
+Let $f : X \to Y$ be a finite type morphism of locally Noetherian schemes.
+Denote $\Delta : X \to X \times_Y X$ the diagonal morphism.
+The following are equivalent
+\begin{enumerate}
+\item $f$ is smooth,
+\item $f$ is flat and $\Delta : X \to X \times_Y X$ is a regular immersion,
+\item $f$ is flat and $\Delta : X \to X \times_Y X$ is a
+local complete intersection morphism,
+\item $f$ is flat and $\Delta : X \to X \times_Y X$ is perfect.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Assume (1). Then $f$ is flat by
+Morphisms, Lemma \ref{morphisms-lemma-smooth-flat}.
+The projections $X \times_Y X \to X$ are smooth by
+Morphisms, Lemma \ref{morphisms-lemma-base-change-smooth}. Hence the diagonal
+is a section to a smooth morphism and hence a regular immersion, see
+Divisors, Lemma \ref{divisors-lemma-section-smooth-regular-immersion}.
+Hence (1) $\Rightarrow$ (2).
+The implication (2) $\Rightarrow$ (3) is
+Lemma \ref{lemma-regular-immersion-lci}.
+The implication (3) $\Rightarrow$ (4) is
+Lemma \ref{lemma-lci-properties}.
+The interesting implication (4) $\Rightarrow$ (1) follows immediately
+from Divided Power Algebra, Lemma \ref{dpa-lemma-perfect-diagonal}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-descending-property-lci}
 The property $\mathcal{P}(f) =$``$f$ is a local complete intersection
 morphism'' is fpqc local on the base.
@@ -16231,11 +17304,6 @@ realizations of the triangle of cotangent complexes associated to a pair of
 composable morphisms of schemes.
 
 \medskip\noindent
-In the sequences below each of the maps
-are as constructed in either
-Morphisms, Lemma \ref{morphisms-lemma-functoriality-differentials}
-or
-Lemma \ref{lemma-universal-thickening-functorial}.
 Let $g : Z \to Y$ and $f : Y \to X$ be morphisms of schemes.
 \begin{enumerate}
 \item There is a canonical exact sequence
@@ -16244,37 +17312,47 @@ g^*\Omega_{Y/X} \to \Omega_{Z/X} \to \Omega_{Z/Y} \to 0,
 $$
 see
 Morphisms, Lemma \ref{morphisms-lemma-triangle-differentials}.
-If $g : Z \to Y$ is formally smooth, then this sequence is a
-short exact sequence, see
-Lemma \ref{lemma-triangle-differentials-formally-smooth}.
-\item If $g$ is formally unramified, then there is a canonical exact sequence
+If $g : Z \to Y$ is smooth or more generally formally smooth, then this
+sequence is a short exact sequence, see
+Morphisms, Lemma \ref{morphisms-lemma-triangle-differentials-smooth}
+or see Lemma \ref{lemma-triangle-differentials-formally-smooth}.
+\item If $g$ is an immersion or more generally formally unramified,
+then there is a canonical exact sequence
 $$
 \mathcal{C}_{Z/Y} \to g^*\Omega_{Y/X} \to \Omega_{Z/X} \to 0,
 $$
-see
-Lemma \ref{lemma-universally-unramified-differentials-sequence}.
-If $f \circ g : Z \to X$ is formally smooth, then this sequence is a short
-exact sequence, see
-Lemma \ref{lemma-differentials-formally-unramified-formally-smooth}.
-\item If $g$ and $f \circ g$ are formally unramified, then there is a
-canonical exact sequence
+see Morphisms, Lemma \ref{morphisms-lemma-differentials-relative-immersion}
+or see Lemma \ref{lemma-universally-unramified-differentials-sequence}.
+If $f \circ g : Z \to X$ is smooth or more generally formally smooth, then this
+sequence is a short exact sequence, see
+Morphisms, Lemma \ref{morphisms-lemma-differentials-relative-immersion-smooth}
+or see Lemma \ref{lemma-differentials-formally-unramified-formally-smooth}.
+\item If $g$ and $f \circ g$ are immersions or more generally
+formally unramified, then there is a canonical exact sequence
 $$
 \mathcal{C}_{Z/X} \to \mathcal{C}_{Z/Y} \to g^*\Omega_{Y/X} \to 0,
 $$
 see
-Lemma \ref{lemma-two-unramified-morphisms}. If $f : Y \to X$ is formally
-smooth, then this sequence is a short exact sequence, see
+Morphisms, Lemma \ref{morphisms-lemma-two-immersions} or see
+Lemma \ref{lemma-two-unramified-morphisms}. If $f : Y \to X$ is smooth or
+more generally formally smooth, then this sequence is a short exact sequence,
+see Morphisms, Lemma \ref{morphisms-lemma-two-immersions-smooth} or see
 Lemma \ref{lemma-two-unramified-morphisms-formally-smooth}.
-\item If $g$ and $f$ are formally unramified, then there is a canonical
-exact sequence
+\item If $g$ and $f$ are immersions or more generally formally unramified, then
+there is a canonical exact sequence
 $$
 g^*\mathcal{C}_{Y/X} \to \mathcal{C}_{Z/X} \to \mathcal{C}_{Z/Y} \to 0.
 $$
 see
+Morphisms, Lemma \ref{morphisms-lemma-transitivity-conormal} or see
 Lemma \ref{lemma-transitivity-conormal}.
-If $g : Z \to Y$ is a local complete intersection morphism, then this
+If $g : Z \to Y$ is a regular immersion\footnote{It suffices for $g$ to be
+a $H_1$-regular immersion. Observe that an immersion which is a
+local complete intersection morphism is Koszul regular.} or
+more generally a local complete intersection morphism, then this
 sequence is a short exact sequence, see
-Lemma \ref{lemma-transitivity-conormal-lci}.
+Divisors, Lemma \ref{divisors-lemma-transitivity-conormal-quasi-regular}
+or see Lemma \ref{lemma-transitivity-conormal-lci}.
 \end{enumerate}
 
 
@@ -16609,6 +17687,53 @@ $X$ is flat over $X \times_S X$ it follows that $X$ is
 flat over $X \times_Y X$.
 \end{proof}
 
+\noindent
+The following is a scheme theoretic generalization of the observation
+that a field extension that is simultaneously separable and purely inseparable
+must be an isomorphism. 
+
+\begin{lemma}
+\label{lemma-weakly-etale-universal-homeomorphism}
+Let $f : X \to Y$ be a morphism of schemes. If $f$ is weakly \'etale and
+a universal homeomorphism, it is an isomorphism. 
+\end{lemma}
+
+\begin{proof}
+Since $f$ is a universal homeomorphism, the diagonal
+$\Delta : X \to X \times_Y X$ is a surjective closed immersion by
+Morphisms, Lemmas \ref{morphisms-lemma-homeomorphism-affine} and
+\ref{morphisms-lemma-universally-injective}. Since $\Delta$ is also
+flat, we see that $\Delta$ must be an isomorphism by
+Morphisms, Lemma \ref{morphisms-lemma-characterize-flat-closed-immersions}.
+In other words, $f$ is a monomorphism
+(Schemes, Lemma \ref{schemes-lemma-monomorphism}).
+Since $f$ is a universal homeomorphism it is certainly
+quasi-compact. Hence by Descent, Lemma
+\ref{descent-lemma-flat-surjective-quasi-compact-monomorphism-isomorphism}
+we find that $f$ is an isomorphism.
+\end{proof}
+
+\noindent
+The following is a weakly \'etale generalization of
+\'Etale Morphisms, Lemma \ref{etale-lemma-relative-frobenius-etale}.
+
+\begin{lemma}
+\label{lemma-relative-frobenius-weakly-etale}
+Let $U \to X$ be a weakly \'etale morphism of schemes where $X$ is a scheme
+in characteristic $p$. Then the relative Frobenius
+$F_{U/X} : U \to U \times_{X, F_X} X$ is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+The morphism $F_{U/X}$ is a universal homeomorphism by
+Varieties, Lemma \ref{varieties-lemma-relative-frobenius}.
+The morphism $F_{U/X}$ is weakly \'etale as a morphism
+between schemes weakly \'etale over $X$ by
+Lemma \ref{lemma-weakly-etale-permanence}. Hence $F_{U/X}$
+is an isomorphism by Lemma \ref{lemma-weakly-etale-universal-homeomorphism}.
+\end{proof}
+
+
 
 
 
@@ -16706,7 +17831,7 @@ $K \subset K_i$ which are solutions for the extension of discrete valuation
 rings $A_i \to \mathcal{O}_i$. Let $K \subset L$ be a finite extension
 dominating all of the extensions $K \subset K_i$. Then $K \subset L$
 is still a solution for $A_i \to \mathcal{O}_i$ by
-More on Algebra, Lemma \ref{more-algebra-lemma-formally-smooth-goes-up}.
+More on Algebra, Lemma \ref{more-algebra-lemma-solution-goes-up}.
 
 \medskip\noindent
 Consider the diagram (\ref{equation-normalized-base-change})
@@ -16832,7 +17957,7 @@ and we find finite separable extensions $K \subset K_i$ which are
 solutions for $A_i \to \mathcal{O}_i$. Let $K \subset L$ be a finite
 separable extension dominating all of the extensions $K \subset K_i$.
 Then $K \subset L$ is still a solution for $A_i \to \mathcal{O}_i$ by
-More on Algebra, Lemma \ref{more-algebra-lemma-formally-smooth-goes-up}.
+More on Algebra, Lemma \ref{more-algebra-lemma-solution-goes-up}.
 
 \medskip\noindent
 Consider the diagram (\ref{equation-normalized-base-change})
@@ -17081,8 +18206,8 @@ Lemma \ref{lemma-quasi-finite-separated-quasi-affine}.
 \noindent
 This section is a continuation of Section \ref{section-pushouts}.
 In this section we construct pushouts of $Y \leftarrow Z \rightarrow X$
-where $Z \to X$ is affine and $Z \to Y$ is integral and an additional
-condition is satisfied.
+where $Z \to X$ is a closed immersion and $Z \to Y$ is integral and
+an additional condition is satisfied.
 Please see the detailed discussion in \cite{Ferrand-Conducteur}.
 
 \begin{situation}
@@ -17101,12 +18226,12 @@ with $j^{-1}(\{y\}) \subset i^{-1}(U)$.
 \label{lemma-prepare-pushout-along-closed-immersion-and-integral}
 In Situation \ref{situation-pushout-along-closed-immersion-and-integral}
 then for $y \in Y$ there exist affine opens $U \subset X$ and
-$V \subset Y$ with $i^{-1}(U) = j^{-1}(V)$.
+$V \subset Y$ with $i^{-1}(U) = j^{-1}(V)$ and $y \in V$.
 \end{lemma}
 
 \begin{proof}
 Let $y \in Y$. Choose an affine open $U \subset X$
-such that $j^{-1}(\{y\}) \in i^{-1}(U)$ (possible by assumption).
+such that $j^{-1}(\{y\}) \subset i^{-1}(U)$ (possible by assumption).
 Choose an affine open $V \subset Y$ neighbourhood of $y$
 such that $j^{-1}(V) \subset i^{-1}(U)$.
 This is possible because $j : Z \to Y$ is a closed morphism
@@ -17926,8 +19051,77 @@ $\mathbf{P}^n_A$ this means $K|_U$ is pseudo-coherent relative to $A$
 by Lemma \ref{lemma-check-relative-pseudo-coherence-on-charts}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-characterize-pseudo-coh-improved}
+Let $A$ be a ring. Let $X$ be a scheme separated and
+of finite presentation over $A$. Let 
+$K \in D_\QCoh(\mathcal{O}_X).$ If 
+$R \Gamma (X, E \otimes ^{\mathbf{L}} K)$ is
+pseudo-coherent in $D(A)$ for every perfect 
+$E \in D(\mathcal{O}_X)$, then $K$ is pseudo-coherent
+relative to $A$.
+\end{lemma}
 
+\begin{proof}
+In view of Lemma \ref{lemma-characterize-pseudo-coherent}, it suffices
+to show $R \Gamma (X, E \otimes ^{\mathbf{L}} K)$ is
+pseudo-coherent in $D(A)$ for every pseudo-coherent 
+$E \in D(\mathcal{O}_X)$. By Derived Categories of Schemes,
+Proposition \ref{perfect-proposition-detecting-bounded-above}
+it follows that $K \in D^-_\QCoh (\mathcal{O}_X)$. Now the
+result follows by Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-perfect-enough}.
+\end{proof}
 
+\begin{lemma}
+\label{lemma-characterize-relatively-perfect}
+Let $A$ be a ring. Let $X$ be a scheme separated, of
+finite presentation, and flat over $A$. Let 
+$K \in D_\QCoh(\mathcal{O}_X).$ If 
+$R \Gamma (X, E \otimes^\mathbf{L} K)$ is perfect in
+$D(A)$ for every perfect $E \in D(\mathcal{O}_X)$, then $K$ is
+$\Spec(A)$-perfect.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-characterize-pseudo-coh-improved},
+$K$ is pseudo-coherent relative to $A$. By Lemma
+\ref{lemma-check-relative-pseudo-coherence-on-charts},
+$K$ is pseudo-coherent in $D( \mathcal{O}_X)$.
+By Derived Categories of Schemes, Proposition
+\ref{perfect-proposition-detecting-bounded-below}
+we see that $K$ is in $D^-(\mathcal{O}_X)$.
+Let $\mathfrak{p}$ be a prime ideal of $A$ and denote
+$i : Y \to X$ the inclusion of the scheme theoretic
+fibre over $\mathfrak{p}$, i.e., $Y$ is a scheme over $\kappa(\mathfrak p)$.
+By Derived Categories of Schemes, Lemma \ref{perfect-lemma-bounded-on-fibres},
+we will be done if we can show  $Li^*(K)$ is bounded below. 
+Let $G \in D_{perf} (\mathcal{O}_X)$ be a perfect
+complex which generates $D_\QCoh (\mathcal{O}_X)$,
+see Derived Categories of Schemes, Theorem
+\ref{perfect-theorem-bondal-van-den-Bergh}.
+We have
+\begin{align*}
+R\Hom _{\mathcal{O}_Y}(Li^*(G), Li^*(K))
+& =
+R\Gamma(Y, Li^*(G ^\vee \otimes ^\mathbf{L} K)) \\
+& =
+R\Gamma(X, G^\vee \otimes ^{\mathbf{L}} K)
+\otimes^\mathbf{L}_A \kappa(\mathfrak{p})
+\end{align*}
+The first equality uses that $Li^*$ preserves perfect objects and duals
+and Cohomology, Lemma \ref{cohomology-lemma-dual-perfect-complex}; we omit
+some details. The second equality follows from
+Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-compare-base-change}
+as $X$ is flat over $A$. It follows from our hypothesis that this is a
+perfect object of $D(\kappa(\mathfrak{p}))$. The object
+$Li^*(G) \in D_{perf}(\mathcal{O}_Y)$  generates $D_\QCoh(\mathcal{O}_Y)$ by
+Derived Categories of Schemes, Remark \ref{perfect-remark-pullback-generator}.
+Hence Derived Categories of Schemes, Proposition
+\ref{perfect-proposition-detecting-bounded-below}
+now implies that $Li^*(K)$ is bounded below and we win.
+\end{proof}
 
 
 
@@ -18202,7 +19396,7 @@ By our choice of $a_i, b_i$ this complex has cohomology
 only in degrees in the interval $[a_i, b_i]$.
 Thus we may finally apply
 More on Algebra, Lemma
-\ref{more-algebra-lemma-lift-from-fibre-relativelu-perfect}
+\ref{more-algebra-lemma-lift-from-fibre-relatively-perfect}
 to $R \to A$, $\mathfrak q_0$, $\mathfrak p_0$ and $K$
 to conclude.
 \end{proof}
@@ -19089,7 +20283,8 @@ $$
 \xymatrix{
 \Spec(B[x_1, \ldots, x_n]) \ar[d] &
 \Spec(B') \ar[l] \ar[d] \\
-\Spec(A[x_1, \ldots, x_n]) & \ar[l] \Spec(A')
+\Spec(A[x_1, \ldots, x_n]) &
+\Spec(A') \ar[l]
 }
 $$
 is cartesian the image of $D(g)$ in $\Spec(A')$ is equal to the
@@ -19128,8 +20323,8 @@ u \ar[d] & U \ar[d] \ar[r] & X \ar[d] \\
 v & V \ar[r] & Y
 }
 $$
-where $(V, v) \to (Y, y)$ is an \'etale neighbourhood,
-$U \to V$ is finite, $v$ is the unique point of $V$ mapping to $u$,
+where $(V, v) \to (Y, y)$ is an elementary \'etale neighbourhood,
+$U \to V$ is finite, $u$ is the unique point of $U$ mapping to $v$,
 $U \subset V \times_Y X$ is open, and $v \mapsto y$ and $u \mapsto x$.
 Let $E$ be an irreducible component of $U$ passing through $u$
 (there is at least one of these). Since $U \to X$ is \'etale, $E$
@@ -19178,7 +20373,8 @@ $$
 \xymatrix{
 \Spec(B[x_1, \ldots, x_n]) \ar[d] &
 \Spec(B') \ar[l] \ar[d] \\
-\Spec(A[x_1, \ldots, x_n]) & \ar[l] \Spec(A')
+\Spec(A[x_1, \ldots, x_n]) &
+\Spec(A') \ar[l]
 }
 $$
 is cartesian the image of $D(g)$ in $\Spec(A')$ is equal to the
@@ -19477,7 +20673,7 @@ the function $\int_\pi (w \circ h)$ is locally constant.
 \noindent
 Of course taking $w = 0$ we obtain a weighting of any locally quasi-finite
 morphism $f$, albeit not a very interesting one. It will turn out that
-{\it positive} weigthings, i.e., $w : X \to \mathbf{Z}_{>0}$ are the
+{\it positive} weigthings, i.e., $w : X \to \mathbf{Z}_{> 0}$ are the
 most interesting ones for various purposes.
 
 \begin{lemma}
@@ -19544,6 +20740,79 @@ Thus $U' = U_{V'}$ and we find a cartesian diagram as in
 Lemma \ref{lemma-weighting-check-after-etale-base-change}.
 Since $\int_\pi (w \circ h)$ is locally constant
 by assumption we conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-weighting-open}
+Let $f : X \to Y$ be a locally quasi-finite morphism. Let
+$w : X \to \mathbf{Z}$ be a weighting of $f$. If $X' \subset X$ is open,
+then $w|_{X'}$ is a weighting of $f|_{X'} : X' \to Y$.
+\end{lemma}
+
+\begin{proof}
+Immediate from the definition.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-weighting-composition}
+Let $f : X \to Y$ and $g : Y \to Z$ be locally quasi-finite morphisms.
+Let $w_f : X \to \mathbf{Z}$ be a weighting of $f$ and let
+$w_g : Y \to \mathbf{Z}$ be a weighting of $g$. Then the function
+$$
+X \longrightarrow \mathbf{Z},\quad
+x \longmapsto w_f(x) w_g(f(x))
+$$
+is a weighting of $g \circ f$.
+\end{lemma}
+
+\begin{proof}
+Let us set $w_{g \circ f}(x) = w_f(x) w_g(f(x))$ for $x \in X$.
+Consider a diagram
+$$
+\xymatrix{
+X \ar[d]_{g \circ f} & U \ar[l] \ar[d]^\pi \\
+Z & W \ar[l]
+}
+$$
+where $W \to Z$ is \'etale, $U \subset X_W$ is open, and $U \to W$ finite.
+We have to show that $\int_\pi w_{g \circ f}|_U$ is locally constant.
+Choose a point $w \in W$. By
+Lemma \ref{lemma-weighting-check-after-etale-base-change}
+(and the fact that \'etale morphisms are open) it suffices to show that
+$\int_\pi w_{g \circ f}|_U$ is constant after replacing
+$(W, w)$ by an \'etale neighbourhood.
+After replacing $(W, w)$ by an \'etale neighbourhood we may
+assume $U = U_1 \amalg \ldots \amalg U_n$ where each $U_i$
+has a unique point $u_i$ lying over $w$ such that
+$\kappa(u_i)/\kappa(w)$ is purely inseparable, see
+Lemma \ref{lemma-etale-splits-off-quasi-finite-part-technical-variant}.
+Clearly, it suffices to show that $\int_{U_i \to W} w_{g \circ f}|_{U_i}$
+is constant in an \'etale neighbourhood of $w$.
+This reduces us to the case discussed in the next paragraph.
+
+\medskip\noindent
+We have $w \in W$ and there is a unique point $u \in U$ lying
+over $w$ with $\kappa(u)/\kappa(w)$ purely inseparable.
+Consider the point $v = f(u) \in Y$. After replacing
+$(W, w)$ by an elementary \'etale neighbourhood we may
+assume there is an open neighbourhood $V \subset Y_W$
+of $v$ such that $V \to W$ is finite, see
+Lemma \ref{lemma-etale-makes-quasi-finite-finite-at-point}.
+Then $f_W^{-1}(V) \cap U$ is an open neighbourhood of $u$
+where $f_W : X_W \to Y_W$ is the base change of $f$ to $W$.
+Hence after Zariski shrinking $W$, we may assume $f_W(U) \subset V$.
+Thus we obtain morphisms
+$$
+U \xrightarrow{a} V \xrightarrow{b} W
+$$
+and $U \to V$ is finite as $V \to W$ is separated (because finite).
+Since $w_f$ and $w_g$ are weightings of $f$ and $g$
+we see that $\int_a w_f|_U$ is locally constant on $V$ and
+$\int_b w_g|_V$ is locally constant on $W$. Thus after shrinking
+$W$ one more time we may assume these functions are constant
+say with values $n$ and $m$. It follows immediately that
+$\int_\pi w_{g \circ f}|_U = \int_{b \circ a} w_{g \circ f}|_U$
+is constant with value $nm$ as desired.
 \end{proof}
 
 \begin{lemma}
@@ -19649,7 +20918,7 @@ The final number is the rank of $f_*\mathcal{O}_X$ at $y$ as desired.
 Let $f : X \to Y$ be a morphism of schemes. Assume
 \begin{enumerate}
 \item $f$ is locally quasi-finite, and
-\item $Y$ is unibranch and locally Noetherian.
+\item $Y$ is geometrically unibranch and locally Noetherian.
 \end{enumerate}
 Then there is a weighting $w : X \to \mathbf{Z}_{\geq 0}$ given by
 the rule that sends $x \in X$ lying over $y \in Y$ to the
@@ -19658,13 +20927,14 @@ of $\mathcal{O}_{X, x}^{sh}$ over $\mathcal{O}_{Y, y}^{sh}$.
 \end{lemma}
 
 \begin{proof}
-It follows from Algebra, Lemmas
+It follows from Algebra, Lemma
 \ref{algebra-lemma-quasi-finite-strict-henselization}
-and \ref{algebra-lemma-characterize-henselian}
 that $\mathcal{O}_{Y, y}^{sh} \to \mathcal{O}_{X, x}^{sh}$
-is finite. Since $Y$ is unibranch
+is finite. Since $Y$ is geometrically unibranch
 there is a unique minimal prime $\mathfrak p$ in
-$\mathcal{O}_{Y, y}^{sh}$. Write
+$\mathcal{O}_{Y, y}^{sh}$, see
+More on Algebra, Lemma \ref{more-algebra-lemma-geometrically-unibranch}.
+Write
 $$
 (\kappa(\mathfrak p) \otimes_{\mathcal{O}_{Y, y}^{sh}}
 \mathcal{O}_{X, x}^{sh})_{red} =
@@ -19694,7 +20964,8 @@ $$
 \prod\nolimits_{\varphi \in \Mor_{\kappa(y)}(\kappa(x), k)}
 \mathcal{O}_{X, x}^{sh}
 $$
-by the references on strict henselization given above.
+by Algebra, Lemma \ref{algebra-lemma-finite-over-henselian}
+and the lemma used above.
 Observe that the minimal prime $\mathfrak p$ of $\mathcal{O}_{Y, y}^{sh}$
 maps to the prime of $A$ corresponding to $\eta$. Hence we see that
 the desired equality holds because the number of points of a geometric

@@ -330,7 +330,7 @@ U
 $$
 There are clearly projection maps $\mathcal{F}_{\lim} \to \mathcal{F}_i$
 and canonical maps $\mathcal{F}_i \to \mathcal{F}_{\colim}$. These
-maps satisfy the requirements of the maps of a limit (reps.\ colimit)
+maps satisfy the requirements of the maps of a limit (resp.\ colimit)
 of Categories, Definition \ref{categories-definition-limit}
 (resp.\ Categories, Definition \ref{categories-definition-colimit}).
 Indeed, they clearly form a cone, resp. a cocone, over $\mathcal{F}$.
@@ -817,7 +817,8 @@ $\{\varphi_i : U_i \to U\}_{i \in I}$ such that $I$ is countable.
 \begin{example}
 \label{example-indiscrete}
 Let $\mathcal{C}$ be a category. There is a canonical way to turn this
-into a site where $\{\text{id}_U : U \to U\}$ are the coverings.
+into a site where $\{f : V \to U \mid f\text{ is an isomorphism}\}$
+are the coverings of $U$.
 Sheaves on this site are the presheaves on $\mathcal{C}$.
 This corresponding topology is called the {\it chaotic} or
 {\it indiscrete topology}.
@@ -977,7 +978,7 @@ we claim that the sheaves on $X'_{Zar}$ are different
 from the sheaves on $X_{Zar}$. For example, as an extreme
 case consider the situation where $X = \{p\}$ is a singleton.
 Then the objects of $X'_{Zar}$ are $\emptyset, X$
-and every covering if $\emptyset$ can be refined by
+and every covering of $\emptyset$ can be refined by
 $\{\emptyset \to \emptyset\}$ and every covering of $X$ by $\{X \to X\}$.
 Clearly, a sheaf on this is given by any choice of
 a set $\mathcal{F}(\emptyset)$ and any choice of a
@@ -1194,7 +1195,7 @@ with respect to $\mathcal{V}$.
 First, note that if $\varphi : A \to B$ is an isomorphism in the
 category $\mathcal{C}$, then $\varphi^* : \mathcal{F}(B) \to \mathcal{F}(A)$
 is an isomorphism. Let $\beta : J \to I$ be a map and let
-$\psi_j : V_j \to U_{\beta(j)}$ be isomorphisms over $U$ which
+$\chi_j : V_j \to U_{\beta(j)}$ be isomorphisms over $U$ which
 are assumed to exist by hypothesis. Let us show that the sheaf
 condition for $\mathcal{V}$ implies the sheaf condition for $\mathcal{U}$.
 Suppose given sections $s_i \in \mathcal{F}(U_i)$ such that
@@ -1202,9 +1203,9 @@ $$
 s_i|_{U_i \times_U U_{i'}} = s_{i'}|_{U_i \times_U U_{i'}}
 $$
 in $\mathcal{F}(U_i \times_U U_{i'})$ for all pairs $(i, i') \in I \times I$.
-Then we can define $s_j = \psi_j^*s_{\beta(j)}$. For any pair
+Then we can define $s_j = \chi_j^*s_{\beta(j)}$. For any pair
 $(j, j') \in J \times J$ the morphism
-$\psi_j \times_{\text{id}_U} \psi_{j'} : V_j \times_U V_{j'} \to
+$\chi_j \times_{\text{id}_U} \chi_{j'} : V_j \times_U V_{j'} \to
 U_{\beta(j)} \times_U U_{\beta(j')}$ is an isomorphism as well.
 Hence by transport of structure we see that
 $$
@@ -1221,6 +1222,76 @@ section of the projection. Because $s_i$ and $s_{\beta(\alpha(i))}$
 restrict to the same element on the fibre product we conclude that
 $s_{\beta(\alpha(i))}$ pulls back to $s_i$ via $U_i \to U_{\beta(\alpha(i))}$.
 Thus we see that also $s_i = s|_{U_i}$ as desired.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-compare-separated-presheaf-condition}
+Let $\mathcal{C}$ be a category. Let $\mathcal{U} = \{U_i \to U\}_{i \in I} \to
+\mathcal{V} = \{V_j \to U\}_{j \in J}$ be a morphism of families of maps
+with fixed target of $\mathcal{C}$ given by $\text{id} : U \to U$,
+$\alpha : J \to I$ and $f_j : V_j \to U_{\alpha(j)}$. Let $\mathcal{F}$
+be a presheaf on $\mathcal{C}$. If
+$\mathcal{F}(U) \to \prod_{j \in J} \mathcal{F}(V_j)$ is
+injective then
+$\mathcal{F}(U) \to \prod_{i \in I} \mathcal{F}(U_i)$ is
+injective.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-compare-sheaf-condition}
+Let $\mathcal{C}$ be a category. Let $\mathcal{V} = \{V_j \to U\}_{j \in J} \to
+\mathcal{U} = \{U_i \to U\}_{i \in I}$ be a morphism of families of maps
+with fixed target of $\mathcal{C}$ given by $\text{id} : U \to U$,
+$\alpha : J \to I$ and $f_j : V_j \to U_{\alpha(j)}$. Let $\mathcal{F}$
+be a presheaf on $\mathcal{C}$. If
+\begin{enumerate}
+\item the fibre products $U_i \times_U U_{i'}$, $U_i \times_U V_j$,
+$V_j \times_U V_{j'}$ exist,
+\item $\mathcal{F}$ satisfies the sheaf condition with respect to
+$\mathcal{V}$, and
+\item for every $i \in I$ the map
+$\mathcal{F}(U_i) \to \prod_{j \in J} \mathcal{F}(V_j \times_U U_i)$
+is injective.
+\end{enumerate}
+Then $\mathcal{F}$ satisfies the sheaf condition with respect to $\mathcal{U}$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-compare-separated-presheaf-condition} the map
+$\mathcal{F}(U) \to \prod \mathcal{F}(U_i)$ is injective.
+Suppose given
+$s_i \in \mathcal{F}(U_i)$ such that $s_i|_{U_i \times_U U_{i'}}
+= s_{i'}|_{U_i \times_U U_{i'}}$ for all $i, i' \in I$.
+Set $s_j = f_j^*(s_{\alpha(j)}) \in \mathcal{F}(V_j)$.
+Since the morphisms $f_j$ are morphisms over $U$ we obtain
+induced morphisms $f_{jj'} : V_j \times_U V_{j'} \to
+U_{\alpha(i)} \times_U U_{\alpha(i')}$ compatible with the
+$f_j, f_{j'}$ via the projection maps. It follows that
+$$
+s_j|_{V_j \times_U V_{j'}}
+= f_{jj'}^*(s_{\alpha(j)}|_{U_{\alpha(j)} \times_U U_{\alpha(j')}})
+= f_{jj'}^*(s_{\alpha(j')}|_{U_{\alpha(j)} \times_U U_{\alpha(j')}})
+= s_{j'}|_{V_j \times_U V_{j'}}
+$$
+for all $j, j' \in J$. Hence, by the sheaf condition
+for $\mathcal{F}$ with respect to $\mathcal{V}$, we get a section
+$s \in \mathcal{F}(U)$ which restricts to $s_j$ on each $V_j$.
+We are done if we show $s$ restricts to $s_i$ on $U_i$
+for any $i \in I$. Since $\mathcal{F}$ satisfies (3) it
+suffices to show that $s$ and $s_i$ restrict to the
+same element over $U_i \times_U V_j$ for all $j \in J$.
+To see this we use
+$$
+s|_{U_i \times_U V_j} = s_j|_{U_i \times_U V_j} =
+(\text{id} \times f_j)^*s_{\alpha(j)}|_{U_i \times_U U_{\alpha(j)}} =
+(\text{id} \times f_j)^*s_i|_{U_i \times_U U_{\alpha(j)}} =
+s_i|_{U_i \times_U V_j}
+$$
+as desired.
 \end{proof}
 
 \begin{lemma}
@@ -1254,57 +1325,17 @@ Part (1) follows directly from Lemma \ref{lemma-tautological-same-sheaf}
 and the definitions.
 
 \medskip\noindent
-We advise the reader to {\bf skip the proof of (2)} on a first reading.
-Let $\mathcal{F}$ be a sheaf of sets for the site
+Proof of (2). Let $\mathcal{F}$ be a sheaf of sets for the site
 $(\mathcal{C}, \text{Cov}_2)$. Let $\mathcal{U} \in \text{Cov}_1$,
-say $\mathcal{U} = \{U_i \to U\}_{i\in I}$. Choose a
+say $\mathcal{U} = \{U_i \to U\}_{i \in I}$. By assumption we may choose a
 refinement $\mathcal{V} \in \text{Cov}_2$ of $\mathcal{U}$, say
-$\mathcal{V} = \{V_j \to U\}_{j\in J}$ and refinement given
+$\mathcal{V} = \{V_j \to U\}_{j \in J}$ and refinement given
 by $\alpha : J \to I$ and $f_j : V_j \to U_{\alpha(j)}$.
-
-\medskip\noindent
-First let $s, s' \in \mathcal{F}(U)$. If for all $i \in I$ we
-have $s|_{U_i} = s'|_{U_i}$, then we also have $s|_{V_j} = s'|_{V_j}$
-for all $j \in J$. This implies that $s = s'$ by the sheaf condition
-for $\mathcal{F}$ with respect to $\text{Cov}_2$. Hence we see that
-the unicity in the sheaf condition for $\mathcal{F}$ and the
-site $(\mathcal{C}, \text{Cov}_1)$ holds.
-
-\medskip\noindent
-Next, suppose given
-$s_i \in \mathcal{F}(U_i)$ such that $s_i|_{U_i \times_U U_{i'}}
-= s_{i'}|_{U_i \times_U U_{i'}}$ for all $i, i' \in I$.
-Set $s_j = f_j^*(s_{\alpha(j)}) \in \mathcal{F}(V_j)$.
-Since the morphisms $f_j$ are morphisms over $U$ we obtain
-induced morphisms $f_{jj'} : V_j \times_U V_{j'} \to
-U_{\alpha(i)} \times_U U_{\alpha(i')}$ compatible with the
-$f_j, f_{j'}$ via the projection maps. It follows that
-$$
-s_j|_{V_j \times_U V_{j'}}
-= f_{jj'}^*(s_{\alpha(j)}|_{U_{\alpha(j)} \times_U U_{\alpha(j')}})
-= f_{jj'}^*(s_{\alpha(j')}|_{U_{\alpha(j)} \times_U U_{\alpha(j')}})
-= s_{j'}|_{V_j \times_U V_{j'}}
-$$
-for all $j, j' \in J$. Hence, by the sheaf condition
-for $\mathcal{F}$ with respect to $\text{Cov}_2$, we get a section
-$s \in \mathcal{F}(U)$ which restricts to $s_j$ on each $V_j$.
-We are done if we show $s$ restricts to $s_{i_0}$ on $U_{i_0}$
-for any $i_0 \in I$. For each $i_0 \in I$ the family
-$\mathcal{U}' = \{U_i \times_U U_{i_0} \to U_{i_0}\}_{i \in I}$
-is an element of $\text{Cov}_1$ by the axioms of a site.
-Also, the family
-$\mathcal{V}' = \{V_j \times_U U_{i_0} \to U_{i_0}\}_{j \in J}$
-is an element of $\text{Cov}_2$.
-Then $\mathcal{V}'$ refines $\mathcal{U}'$
-via $\alpha : J \to I$ and the maps $f'_j = f_j \times \text{id}_{U_{i_0}}$.
-The element $s_{i_0}$ restricts to $s_i|_{U_i \times_U U_{i_0}}$
-on the members of the covering $\mathcal{U}'$ and hence via
-$(f_j')^*$ to the elements $s_j|_{V_j \times_U U_{i_0}}$ on the members
-of the covering $\mathcal{V}'$. By construction of $s$ this is the
-same as the family of restrictions of $s|_{U_{i_0}}$ to the members
-of the covering $\mathcal{V}'$. Hence by the sheaf condition
-for $\mathcal{F}$ with respect to $\text{Cov}_2$ we see that
-$s|_{U_{i_0}} = s_{i_0}$ as desired.
+Observe that $\mathcal{F}$ satisfies the sheaf condition for
+$\mathcal{V}$ and for the coverings $\{V_j \times_U U_i \to U_i\}_{j \in J}$
+as these are in $\text{Cov}_2$. Hence $\mathcal{F}$ satisfies
+the sheaf condition for $\mathcal{U}$ by
+Lemma \ref{lemma-compare-sheaf-condition}.
 \end{proof}
 
 \begin{lemma}
@@ -1675,13 +1706,10 @@ this element has the required property that $s_j = s|_{V_j}$.
 \label{example-singleton-sheaf}
 A particular example is the limit over the empty diagram.
 This gives the final object in the category of (pre)sheaves.
-It is the sheafification of the presheaf that associates
+It is the presheaf that associates
 to each object $U$ of $\mathcal{C}$ a singleton set, with unique
-restriction mappings. We often denote this sheaf by $*$.
-The value of $*$ on an object $U$ is empty if $U$ has
-an empty covering, i.e., the empty collection of morphisms
-with target $U$ is a covering of $U$. The value of $*$ on $U$
-is a singleton if $U$ does not have an empty covering.
+restriction mappings and moreover this presheaf is a sheaf.
+We often denote this sheaf by $*$.
 \end{example}
 
 \noindent
@@ -2378,6 +2406,50 @@ then construct an epimorphism $\mathcal{F}_1 \to \mathcal{G}$
 as above. See Lemma \ref{lemma-coequalizer-surjection}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-colimit-representable}
+Let $\mathcal{C}$ be a site. Let $\mathcal{F}$ be a sheaf of sets on
+$\mathcal{C}$. Then there exists a diagram $\mathcal{I} \to \mathcal{C}$,
+$i \mapsto U_i$ such that
+$$
+\mathcal{F} = \colim_{i \in \mathcal{I}} h_{U_i}^\#
+$$
+Moreover, if $E \subset \Ob(\mathcal{C})$ is a subset such that every
+object of $\mathcal{C}$ has a covering by elements of $E$, then we may
+assume $U_i$ is an element of $E$ for all $i \in \Ob(\mathcal{I})$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{I}$ be the category whose objects are pairs
+$(U, s)$ with $U \in \Ob(\mathcal{C})$ and $s \in \mathcal{F}(U)$
+and whose morphisms $(U, s) \to (U', s')$ are morphisms $f : U \to U'$
+in $\mathcal{C}$ with $f^*s' = s$. For each object $(U, s)$ of $\mathcal{I}$
+the element $s$ defines by the Yoneda lemma a map $s : h_U \to \mathcal{F}$
+of presheaves. Hence by the universal property of sheafification a map
+$h_U^\# \to \mathcal{F}$. These maps are immediately seen to be compatible
+with the morphisms in the category $\mathcal{I}$. Hence we obtain
+a map $\colim_{(U, s)} h_U \to \mathcal{F}$ of presheaves (where the
+colimit is taken in the category of presheaves) and a map
+$\colim_{(U, s)} (h_U)^\# \to \mathcal{F}$ of sheaves (where the
+colimit is taken in the category of sheaves).
+Since sheafification is the left adjoint to the inclusion functor
+$\Sh(\mathcal{C}) \to \textit{PSh}(\mathcal{C})$
+(Proposition \ref{proposition-sheafification-adjoint}) we have
+$\colim (h_U)^\# = (\colim h_U)^\#$ by
+Categories, Lemma \ref{categories-lemma-adjoint-exact}.
+Thus it suffices to show that $\colim_{(U, s)} h_U \to \mathcal{F}$
+is an isomorphism of presheaves. To see this we show that for every object
+$X$ of $\mathcal{C}$ the map $\colim_{(U, s)} h_U(X) \to \mathcal{F}(X)$
+is bijective. Namely, it has an inverse sending the element
+$t \in \mathcal{F}(X)$ to the element of the set $\colim_{(U, s)} h_U(X)$
+corresponding to $(X, t)$ and $\text{id}_X \in h_X(X)$.
+
+\medskip\noindent
+We omit the proof of the final statement.
+\end{proof}
+
+
+
 
 \section{Continuous functors}
 \label{section-continuous-functors}
@@ -2844,14 +2916,14 @@ equal to the category of sheaves on a site). We will occasionally
 use this abuse of notation.
 
 \medskip\noindent
-Two examples of topoi. The {\it empty topos} is topos
-of sheaves on the site $\mathcal{C}$, where $\mathcal{C}$ has
-a single object $\emptyset$ and a single morphism $\text{id}_\emptyset$
-and a single covering, namely the empty covering of $\emptyset$.
-We will sometimes write $\emptyset$ for this site.
-This is a site and every sheaf on $\mathcal{C}$ assigns a singleton to
-$\emptyset$. Thus $\Sh(\emptyset)$ is equivalent to the category
+The {\it empty topos} is topos
+of sheaves on the site $\mathcal{C}$, where $\mathcal{C}$
+is the empty category. We will sometimes write $\emptyset$ for this site.
+This is a site which has a unique sheaf (since $\emptyset$ has no
+objects). Thus $\Sh(\emptyset)$ is equivalent to the category
 having a single object and a single morphism.
+
+\medskip\noindent
 The {\it punctual topos} is the topos of sheaves on the site
 $\mathcal{C}$ which has a single object $pt$ and one morphism
 $\text{id}_{pt}$ and whose only covering is the covering
@@ -3113,7 +3185,7 @@ Let $\mathcal{C}$ be a site. An object $U$ of $\mathcal{C}$ is
 in $\mathcal{C}$ there exists another covering
 $\mathcal{V} = \{V_j \to U\}_{j \in J}$ and a morphism
 $\mathcal{V} \to \mathcal{U}$ of families of maps with fixed target
-given by $\alpha : J \to I$ and $V_j \to U_{\alpha(j)}$
+given by $\text{id} : U \to U$, $\alpha : J \to I$, and $V_j \to U_{\alpha(j)}$
 (see Definition \ref{definition-morphism-coverings})
 such that the image of $\alpha$ is a finite subset of $I$.
 \end{definition}
@@ -3813,7 +3885,7 @@ v^p\mathcal{F}(V)
 & = &
 {}_pu\mathcal{F}(V)
 \end{eqnarray*}
-which proves part (2). Part (3) follows by the uniqueness of adjoint functors.
+which proves part (4). Part (5) follows by the uniqueness of adjoint functors.
 \end{proof}
 
 \begin{lemma}
@@ -5594,38 +5666,9 @@ isomorphisms.
 \end{lemma}
 
 \begin{proof}
-If $\mathcal{C}$ has fibre products, then this is a special case of
-Lemma \ref{lemma-back-and-forth}. In general we have the following
-direct proof.
-
-\medskip\noindent
-Let $X/U$ be an object over $U$.
-In Lemmas \ref{lemma-pu-sheaf} and \ref{lemma-when-shriek} we have seen that
-sheafification is not necessary for the functors
-$j_U^{-1} = (u^p\ )^\#$ and $j_{U*} = ({}_pu )^\#$.
-We may compute
-$(j_U^{-1}j_{U*}\mathcal{F})(X/U) = j_{U*}\mathcal{F}(X)
-= \lim \mathcal{F}(Y/U)$. Here the limit
-is over the category of pairs $(Y/U, Y \to X)$
-where the morphisms $Y \to X$ are not required to be over $U$.
-By our assumption however we see that they are automatically
-morphisms over $U$ and we deduce that the limit is the
-value on $\text{id}_X$, i.e., $\mathcal{F}(X/U)$.
-This proves that $j_U^{-1}j_{U*}\mathcal{F} = \mathcal{F}$.
-
-\medskip\noindent
-On the other hand,
-$(j_U^{-1}j_{U!}\mathcal{F})(X/U) =
-j_{U!}\mathcal{F}(X) = (u_p\mathcal{F})^\#(X)$, and
-$u_p\mathcal{F}(X) = \colim \mathcal{F}(Y/U)$.
-Here the colimit is over the category of pairs $(Y/U, X \to Y)$
-where the morphisms $X \to Y$ are not required to be over $U$.
-By our assumption however we see that they are automatically
-morphisms over $U$ and we deduce that the colimit is the
-value on $\text{id}_X$, i.e., $\mathcal{F}(X/U)$.
-This shows that the sheafification is not necessary (since any
-object over $X$ is automatically in a unique way an object over $U$)
-and the result follows.
+This is a special case of Lemma \ref{lemma-back-and-forth}
+because the assumption on $U$ is equivalent to the fully faithfulness
+of the localization functor $\mathcal{C}/U \to \mathcal{C}$.
 \end{proof}
 
 \begin{lemma}
@@ -6097,6 +6140,110 @@ cocontinuous)
 we see that (5) is true.
 \end{proof}
 
+\noindent
+The following two results are of a slightly different nature.
+
+\begin{lemma}
+\label{lemma-special-square-cocontinuous}
+Assume given sites $\mathcal{C}', \mathcal{C}, \mathcal{D}', \mathcal{D}$
+and functors
+$$
+\xymatrix{
+\mathcal{C}' \ar[r]_{v'} \ar[d]_{u'} &
+\mathcal{C} \ar[d]^u \\
+\mathcal{D}' \ar[r]^v &
+\mathcal{D}
+}
+$$
+Assume
+\begin{enumerate}
+\item $u$, $u'$, $v$, and $v'$ are cocontinuous giving rise to morphisms of
+topoi $f$, $f'$, $g$, and $g'$ by Lemma \ref{lemma-cocontinuous-morphism-topoi},
+\item $v \circ u' = u \circ v'$,
+\item $v$ and $v'$ are continuous as well as cocontinuous, and
+\item for any object $V'$ of $\mathcal{D}'$ the functor
+${}^{u'}_{V'}\mathcal{I} \to {}^{\ \ \ u}_{v(V')}\mathcal{I}$
+given by $v$ is cofinal.
+\end{enumerate}
+Then $f'_* \circ (g')^{-1} = g^{-1} \circ f_*$ and
+$g'_! \circ (f')^{-1} = f^{-1} \circ g_!$.
+\end{lemma}
+
+\begin{proof}
+The categories ${}^{u'}_{V'}\mathcal{I}$ and
+${}^{\ \ \ u}_{v(V')}\mathcal{I}$ are defined in
+Section \ref{section-more-functoriality-PSh}.
+The functor in condition (4) sends the object
+$\psi : u'(U') \to V'$ of ${}^{u'}_{V'}\mathcal{I}$ to the object
+$v(\psi) : uv'(U') = vu'(U') \to v(V')$ of ${}^{\ \ \ u}_{v(V')}\mathcal{I}$.
+Recall that $g^{-1}$ is given by $v^p$ (Lemma \ref{lemma-when-shriek}) and
+$f_*$ is given by ${}_su = {}_pu$. Hence the value of
+$g^{-1}f_*\mathcal{F}$ on $V'$ is the value of ${}_pu\mathcal{F}$
+on $v(V')$ which is the limit
+$$
+\lim_{u(U) \to v(V') \in \Ob({}^{\ \ \ u}_{v(V')}\mathcal{I}^{opp})}
+\mathcal{F}(U)
+$$
+By the same reasoning, the value of $f'_*(g')^{-1}\mathcal{F}$
+on $V'$ is given by the limit
+$$
+\lim_{u'(U') \to V' \in \Ob({}^{u'}_{V'}\mathcal{I}^{opp})} \mathcal{F}(v'(U'))
+$$
+Thus assumption (4) and Categories, Lemma \ref{categories-lemma-initial}
+show that these agree and the first equality of the
+lemma is proved. The second equality follows from the first by uniqueness of
+adjoints.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-special-square-continuous}
+Assume given sites $\mathcal{C}', \mathcal{C}, \mathcal{D}', \mathcal{D}$
+and functors
+$$
+\xymatrix{
+\mathcal{C}' \ar[r]_{v'} &
+\mathcal{C} \\
+\mathcal{D}' \ar[r]^v \ar[u]^{u'} &
+\mathcal{D} \ar[u]_u
+}
+$$
+With notation as in Sections \ref{section-morphism-sites}
+and \ref{section-cocontinuous-morphism-topoi} assume
+\begin{enumerate}
+\item $u$ and $u'$ are continuous giving rise to morphisms of
+sites $f$ and $f'$,
+\item $v$ and $v'$ are cocontinuous giving rise to morphisms
+of topoi $g$ and $g'$,
+\item $u \circ v = v' \circ u'$, and
+\item $v$ and $v'$ are continuous as well as cocontinuous.
+\end{enumerate}
+Then\footnote{In this generality
+we don't know $f \circ g'$ is equal to $g \circ f'$
+as morphisms of topoi (there is a canonical $2$-arrow from
+the first to the second which may not be an isomorphism).}
+$f'_* \circ (g')^{-1} = g^{-1} \circ f_*$ and
+$g'_! \circ (f')^{-1} = f^{-1} \circ g_!$.
+\end{lemma}
+
+\begin{proof}
+Namely, we have
+$$
+f'_*(g')^{-1}\mathcal{F} = (u')^p((v')^p\mathcal{F})^\# =
+(u')^p(v')^p\mathcal{F}
+$$
+The first equality by definition and the
+second by Lemma \ref{lemma-when-shriek}. We have
+$$
+g^{-1}f_*\mathcal{F} = (v^pu^p\mathcal{F})^\# =
+((u')^p(v')^p\mathcal{F})^\# = (u')^p(v')^p\mathcal{F}
+$$
+The first equality by definition, the second because
+$u \circ v = v' \circ u'$, the third because we already saw that
+$(u')^p(v')^p\mathcal{F}$ is a sheaf. This proves
+$f'_* \circ (g')^{-1} = g^{-1} \circ f_*$ and the equality
+$g'_! \circ (f')^{-1} = f^{-1} \circ g_!$ follows by
+uniqueness of left adjoints.
+\end{proof}
 
 
 
@@ -8240,12 +8387,12 @@ $t : g^{-1} \to f^{-1}$ (usually denoted by the same symbol)
 uniquely characterized by the condition that the diagram
 $$
 \xymatrix{
-\Mor_{\Sh(\mathcal{C})}(\mathcal{G}, f_*\mathcal{F})
+\Mor_{\Sh(\mathcal{D})}(\mathcal{G}, f_*\mathcal{F})
 \ar[d]_{t \circ -} \ar@{=}[r] &
 \Mor_{\Sh(\mathcal{C})}(f^{-1}\mathcal{G}, \mathcal{F})
 \ar[d]^{- \circ t}
 \\
-\Mor_{\Sh(\mathcal{C})}(\mathcal{G}, g_*\mathcal{F})
+\Mor_{\Sh(\mathcal{D})}(\mathcal{G}, g_*\mathcal{F})
 \ar@{=}[r] &
 \Mor_{\Sh(\mathcal{C})}(g^{-1}\mathcal{G}, \mathcal{F})
 }
@@ -8743,6 +8890,9 @@ the problem posed in the lemma.
 
 \begin{proposition}
 \label{proposition-criterion-points}
+\begin{reference}
+\cite[Expos\'e VI, Appendix by Deligne, Proposition 9.0]{SGA4}
+\end{reference}
 Let $\mathcal{C}$ be a site. Assume that
 \begin{enumerate}
 \item finite limits exist in $\mathcal{C}$, and
@@ -9978,24 +10128,34 @@ this is clear from the definitions.
 \end{proof}
 
 \noindent
-Now, let $f : \Sh(\mathcal{D}) \to \Sh(\mathcal{C})$ be a
-morphism of topoi. Then for any sheaf $\mathcal{F}$ on $\mathcal{C}$
-there is a pullback map
+Now, let $f : \Sh(\mathcal{D}) \to \Sh(\mathcal{C})$ be a morphism of topoi.
+Then for any sheaf $\mathcal{F}$ on $\mathcal{C}$ there is a pullback map
 $$
 f^{-1} :
 \Gamma(\mathcal{C}, \mathcal{F})
 \longrightarrow
 \Gamma(\mathcal{D}, f^{-1}\mathcal{F})
 $$
-Namely, as $f^{-1}$ is exact it transforms $*$ into $*$. We can generalize
-this a bit by considering a pair of sheaves $\mathcal{F}, \mathcal{G}$
-on $\mathcal{C}, \mathcal{D}$ together with a map
-$f^{-1}\mathcal{F} \to \mathcal{G}$. Then we compose to get a map
+Namely, as $f^{-1}$ is exact it transforms $*$ into $*$. Hence a global
+section $s$ of $\mathcal{F}$ over $\mathcal{C}$, which is a map
+of sheaves $s : * \to \mathcal{F}$, can be pulled back to
+$f^{-1}s : * = f^{-1}* \to f^{-1}\mathcal{F}$.
+
+\medskip\noindent
+We can generalize this a bit by considering a pair of sheaves
+$\mathcal{F}$, $\mathcal{G}$ on $\mathcal{C}$, $\mathcal{D}$
+together with a map $f^{-1}\mathcal{F} \to \mathcal{G}$. Then we
+compose the construction above with the obvious map
+$\Gamma(\mathcal{D}, f^{-1}\mathcal{F}) \to \Gamma(\mathcal{D}, \mathcal{G})$
+to get a map
 $$
 \Gamma(\mathcal{C}, \mathcal{F})
 \longrightarrow
 \Gamma(\mathcal{D}, \mathcal{G})
 $$
+This map is sometimes also called a pullback map.
+
+\medskip\noindent
 A slightly more general construction which occurs frequently in nature
 is the following. Suppose that we have a commutative diagram of
 morphisms of topoi
@@ -10012,18 +10172,28 @@ $$
 f^{-1} : g_*\mathcal{F} \longrightarrow h_*f^{-1}\mathcal{F}
 $$
 Namely, it is just the map coming from the identification
-$h_*f^{-1}\mathcal{F} = g_*f_*f^{-1}\mathcal{F}$ together with the canonical
-map $\mathcal{F} \to f_*f^{-1}\mathcal{F}$ pushed down to $\mathcal{B}$.
-Again, if we have a pair of sheaves $\mathcal{F}, \mathcal{G}$
-on $\mathcal{C}, \mathcal{D}$ together with a map
-$f^{-1}\mathcal{F} \to \mathcal{G}$, then we compose to get a map
+$g_*f_*f^{-1}\mathcal{F} = h_*f^{-1}\mathcal{F}$ together with
+$g_*$ applied to the canonical map $\mathcal{F} \to f_*f^{-1}\mathcal{F}$.
+If $g$ is the identity, then this map on global sections agrees 
+with the pullback map above.
+
+\medskip\noindent
+In the situation of the previous paragraph, suppose
+we have a pair of sheaves $\mathcal{F}$, $\mathcal{G}$
+on $\mathcal{C}$, $\mathcal{D}$ together with a map
+$f^{-1}\mathcal{F} \to \mathcal{G}$, then we compose
+the pullback map above with $h_*$ applied to
+$f^{-1}\mathcal{F} \to \mathcal{G}$
+to get a map
 $$
 g_*\mathcal{F} \longrightarrow h_*\mathcal{G}
 $$
 Restricting to sections over an object of $\mathcal{B}$ one recovers
-the pullback map on global sections in many cases, see
-(insert future reference here). A seemingly more general situation is
-where we have a commutative diagram of topoi
+the ``pullback map'' on global sections discussed above (with suitable
+choices of sites).
+
+\medskip\noindent
+An even more general situation is where we have a commutative diagram of topoi
 $$
 \xymatrix{
 \Sh(\mathcal{D}) \ar[d]_h \ar[r]_f &
@@ -10031,11 +10201,68 @@ $$
 \Sh(\mathcal{B}) \ar[r]^e & \Sh(\mathcal{A})
 }
 $$
-and a sheaf $\mathcal{G}$ on $\mathcal{C}$. Then there is a map
-$e^{-1}g_*\mathcal{G} \to h_*f^{-1}\mathcal{G}$. Namely, this map
-is adjoint to a map
+and a sheaf $\mathcal{G}$ on $\mathcal{C}$. Then there is a
+{\it base change map}
+$$
+e^{-1}g_*\mathcal{G} \longrightarrow h_*f^{-1}\mathcal{G}.
+$$
+Namely, this map is adjoint to a map
 $g_*\mathcal{G} \to e_*h_*f^{-1}\mathcal{G} = (e \circ h)_*f^{-1}\mathcal{G}$
 which is the pullback map just described.
+
+\begin{remark}
+\label{remark-compose-base-change}
+Consider a commutative diagram
+$$
+\xymatrix{
+\Sh(\mathcal{B}') \ar[r]_k \ar[d]_{f'} &
+\Sh(\mathcal{B}) \ar[d]^f \\
+\Sh(\mathcal{C}') \ar[r]^l \ar[d]_{g'} &
+\Sh(\mathcal{C}) \ar[d]^g \\
+\Sh(\mathcal{D}') \ar[r]^m &
+\Sh(\mathcal{D})
+}
+$$
+of topoi. Then the base change maps for the two squares compose to give the
+base change map for the outer rectangle. More precisely, the composition
+\begin{align*}
+m^{-1} \circ (g \circ f)_*
+& =
+m^{-1} \circ g_* \circ f_* \\
+& \to g'_* \circ l^{-1} \circ f_* \\
+& \to g'_* \circ f'_* \circ k^{-1} \\
+& = (g' \circ f')_* \circ k^{-1}
+\end{align*}
+is the base change map for the rectangle. We omit the verification.
+\end{remark}
+
+\begin{remark}
+\label{remark-compose-base-change-horizontal}
+Consider a commutative diagram
+$$
+\xymatrix{
+\Sh(\mathcal{C}'') \ar[r]_{g'} \ar[d]_{f''} &
+\Sh(\mathcal{C}') \ar[r]_g \ar[d]_{f'} &
+\Sh(\mathcal{C}) \ar[d]^f \\
+\Sh(\mathcal{D}'') \ar[r]^{h'} &
+\Sh(\mathcal{D}') \ar[r]^h &
+\Sh(\mathcal{D})
+}
+$$
+of ringed topoi. Then the base change maps
+for the two squares compose to give the base
+change map for the outer rectangle. More precisely,
+the composition
+\begin{align*}
+(h \circ h')^{-1} \circ f_*
+& =
+(h')^{-1} \circ h^{-1} \circ f_* \\
+& \to (h')^{-1} \circ f'_* \circ g^{-1} \\
+& \to f''_* \circ (g')^{-1} \circ g^{-1} \\
+& = f''_* \circ (g \circ g')^{-1}
+\end{align*}
+is the base change map for the rectangle. We omit the verification.
+\end{remark}
 
 
 
@@ -10307,8 +10534,10 @@ $S' \in J(U)$ by the second axiom.
 \label{definition-finer}
 Let $\mathcal{C}$ be a category. Let $J$, $J'$ be
 two topologies on $\mathcal{C}$. We say that $J$ is
-{\it finer} than $J'$ if and only if for every object
+{\it finer} or {\it stronger} than $J'$ if and only if for every object
 $U$ of $\mathcal{C}$ we have $J'(U) \subset J(U)$.
+In this case we also say that $J'$ is
+{\it coarser} or {\it weaker} than $J$.
 \end{definition}
 
 \noindent
@@ -10706,9 +10935,9 @@ If $S \subset S'$ are in $J(U)$, then $S \to S'$ is
 a morphism of presheaves. Hence there is a natural restriction
 mapping
 $$
-\Mor_{\textit{PSh}(\mathcal{C})}(S, \mathcal{F})
+\Mor_{\textit{PSh}(\mathcal{C})}(S', \mathcal{F})
 \longrightarrow
-\Mor_{\textit{PSh}(\mathcal{C})}(S', \mathcal{F}).
+\Mor_{\textit{PSh}(\mathcal{C})}(S, \mathcal{F}).
 $$
 Thus we see that
 $S \mapsto \Mor_{\textit{PSh}(\mathcal{C})}(S, \mathcal{F})$

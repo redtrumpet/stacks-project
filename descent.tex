@@ -413,7 +413,7 @@ and $\sigma^0_0 \circ \delta^1_1 = \text{id}$.
 The first one, $\sigma^0_0 \circ \delta^1_0 = \text{id}$, is clear from
 the explicit description of the morphisms above.
 To prove the second relation we have to use the cocycle condition
-(because it does not holds for an arbitrary isomorphism
+(because it does not hold for an arbitrary isomorphism
 $\varphi : N \otimes_R A \to A \otimes_R N$). Write
 $p = \sigma^0_0 \circ \delta^1_1 : N \to N$. By the description of the
 maps above we deduce that $p$ is also equal to
@@ -2717,7 +2717,7 @@ as claimed.
 
 \medskip\noindent
 Since $\mathcal{G}$ lives on all of the category
-$(\Sch/S_i)_\tau$ we see that
+$(\Sch/S)_\tau$ we see that
 $$
 (\text{pr}_0^*\mathcal{F}_i)^a
 \cong
@@ -5125,42 +5125,45 @@ The property of being an open immersion is stable under base change,
 see Schemes, Lemma \ref{schemes-lemma-base-change-immersion}.
 The property of being an open immersion is Zariski local on the base
 (this is obvious).
-Finally, let
-$S' \to S$ be a flat surjective morphism of affine schemes,
+
+\medskip\noindent
+Let $S' \to S$ be a flat surjective morphism of affine schemes,
 and let $f : X \to S$ be a morphism. Assume that the base change
-$f' : X' \to S'$ is an open immersion.
+$f' : X' \to S'$ is an open immersion. We claim that $f$ is an
+open immersion.
 Then $f'$ is universally open, and universally injective.
 Hence we conclude that $f$ is universally open by
 Lemma \ref{lemma-descending-property-universally-open}, and
 universally injective by
 Lemma \ref{lemma-descending-property-universally-injective}.
-In particular $f(X) \subset S$ is open, and we may replace
-$S$ by $f(X)$ and assume that $f$ is surjective.
-This implies that $f'$ is an isomorphism and
-we have to show that $f$ is an isomorphism also.
-Since $f$ is universally injective we see that $f$ is bijective.
-Hence $f$ is a homeomorphism.
-Let $x \in X$ and choose $U \subset X$ an
-affine open neighbourhood of $x$. Since $f(U) \subset S$
-is open, and $S$ is affine we may choose a standard open
-$D(g) \subset f(U)$ containing $f(x)$ where $g \in \Gamma(S, \mathcal{O}_S)$.
-It is clear that $U \cap f^{-1}(D(g))$ is still affine and still an
-open neighbourhood of $x$.
-Replace $U$ by $U \cap f^{-1}(D(g))$ and write $V = D(g) \subset S$
-and $V'$ the inverse image of $V$ in $S'$.
-Note that $V'$ is a standard open of $S'$ as well and
-in particular that $V'$ is affine.
-Since $f'$ is an isomorphism we have $V' \times_V U \to V'$ is
-an isomorphism. In terms of rings this means that
+In particular $f(X) \subset S$ is open. If for every affine
+open $U \subset f(X)$ we can prove that $f^{-1}(U) \to U$
+is an isomorphism, then $f$ is an open immersion and we're done.
+If $U' \subset S'$ denotes the inverse image of $U$,
+then $U' \to U$ is a faithfully flat morphism of affines and
+$(f')^{-1}(U') \to U'$ is an isomorphism (as $f'(X')$ contains $U'$
+by our choice of $U$). Thus we reduce to the case discussed
+in the next paragraph.
+
+\medskip\noindent
+Let $S' \to S$ be a flat surjective morphism of affine schemes,
+let $f : X \to S$ be a morphism, and assume that the base change
+$f' : X' \to S'$ is an isomorphism. We have to show that $f$ is an
+isomorphism also. It is clear that $f$ is surjective, universally injective,
+and universally open (see arguments above for the last two).
+Hence $f$ is bijective, i.e., $f$ is a homeomorphism.
+Thus $f$ is affine by
+Morphisms, Lemma \ref{morphisms-lemma-homeomorphism-affine}.
+Since
 $$
-\mathcal{O}(V')
-\longrightarrow
-\mathcal{O}(V') \otimes_{\mathcal{O}(V)} \mathcal{O}(U)
+\mathcal{O}(S') \to
+\mathcal{O}(X') =
+\mathcal{O}(S') \otimes_{\mathcal{O}(S)} \mathcal{O}(X)
 $$
-is an isomorphism. Since $\mathcal{O}(V) \to \mathcal{O}(V')$
-is faithfully flat this implies that $\mathcal{O}(V) \to \mathcal{O}(U)$
-is an isomorphism. Hence $U \cong V$ and we see that $f$ is
-an isomorphism.
+is an isomorphism and since $\mathcal{O}(S) \to \mathcal{O}(S')$
+is faithfully flat this implies that $\mathcal{O}(S) \to \mathcal{O}(X)$
+is an isomorphism. Thus $f$ is an isomorphism. This finishes the proof of
+the claim above.
 Therefore Lemma \ref{lemma-descending-properties-morphisms} applies and we win.
 \end{proof}
 
@@ -6149,7 +6152,7 @@ and Lemma \ref{lemma-syntomic-smooth-etale-permanence} (part (4)).
 
 \noindent
 Here are some properties of morphisms that are smooth local on the source.
-ote also the (in some respects stronger) result
+Note also the (in some respects stronger) result
 on descending smoothness via flat morphisms,
 Lemma \ref{lemma-smooth-permanence}.
 
@@ -7203,7 +7206,7 @@ U' \ar[r] \ar[d] & V' \ar[d] \\
 U \ar[r] & V
 }
 $$
-with \'etale vertical arrows and a point $v' \in U'$ mapping to $v \in U$.
+with \'etale vertical arrows and a point $v' \in V'$ mapping to $v \in V$.
 Then the morphism of fibres $U'_{v'} \to U_v$ is \'etale.
 \end{lemma}
 
@@ -7793,8 +7796,7 @@ assume
 \begin{enumerate}
 \item $\{f : X' \to X\}$ is an fpqc covering (for example if $f$ is
 surjective, flat, and quasi-compact), and
-\item $f \times f : X' \times_{S'} X' \to X \times_S X$ is
-surjective and flat\footnote{This follows from (1) if $S = S'$.}.
+\item $S = S'$.
 \end{enumerate}
 Then the pullback functor is fully faithful.
 \end{lemma}
@@ -7806,7 +7808,7 @@ Lemma \ref{lemma-faithful}.
 Let $(V, \varphi)$ and $(W, \psi)$ be two descent data relative
 to $X \to S$. Set $(V', \varphi') = f^*(V, \varphi)$ and
 $(W', \psi') = f^*(W, \psi)$.
-Let $\alpha' : V' \to W'$ be a morphism of descent data for $X'$ over $S'$.
+Let $\alpha' : V' \to W'$ be a morphism of descent data for $X'$ over $S$.
 We have to show there exists a morphism $\alpha : V \to W$ of
 descent data for $X$ over $S$ whose pullback is $\alpha'$.
 
@@ -7817,10 +7819,10 @@ $\varphi'$ is the base change of $\varphi$ by $f \times f$
 By assumption the diagram
 $$
 \xymatrix{
-V' \times_{S'} X' \ar[r]_{\varphi'} \ar[d]_{\alpha' \times \text{id}} &
-X' \times_{S'} V' \ar[d]^{\text{id} \times \alpha'} \\
-W' \times_{S'} X' \ar[r]^{\psi'} &
-X' \times_{S'} W'
+V' \times_S X' \ar[r]_{\varphi'} \ar[d]_{\alpha' \times \text{id}} &
+X' \times_S V' \ar[d]^{\text{id} \times \alpha'} \\
+W' \times_S X' \ar[r]^{\psi'} &
+X' \times_S W'
 }
 $$
 commutes. We claim the two compositions
@@ -7857,7 +7859,7 @@ $$
 ((x_i, x_j), \psi(u_i, x)) = ((x_i, x_j), (x, u'_j))
 $$
 as points of
-$(X' \times_{S'} X') \times_{X \times_S X} (X \times_S W)$
+$(X' \times_S X') \times_{X \times_S X} (X \times_S W)$
 for all $i, j \in \{0, 1\}$. This shows that $\psi(u_0, x) = \psi(u_1, x)$
 and hence $u_0 = u_1$ by taking $\psi^{-1}$.
 This proves the claim because the argument above was formal
@@ -7881,8 +7883,8 @@ X \times_S V \ar[d]^{\text{id} \times \alpha} \\
 W \times_S X \ar[r]^{\psi} & X \times_S W
 }
 $$
-commutes because its base change to $X' \times_{S'} X'$
-commutes and the morphism $X' \times_{S'} X' \to X \times_S X$
+commutes because its base change to $X' \times_S X'$
+commutes and the morphism $X' \times_S X' \to X \times_S X$
 is surjective and flat (use Lemma \ref{lemma-ff-base-change-faithful}).
 Hence $\alpha$ is a morphism of descent data
 $(V, \varphi) \to (W, \psi)$ as desired.
@@ -8262,7 +8264,8 @@ Suppose that
 \begin{enumerate}
 \item $\mathcal{P}$ is stable under any base change
 (see Schemes, Definition \ref{schemes-definition-preserved-by-base-change}),
-and
+\item if $Y_j \to V_j$, $j = 1, \ldots, m$ have $\mathcal{P}$,
+then so does $\coprod Y_j \to \coprod V_j$, and
 \item for any surjective morphism of affines
 $X \to S$ which is flat, flat of finite presentation,
 \'etale, smooth or syntomic depending on whether $\tau$ is
@@ -8290,7 +8293,7 @@ morphism of families $\mathcal{V} \to \mathcal{U}$, if we pullback
 the descent datum $(X_i, \varphi_{ii'})$ to a descent datum
 $(Y_j, \varphi_{jj'})$ over $\mathcal{V}$, then each of the
 morphisms $Y_j \to V_j$ has property $\mathcal{P}$ also.
-This is true because we assumed that $\mathcal{P}$ is stable
+This is true because of assumption (1) that $\mathcal{P}$ is stable
 under any base change and the definition of pullback
 (see Definition \ref{definition-pullback-functor-family}).
 We will use this without further mention.
@@ -8311,9 +8314,11 @@ between categories of descent data is fully faithful
 by Lemma \ref{lemma-refine-coverings-fully-faithful}.
 Hence it suffices to prove that the descent datum over
 the standard $\tau$-covering $\mathcal{V}$ is effective.
-By Lemma \ref{lemma-family-is-one} this reduces to the covering
+By assumption (2) we see that $\coprod Y_j \to \coprod V_j$
+has property $\mathcal{P}$.
+By Lemma \ref{lemma-family-is-one} this reduces us to the covering
 $\{\coprod_{j = 1, \ldots, m} V_j \to S\}$ for which we have
-assumed the result in property (2) of the lemma.
+assumed the result in assumption (3) of the lemma.
 Hence the lemma holds when $S$ is affine.
 
 \medskip\noindent
@@ -8384,8 +8389,9 @@ effective.
 
 \begin{proof}
 Being affine is a property of morphisms of schemes
-which is preserved under any base change, see
-Morphisms, Lemma \ref{morphisms-lemma-base-change-affine}.
+which is local on the base and preserved under any base change, see
+Morphisms, Lemmas \ref{morphisms-lemma-characterize-affine} and
+\ref{morphisms-lemma-base-change-affine}.
 Hence Lemma \ref{lemma-descending-types-morphisms} applies
 and it suffices to prove the statement of the lemma
 in case the fpqc-covering is given by a single
@@ -8469,7 +8475,8 @@ effective.
 \begin{proof}
 Being quasi-affine is a property of morphisms of schemes
 which is preserved under any base change, see
-Morphisms, Lemma \ref{morphisms-lemma-base-change-quasi-affine}.
+Morphisms, Lemmas \ref{morphisms-lemma-characterize-quasi-affine} and
+\ref{morphisms-lemma-base-change-quasi-affine}.
 Hence Lemma \ref{lemma-descending-types-morphisms} applies
 and it suffices to prove the statement of the lemma
 in case the fpqc-covering is given by a single

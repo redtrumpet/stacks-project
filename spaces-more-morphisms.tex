@@ -318,7 +318,7 @@ The following is (in some sense) a variant of the lemma above.
 \begin{lemma}
 \label{lemma-ui-case}
 Let $S$ be a scheme. Let $f : X \to Y$ be a quasi-compact monomorphism
-of algebraic spaces $f : X \to Y$ such that for every $T \to X$ the map
+of algebraic spaces such that for every $T \to Y$ the map
 $$
 \mathcal{O}_T \to f_{T,*}\mathcal{O}_{X \times_Y T}
 $$
@@ -4946,7 +4946,7 @@ Let $S$ be a scheme.
 Let $f : X \to Y$, $g : Y \to Z$ be morphisms of algebraic spaces over $S$.
 Assume $f$ is formally smooth. Then
 $$
-0 \to f^*\Omega_{Y/Z} \to \Omega_{X/Z} \to \Omega_{X/Z} \to 0
+0 \to f^*\Omega_{Y/Z} \to \Omega_{X/Z} \to \Omega_{X/Y} \to 0
 $$
 Lemma \ref{lemma-triangle-differentials}
 is short exact.
@@ -7188,7 +7188,7 @@ Then $n_{X/Y}$ is lower semi-continuous.
 
 \begin{proof}
 Let $V \to Y$ be a surjective \'etale morphism where $V$ is a scheme.
-If we can show that the compositon $n_{X/Y} \circ |g|$
+If we can show that the composition $n_{X/Y} \circ |g|$
 is lower semi-continuous, then the lemma follows as $|g|$ is open.
 Hence we may assume $Y$ is a scheme.
 Working locally we may assume $V$ is an affine scheme.
@@ -8564,7 +8564,7 @@ More on Flatness, Lemma
 \end{proof}
 
 \begin{lemma}
-\label{lemma-flat-finite-presentation-dimension-over-dense-open}
+\label{lemma-flat-fp-dimension-over-dense-open}
 Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces
 over $S$ which is flat and locally of finite type. Let $V \subset Y$ be an
 open subspace such that $|V| \subset |Y|$ is dense and such that $X_V \to V$
@@ -8607,7 +8607,7 @@ then $f$ is finite.
 \end{lemma}
 
 \begin{proof}
-By Lemma \ref{lemma-flat-finite-presentation-dimension-over-dense-open}
+By Lemma \ref{lemma-flat-fp-dimension-over-dense-open}
 the fibres of $f$ have dimension zero.
 By Morphisms of Spaces, Lemma
 \ref{spaces-morphisms-lemma-locally-quasi-finite-rel-dimension-0}
@@ -8638,7 +8638,7 @@ then $f$ is an open immersion.
 Applying
 Lemma \ref{lemma-flat-finite-type-finitely-presented-over-dense-open-X}
 we see that $f$ is locally of finite presentation. Applying
-Lemma \ref{lemma-flat-finite-presentation-dimension-over-dense-open}
+Lemma \ref{lemma-flat-fp-dimension-over-dense-open}
 we see that $f$ has relative dimension $\leq 0$.
 By Morphisms of Spaces, Lemma
 \ref{spaces-morphisms-lemma-locally-quasi-finite-rel-dimension-0}
@@ -10222,6 +10222,54 @@ modulo $I^n$ for all $n$. Hence $p$ is an isomorphism and we obtain
 the morphism $g$ as the composition $X \cong Z \to Y$.
 We omit the proof of uniqueness.
 \end{proof}
+
+\begin{remark}
+\label{remark-weaken-separation-axioms-question}
+We can ask if in Grothendieck's algebraization theorem (in the form
+of Lemma \ref{lemma-algebraize-morphism}), we can get
+by with weaker separation axioms on the target. Let us be more precise.
+Let $A$, $I$, $S$, $S_n$, $X$, $Y$, $X_n$, $Y_n$, and $g_n$ be as in
+the statement of Lemma \ref{lemma-algebraize-morphism} and assume that
+\begin{enumerate}
+\item $X \to S$ is proper, and
+\item $Y \to S$ is locally of finite type.
+\end{enumerate}
+Does there exist a morphism of algebraic spaces $g : X \to Y$
+over $S$ such that $g_n$ is the base change of $g$ to $S_n$?
+We don't know the answer in general; if you do please email
+\href{mailto:stacks.project@gmail.com}{stacks.project@gmail.com}.
+If $Y \to S$ is separated, then the result
+holds by the lemma (there is an immediate reduction to the case
+where $X$ is finite type over $S$, by choosing a quasi-compact
+open containing the image of $g_1$). If we only assume $Y \to S$
+is quasi-separated, then the result is true as well. First, as before
+we may assume $Y$ is quasi-compact as well as quasi-separated.
+Then we can use either \cite{Bhatt-Algebraize} or from
+\cite{Hall-Rydh-coherent} to algebraize $(g_n)$. Namely, to apply
+the first reference, we use
+$$
+D_{perf}(X) \to \lim D_{perf}(X_n)
+\xrightarrow{\lim Lg_n^*}
+\lim D_{perf}(Y_n) = D_{perf}(Y)
+$$
+where the last step uses a Grothendieck existence result for
+the derived category of the proper algebraic space $Y$ over $R$
+(compare with
+Flatness on Spaces, Remark \ref{spaces-flat-remark-correct-generality}).
+The paper cited shows that
+this arrow determines a morphism $Y \to X$ as desired. To apply the
+second reference we use the same argument with coherent modules:
+$$
+\textit{Coh}(\mathcal{O}_X) \to \lim \textit{Coh}(\mathcal{O}_{X_n})
+\xrightarrow{\lim g_n^*}
+\lim \textit{Coh}(\mathcal{O}_{Y_n}) = \textit{Coh}(\mathcal{O}_Y)
+$$
+where the final equality is a consequence of Grothendieck's
+existence theorem (Theorem \ref{theorem-grothendieck-existence}).
+The second reference tells us that this functor corresponds to a
+morphism $Y \to X$ over $R$. If we ever need this generalization
+we will precisely state and carefully prove the result here.
+\end{remark}
 
 \begin{lemma}
 \label{lemma-formal-algebraic-space-proper-reldim-1}
@@ -12113,6 +12161,29 @@ More on Morphisms,
 Lemma \ref{more-morphisms-lemma-check-relative-pseudo-coherence-on-charts}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-characterize-pseudo-coh-improved}
+Let $A$ be a ring. Let $X$ be an algebraic space separated and
+of finite presentation over $A$. Let $K \in D_\QCoh(\mathcal{O}_X)$. If 
+$R \Gamma (X, E \otimes ^{\mathbf{L}} K)$ is
+pseudo-coherent in $D(A)$ for every perfect 
+$E \in D(\mathcal{O}_X)$, then $K$ is pseudo-coherent
+relative to $A$.
+\end{lemma}
+
+\begin{proof}
+In view of Lemma \ref{lemma-characterize-pseudo-coherent}, it suffices
+to show $R \Gamma (X, E \otimes ^{\mathbf{L}} K)$ is
+pseudo-coherent in $D(A)$ for every pseudo-coherent 
+$E \in D(\mathcal{O}_X)$. By Derived Categories of Spaces,
+Proposition \ref{spaces-perfect-proposition-detecting-bounded-above}
+it follows that $K \in D^-_\QCoh (\mathcal{O}_X)$. Now the
+result follows by Derived Categories of Spaces, Lemma
+\ref{spaces-perfect-lemma-perfect-enough}.
+\end{proof}
+
+
+
 
 
 
@@ -12619,6 +12690,79 @@ $\QCoh(\mathcal{O}_Y)$. If we ever need this we will
 formulate a precise result here and give a detailed proof.
 \end{remark}
 
+\begin{lemma}
+\label{lemma-bounded-on-fibres}
+Let $S$ be a scheme. Let $X$ be an algebraic space over $S$ such that
+the structure morphism $f : X \to S$ is flat and
+locally of finite presentation. Let $E$ be a pseudo-coherent
+object of $D(\mathcal{O}_X)$. The following are equivalent
+\begin{enumerate}
+\item $E$ is $S$-perfect, and
+\item $E$ is locally bounded below and for every point $s \in S$
+the object $L(X_s \to X)^*E$ of $D(\mathcal{O}_{X_s})$
+is locally bounded below.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since everything is local we immediately reduce to the
+case that $X$ and $S$ are affine, see Lemma
+\ref{lemma-affine-locally-rel-perfect}.
+This case is handled by
+Derived Categories of Schemes, Lemma \ref{perfect-lemma-bounded-on-fibres}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-characterize-relatively-perfect}
+Let $A$ be a ring. Let $X$ be an algebraic space separated, of
+finite presentation, and flat over $A$. Let $K \in D_\QCoh(\mathcal{O}_X)$.
+If  $R \Gamma (X, E \otimes^\mathbf{L} K)$ is perfect in
+$D(A)$ for every perfect $E \in D(\mathcal{O}_X)$, then $K$ is
+$\Spec(A)$-perfect.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-characterize-pseudo-coh-improved},
+$K$ is pseudo-coherent relative to $A$. By Lemma
+\ref{lemma-relative-pseudo-coherent-is-moot},
+$K$ is pseudo-coherent in $D(\mathcal{O}_X)$.
+By Derived Categories of Spaces, Proposition
+\ref{spaces-perfect-proposition-detecting-bounded-below}
+we see that $K$ is in $D^-(\mathcal{O}_X)$.
+Let $\mathfrak{p}$ be a prime ideal of $A$ and denote
+$i : Y \to X$ the inclusion of the scheme theoretic
+fibre over $\mathfrak{p}$, i.e., $Y$ is a scheme over $\kappa(\mathfrak p)$.
+By Lemma \ref{lemma-bounded-on-fibres},
+we will be done if we can show  $Li^*(K)$ is bounded below. 
+Let $G \in D_{perf} (\mathcal{O}_X)$ be a perfect
+complex which generates $D_\QCoh (\mathcal{O}_X)$,
+see Derived Categories of Spaces, Theorem
+\ref{spaces-perfect-theorem-bondal-van-den-Bergh}.
+We have
+\begin{align*}
+R\Hom _{\mathcal{O}_Y}(Li^*(G), Li^*(K))
+& =
+R\Gamma(Y, Li^*(G ^\vee \otimes ^\mathbf{L} K)) \\
+& =
+R\Gamma(X, G^\vee \otimes ^{\mathbf{L}} K)
+\otimes^\mathbf{L}_A \kappa(\mathfrak{p})
+\end{align*}
+The first equality uses that $Li^*$ preserves perfect objects and duals
+and Cohomology on Sites, Lemma
+\ref{sites-cohomology-lemma-dual-perfect-complex}; we omit
+some details. The second equality follows from
+Derived Categories of Spaces, Lemma
+\ref{spaces-perfect-lemma-compare-base-change}
+as $X$ is flat over $A$. It follows from our hypothesis that this is a
+perfect object of $D(\kappa(\mathfrak{p}))$. The object
+$Li^*(G) \in D_{perf}(\mathcal{O}_Y)$  generates $D_\QCoh(\mathcal{O}_Y)$ by
+Derived Categories of Spaces, Remark
+\ref{spaces-perfect-remark-pullback-generator}.
+Hence Derived Categories of Spaces, Proposition
+\ref{spaces-perfect-proposition-detecting-bounded-below}
+now implies that $Li^*(K)$ is bounded below and we win.
+\end{proof}
+
 
 
 
@@ -13046,7 +13190,7 @@ By our choice of $a, b$ this complex has cohomology
 only in degrees in the interval $[a, b]$.
 Thus we may finally apply
 More on Algebra, Lemma
-\ref{more-algebra-lemma-lift-from-fibre-relativelu-perfect}
+\ref{more-algebra-lemma-lift-from-fibre-relatively-perfect}
 to $R \to A$, $\mathfrak q_0$, $\mathfrak p_0$ and $K$
 to conclude.
 \end{proof}

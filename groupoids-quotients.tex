@@ -389,7 +389,8 @@ Example \ref{example-categories}.
 \begin{proof}
 Let $X_{red}$ be the reduction of the algebraic space $X$.
 Since $U$ is reduced the morphism $\phi : U \to X$ factors through
-$i : X_{red} \to X$ (insert future reference here). Denote this morphism
+$i : X_{red} \to X$ (Properties of Spaces, Lemma
+\ref{spaces-properties-lemma-map-into-reduction}). Denote this morphism
 by $\phi_{red} : U \to X_{red}$. Since $\phi \circ s = \phi \circ t$ we
 see that also $\phi_{red} \circ s = \phi_{red} \circ t$ (as
 $i : X_{red} \to X$ is a monomorphism). Hence by the universal property
@@ -849,16 +850,17 @@ Let $S$ be a scheme, and let $B$ be an algebraic space over $S$.
 Let $j : R \to U \times_B U$ be a pre-relation over $B$.
 \begin{enumerate}
 \item We say $j$ is a {\it set-theoretic pre-equivalence relation} if
+for all algebraically closed fields $k$ over $B$ the relation
+$\sim_R$ on $U(k)$ defined by
 $$
 \overline{u} \sim_R \overline{u}'
 \Leftrightarrow
 \begin{matrix}
-\exists\text{ field extension }k \subset K, \ \exists\ r \in R(K), \\
+\exists\text{ field extension }K/k, \ \exists\ r \in R(K), \\
 s(r) = \overline{u}, \ t(r) = \overline{u}'
 \end{matrix}
 $$
-defines an equivalence relation on $U(k)$ for all algebraically closed fields
-$k$ over $B$.
+is an equivalence relation.
 \item We say $j$ is a {\it set-theoretic equivalence relation}
 if $j$ is universally injective and a set-theoretic pre-equivalence
 relation.

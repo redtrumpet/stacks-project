@@ -66,7 +66,7 @@ $(f, f') : (\mathcal{X} \subset \mathcal{X}') \to
 {\it morphisms of thickenings over $\mathcal{Z}$}.
 This means that the algebraic stacks
 $\mathcal{X}'$ and $\mathcal{Y}'$
-are algebraic stack endowed with a structure
+are endowed with a structure
 morphism to $\mathcal{Z}$ and that $f'$ fits into a suitable
 $2$-commutative diagram of algebraic stacks.
 \end{enumerate}
@@ -619,7 +619,7 @@ $f'$ is by
 Lemma \ref{lemma-thicken-property-morphisms}.
 The last thing to check to see if $f$ or $f'$ is locally quasi-finite
 (Morphisms of Stacks, Definition
-\ref{stacks-morphisms-definition-quasi-finite})
+\ref{stacks-morphisms-definition-locally-quasi-finite})
 is a condition on underlying topological spaces
 which holds for $f$ if and only if it holds for $f'$ by
 the discussion in the first paragraph of the proof.
@@ -672,7 +672,7 @@ $$
 (see Properties of Spaces, Definition
 \ref{spaces-properties-definition-spaces-etale-site} for notation)
 as follows. An object of $\mathcal{C}$ will be a system
-$(U, U', a, i, y', \alpha)$
+$(U, U', a, i, x', \alpha)$
 which forms a commutative diagram
 \begin{equation}
 \label{equation-object}
@@ -1292,16 +1292,25 @@ W \ar[d] \ar[r] & W' \ar[d] \\
 \mathcal{X} \ar[r] & \mathcal{X}'
 }
 $$
-with $W' \to \mathcal{X}'$ smooth.
+with $W' \to \mathcal{X}'$ smooth and $W'$ affine.
 \end{proposition}
 
 \begin{proof}
 Consider the category $p : \mathcal{C} \to W_{spaces, \etale}$
 introduced in Remark \ref{remark-gerbe-of-lifts}.
 The proposition states that there exists an object of $\mathcal{C}$
-lying over $W$. By Lemma \ref{lemma-gerbe-of-lifts}
-$\mathcal{C}$ is a gerbe over $W_{spaces, \etale}$.
-This means we can \'etale locally find a solution and
+lying over $W$. Namely, if we have such an object
+$(W, W', a, i, y', \alpha)$ then $W = \mathcal{X} \times_{\mathcal{X}'} W'$.
+Hence $W \to W'$ is a thickening of algebraic spaces so
+$W'$ is affine by
+More on Morphisms of Spaces, Lemma
+\ref{spaces-more-morphisms-lemma-thickening-scheme}
+and More on Morphisms, Lemma
+\ref{more-morphisms-lemma-thickening-affine-scheme}.
+
+\medskip\noindent
+Lemma \ref{lemma-gerbe-of-lifts} tells us $\mathcal{C}$ is a gerbe over
+$W_{spaces, \etale}$. This means we can \'etale locally find a solution and
 these local solutions are \'etale locally isomorphic;
 this part does not require the assumption that the thickening is first order.
 By Lemma \ref{lemma-gerbe-of-lifts-first-order}
@@ -1373,8 +1382,8 @@ Moreover, $\Omega_{G_B/B}$ is the pullback of $\Omega_{G/A}$ by
 More on Morphisms of Spaces, Lemma
 \ref{spaces-more-morphisms-lemma-base-change-differentials}.
 Therefore $e_B^*\Omega_{G_B/B} = e^*\Omega_{G/A} \otimes_A B$.
-we conclude by More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}.
+we conclude by More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}.
 \end{proof}
 
 \begin{lemma}
@@ -1562,8 +1571,8 @@ More on Morphisms of Spaces, Lemma
 \ref{spaces-more-morphisms-lemma-finite-presentation-differentials}.
 Hence $x^*\Omega_{X/S}$ is a finitely presented $A$-module.
 Clearly, we have $y^*\Omega_{X/S} = x^*\Omega_{X/S} \otimes_A B$.
-we conclude by More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}.
+we conclude by More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}.
 \end{proof}
 
 \begin{lemma}
@@ -1732,7 +1741,7 @@ $W' \to T'$ with $W'$ affine such that
 $x|_{T \times_{W'} T'}$ lifts to $W'$.
 (We urge the reader to find their own proof of this fact
 using the analogous result for algebraic spaces already
-esthablished.) We choose a
+established.) We choose a
 scheme $U'$ and a surjective smooth morphism $U' \to \mathcal{X}'$.
 Observe that $U' \to T'$ is smooth and that the projection
 $T \times_{\mathcal{X}'} U' \to T$ is surjective smooth.
@@ -2834,7 +2843,7 @@ Similarly for moduli spaces in a full subcategory.
 \end{lemma}
 
 \begin{proof}
-It is immediate from the $1$-to-$1$ correspondence esthablished in
+It is immediate from the $1$-to-$1$ correspondence established in
 Lemma \ref{lemma-quotient-compare} that $f$ is a categorical moduli space
 if and only if $\phi$ is a categorical quotient
 (Quotients of Groupoids, Definition

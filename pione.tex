@@ -43,7 +43,7 @@ topological group $G$.
 \begin{definition}
 \label{definition-G-set-continuous}
 Let $G$ be a topological group.
-A {\it $G$-set}, sometime called a {\it discrete $G$-set},
+A {\it $G$-set}, sometimes called a {\it discrete $G$-set},
 is a set $X$ endowed with a left action $a : G \times X \to X$
 such that $a$ is continuous when $X$ is given the discrete topology and
 $G \times X$ the product topology.
@@ -1350,14 +1350,14 @@ and results to the setting of schemes and finite \'etale morphisms.
 We will say a finite \'etale morphism $Y \to X$ is a
 {\it Galois cover} if $Y$ defines a Galois object of
 $\textit{F\'Et}_X$.
-For a finite \'etale morphism $Y \to X$ with $G = \text{Aut}(X/Y)$
+For a finite \'etale morphism $Y \to X$ with $G = \text{Aut}_X(Y)$
 the following are equivalent
 \begin{enumerate}
 \item $Y$ is a Galois cover of $X$,
 \item $Y$ is connected and $|G|$ is equal to the degree of $Y \to X$,
 \item $Y$ is connected and $G$ acts transitively on $F_{\overline{x}}(Y)$, and
 \item $Y$ is connected and $G$ acts simply transitively on
-$F_{\overline{x}}(Y)$, and
+$F_{\overline{x}}(Y)$.
 \end{enumerate}
 This follows immediately from the discussion in Section \ref{section-galois}.
 
@@ -1845,7 +1845,7 @@ The general case. Since the category of finite \'etale coverings has an
 internal hom (Lemma \ref{lemma-internal-hom-finite-etale})
 it suffices to prove the following: Given $Y$ finite \'etale over $X$
 any morphism $s : U \to Y$ over $X$ extends to a morphism $t : X \to Y$
-over $Y$. Let $A^{sh}$ be the strict henselization of $A$ and denote
+over $X$. Let $A^{sh}$ be the strict henselization of $A$ and denote
 $X^{sh} = \Spec(A^{sh})$, $U^{sh} = U \times_X X^{sh}$,
 $Y^{sh} = Y \times_X X^{sh}$. By the first paragraph and our assumption
 on $A$, we can extend the base change $s^{sh} : U^{sh} \to Y^{sh}$ of $s$ to
@@ -1865,35 +1865,10 @@ Descent, Lemma \ref{descent-lemma-fpqc-universal-effective-epimorphisms}.
 In view of Lemma \ref{lemma-same-etale-extensions}
 it is interesting to know when the
 punctured spectrum of a ring (and of its strict henselization)
-is connected. The following famous lemma due to Hartshorne
-gives a sufficient condition.
-
-\begin{lemma}
-\label{lemma-depth-2-connected-punctured-spectrum}
-\begin{reference}
-\cite[Proposition 2.1]{Hartshorne-connectedness}
-\end{reference}
-\begin{slogan}
-Hartshorne's connectedness
-\end{slogan}
-Let $A$ be a Noetherian local ring of depth $\geq 2$.
-Then the punctured spectra of $A$, $A^h$, and $A^{sh}$ are connected.
-\end{lemma}
-
-\begin{proof}
-Let $U$ be the punctured spectrum of $A$.
-If $U$ is disconnected then we see that
-$\Gamma(U, \mathcal{O}_U)$ has a nontrivial idempotent.
-But $A$, being local, does not have a nontrivial idempotent.
-Hence $A \to \Gamma(U, \mathcal{O}_U)$ is not an isomorphism.
-By Local Cohomology, Lemma
-\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}
-we conclude that either $H^0_\mathfrak m(A)$ or $H^1_\mathfrak m(A)$
-is nonzero. Thus $\text{depth}(A) \leq 1$ by
-Dualizing Complexes, Lemma \ref{dualizing-lemma-depth}.
-To see the result for $A^h$ and $A^{sh}$ use
-More on Algebra, Lemma \ref{more-algebra-lemma-henselization-depth}.
-\end{proof}
+is connected. There is a famous lemma due to Hartshorne
+which gives a sufficient condition, see
+Local Cohomology, Lemma
+\ref{local-cohomology-lemma-depth-2-connected-punctured-spectrum}.
 
 \begin{lemma}
 \label{lemma-quasi-compact-dense-open-connected-at-infinity-Noetherian}
@@ -3064,7 +3039,7 @@ $$
 such that
 \begin{enumerate}
 \item $P$ is a normal subgroup of $D$,
-\item $P$ is a pro-p-group if the characteristic of
+\item $P$ is a pro-$p$-group if the characteristic of
 $\kappa_A$ is $p > 1$ and $P = \{1\}$ if the characteristic of $\kappa_A$
 is zero,
 \item there is a multiplicatively directed $S \subset \mathbf{N}$
@@ -3200,7 +3175,7 @@ from the surjectivity of $\theta_{can}$.
 
 \medskip\noindent
 To finish the proof we show that $P = \lim P_\lambda$ which proves
-that $P$ is a pro-p-group. Recall that the tame inertia group
+that $P$ is a pro-$p$-group. Recall that the tame inertia group
 $I_{\lambda, t} = I_\lambda/P_\lambda$ has order $n_\lambda$.
 Since the transition maps $P_\lambda \to P_{\lambda'}$ are surjective
 and $\Lambda$ is directed, we obtain a short exact sequence
@@ -3240,7 +3215,7 @@ $$
 such that
 \begin{enumerate}
 \item $P$ is a normal subgroup of $D$,
-\item $P$ is a pro-p-group if the characteristic of
+\item $P$ is a pro-$p$-group if the characteristic of
 $\kappa_A$ is $p > 1$ and $P = \{1\}$ if the characteristic of $\kappa_A$
 is zero,
 \item there exists a canonical surjective map
@@ -3463,37 +3438,11 @@ reduced fibres, then $S' \to S$ is finite \'etale.
 \end{lemma}
 
 \begin{proof}
-Let $s \in S$. Set $n$ be the number of connected components of
-the geometric fibre $X_{\overline{s}}$. Note that $n < \infty$ as the geometric
-fibre of $X \to S$ at $s$ is a proper scheme over a field, hence Noetherian,
-hence has a finite number of connected components.
-By More on Morphisms, Lemma
-\ref{more-morphisms-lemma-stein-universally-closed-residue-fields}
-there are finitely many points $s'_1, \ldots, s'_m \in S'$ lying over $s$
-and for each $i$ the extension $\kappa(s'_i)/\kappa(s)$ is finite.
-More on Morphisms,
-Lemma \ref{more-morphisms-lemma-etale-makes-integral-split}
-tells us that after replacing $S$ by an \'etale neighbourhood
-of $s$ we may assume $S' = V_1 \amalg \ldots \amalg V_m$ as a scheme
-with $s'_i \in V_i$ and $\kappa(s'_i)/\kappa(s)$ purely inseparable.
-In this case the schemes $X_{s_i'}$ are geometrically connected
-over $\kappa(s)$, hence $m = n$.
-The schemes $X_i = (f')^{-1}(V_i)$, $i = 1, \ldots, n$
-are proper, flat, of finite presentation, with geometrically
-reduced fibres over $S$. It suffices to prove the lemma
-for each of the morphisms $X_i \to S$. This reduces us to the case where
-$X_{\overline{s}}$ is connected.
-
-\medskip\noindent
-Assume that $X_{\overline{s}}$ is connected. By
-More on Morphisms, Lemma \ref{more-morphisms-lemma-proper-flat-geom-red}
-we see that $X \to S$ has geometrically connected
-fibres in a neighbourhood of $s$. Thus
-we may assume the fibres of $X \to S$ are geometrically connected.
-Then $f_*\mathcal{O}_X = \mathcal{O}_S$ by
-Derived Categories of Schemes, Lemma
-\ref{perfect-lemma-proper-flat-geom-red-connected}
-which finishes the proof.
+This follows from Derived Categories of Schemes,
+Lemma \ref{perfect-lemma-proper-flat-geom-red}
+and the information contained in
+More on Morphisms, Theorem
+\ref{more-morphisms-theorem-stein-factorization-general}.
 \end{proof}
 
 \begin{proposition}
@@ -5729,8 +5678,8 @@ is a flat local homomorphism and hence $\text{depth}(B_\mathfrak q) \geq 2$
 (Algebra, Lemma \ref{algebra-lemma-apply-grothendieck}).
 Thus the functor is fully faithful by
 Lemma \ref{lemma-quasi-compact-dense-open-connected-at-infinity-Noetherian}
-combined with
-Lemma \ref{lemma-depth-2-connected-punctured-spectrum}.
+combined with Local Cohomology,
+Lemma \ref{local-cohomology-lemma-depth-2-connected-punctured-spectrum}.
 
 \medskip\noindent
 Let $W \to V$ be a finite \'etale morphism. Let $B \to C$ be the unique finite
@@ -5794,8 +5743,8 @@ Then $\textit{F\'Et}_X \to \textit{F\'Et}_U$ is an equivalence.
 \begin{proof}
 The functor is fully faithful by
 Lemma \ref{lemma-quasi-compact-dense-open-connected-at-infinity-Noetherian}
-combined with
-Lemma \ref{lemma-depth-2-connected-punctured-spectrum}
+combined with Local Cohomology,
+Lemma \ref{local-cohomology-lemma-depth-2-connected-punctured-spectrum}
 (plus an application of
 Algebra, Lemma \ref{algebra-lemma-apply-grothendieck}
 to check the depth condition).
@@ -5875,8 +5824,8 @@ is a flat local homomorphism and hence $\text{depth}(B_\mathfrak q) \geq 2$
 (Algebra, Lemma \ref{algebra-lemma-apply-grothendieck}).
 Thus the functor is fully faithful by
 Lemma \ref{lemma-quasi-compact-dense-open-connected-at-infinity-Noetherian}
-combined with
-Lemma \ref{lemma-depth-2-connected-punctured-spectrum}.
+combined with Local Cohomology,
+Lemma \ref{local-cohomology-lemma-depth-2-connected-punctured-spectrum}.
 
 \medskip\noindent
 Denote $A^\wedge$ and $B^\wedge$ the completions of $A$ and $B$
@@ -6056,7 +6005,7 @@ See Lemma \ref{lemma-what-equivalence-gives} for the final statement.
 
 \noindent
 In this section we discuss the analogue of purity of branch locus for
-generically finite morphisms. Apparantly, this result is due to Gabber.
+generically finite morphisms. Apparently, this result is due to Gabber.
 A special case is van der Waerden's purity theorem for the locus where
 a birational morphism from a normal variety to a smooth variety is not
 an isomorphism.
@@ -6204,7 +6153,8 @@ of $f'$ forces $b$ to be an isomorphism.
 \begin{lemma}[Purity of ramification locus]
 \label{lemma-purity-ramification}
 \begin{reference}
-\cite[Theorem 2.4]{Zong} attributed to Gabber
+This result for complex spaces can be found on page 170 of \cite{Fischer}.
+In general this is \cite[Theorem 2.4]{Zong} attributed to Gabber.
 \end{reference}
 Let $f : X \to Y$ be a morphism of locally Noetherian schemes.
 Let $x \in X$ and set $y = f(x)$. Assume
@@ -6325,7 +6275,7 @@ Local Cohomology, Lemma \ref{local-cohomology-lemma-local-cohomology}.
 In particular, the $A$-modules $H^i(V, \mathcal{O}_V)$, $i > 0$
 are $\mathfrak m$-power torsion.
 For any flat ring map $A \to A'$ we have
-$R\Gamma(V, \mathcal{O}_V) \otimes_A A' = H^i(V', \mathcal{O}_{V'})$
+$H^i(V, \mathcal{O}_V) \otimes_A A' = H^i(V', \mathcal{O}_{V'})$
 where $V' = V \times_{\Spec(A)} \Spec(A')$ by flat base change
 Cohomology of Schemes, Lemma \ref{coherent-lemma-flat-base-change-cohomology}.
 If we take $A'$ to be the completion of $A$ (flat by
@@ -6347,7 +6297,11 @@ Algebra, Section \ref{algebra-section-cohen-structure-theorem}.
 Assume the characteristic of $k$ is $p > 0$. Since $F : A \to A$,
 $a \mapsto a^p$ is flat (Local Cohomology, Lemma
 \ref{local-cohomology-lemma-frobenius-flat-regular})
-we find $H^i(V, \mathcal{O}_V) \otimes_{A, F} A \cong H^i(V, \mathcal{O}_V)$.
+and since $V \times_{\Spec(A), \Spec(F)} \Spec(A) \cong V$ as schemes
+over $\Spec(A)$ by
+\'Etale Morphisms, Lemma \ref{etale-lemma-relative-frobenius-etale}
+the above gives
+$H^i(V, \mathcal{O}_V) \otimes_{A, F} A \cong H^i(V, \mathcal{O}_V)$.
 Thus we get the result by
 Local Cohomology, Lemma
 \ref{local-cohomology-lemma-structure-torsion-Frobenius-regular}.
@@ -6704,7 +6658,7 @@ Assume we are given
 \item a dense open $U \subset X$,
 \item a finite \'etale morphism $f : Y \to U$
 \end{enumerate}
-such that for every for every prime divisor $Z \subset X$
+such that for every prime divisor $Z \subset X$
 with $Z \cap U = \emptyset$ the local ring $\mathcal{O}_{X, \xi}$
 of $X$ at the generic point $\xi$ of $Z$ is a discrete valuation ring.
 Setting $K_\xi$ equal to the fraction field of $\mathcal{O}_{X, \xi}$
@@ -7307,6 +7261,270 @@ and we pullback to $X$ to conclude.
 
 
 
+
+
+\section{Tricks in positive characteristic}
+\label{section-achinger}
+
+\noindent
+In Piotr Achinger's paper \cite{Achinger} it is shown that an
+affine scheme in positive characteristic is always a $K(\pi, 1)$.
+In this section we explain the more elementary parts of \cite{Achinger}.
+Namely, we show that for a field $k$ of positive characteristic
+an affine scheme \'etale over $\mathbf{A}^n_k$ is actually finite \'etale
+over $\mathbf{A}^n_k$ (by a different morphism). We also show
+that a closed immersion of connected affine schemes
+in positive characteristic induces an injective map on
+\'etale fundamental groups.
+
+\medskip\noindent
+Let $k$ be a field of characteristic $p > 0$.
+Let
+$$
+k[x_1, \ldots, x_n] \longrightarrow A
+$$
+be a surjection of finite type $k$-algebras whose source is the
+polynomial algebra on $x_1, \ldots, x_n$. Denote
+$I \subset k[x_1, \ldots, x_n]$ the kernel so that we have
+$A = k[x_1, \ldots, x_n]/I$. We do not assume $A$ is nonzero
+(in other words, we allow the case where $A$ is the zero ring
+and $I = k[x_1, \ldots, x_n]$). Finally, we assume given a
+finite \'etale ring map $\pi : A \to B$.
+
+\medskip\noindent
+Suppose given $k, n, k[x_1, \ldots, x_n] \to A, I, \pi : A \to B$.
+Let $C$ be a $k$-algebra. Consider
+commutative diagrams
+$$
+\xymatrix{
+& B \\
+C \ar[r] & C/\varphi(I)C \ar[u]^\tau \\
+k[x_1, \ldots, x_n] \ar[u]^\varphi \ar[r] &
+A \ar[u] \ar@/_3em/[uu]_\pi
+}
+$$
+where $\varphi$ is an \'etale $k$-algebra map and $\tau$ is a
+surjective $k$-algebra map.
+Let $C, \varphi, \tau$ be given. For any $r \geq 0$ and
+$y_1, \ldots, y_r \in C$ which generate $C$ as an algebra over
+$\Im(\varphi)$ let $s = s(r, y_1, \ldots, y_r) \in \{0, \ldots, r\}$
+be the maximal element such that $y_i$ is integral over $\Im(\varphi)$
+for $1 \leq i \leq s$. We define $NF(C, \varphi, \tau)$
+to be the minimum value of
+$r - s = r - s(r, y_1, \ldots, y_r)$ for all choices of
+$r$ and $y_1, \ldots, y_r$ as above.
+Observe that $NF(C, \varphi, \tau)$ is $0$ if and only if $\varphi$ is finite.
+
+\begin{lemma}
+\label{lemma-lower-invariant}
+In the situation above, if $NF(C, \varphi, \tau) > 0$, then there exist
+an \'etale $k$-algebra map $\varphi'$ and a surjective $k$-algebra map
+$\tau'$ fitting into the commutative diagram
+$$
+\xymatrix{
+& B \\
+C \ar[r] & C/\varphi'(I)C \ar[u]_{\tau'} \\
+k[x_1, \ldots, x_n] \ar[u]^{\varphi'} \ar[r] &
+A \ar[u] \ar@/_3em/[uu]_\pi
+}
+$$
+with $NF(C, \varphi', \tau') < NF(C, \varphi, \tau)$.
+\end{lemma}
+
+\begin{proof}
+Choose $r \geq 0$ and $y_1, \ldots, y_r \in C$ which generate
+$C$ over $\Im(\varphi)$ and let $0 \leq s \leq r$ be such that
+$y_1, \ldots, y_s$ are integral over $\Im(\varphi)$
+such that $r - s = NF(C, \varphi, \tau) > 0$.
+Since $B$ is finite over $A$, the image of $y_{s + 1}$ in $B$
+satisfies a monic polynomial over $A$. Hence we can find
+$d \geq 1$ and $f_1, \ldots, f_d \in k[x_1, \ldots, x_n]$
+such that
+$$
+z = y_{s + 1}^d + \varphi(f_1) y_{s + 1}^{d - 1} + \ldots + \varphi(f_d) \in
+J = \Ker(C \to C/\varphi(I)C \xrightarrow{\tau} B)
+$$
+Since $\varphi : k[x_1, \ldots, x_n] \to C$ is \'etale, we can find a
+nonzero and nonconstant polynomial $g \in k[T_1, \ldots, T_{n + 1}]$
+such that
+$$
+g(\varphi(x_1), \ldots, \varphi(x_n), z) = 0
+\quad\text{in}\quad
+C
+$$
+To see this you can use for example that
+$C \otimes_{\varphi, k[x_1, \ldots, x_n]} k(x_1, \ldots, x_n)$
+is a finite product of finite separable field extensions
+of $k(x_1, \ldots, x_n)$
+(see Algebra, Lemmas \ref{algebra-lemma-etale-over-field})
+and hence $z$ satisfies a monic
+polynomial over $k(x_1, \ldots, x_n)$. Clearing denominators
+we obtain $g$.
+
+\medskip\noindent
+The existence of $g$ and
+Algebra, Lemma \ref{algebra-lemma-helper-polynomial}
+produce integers $e_1, e_2, \ldots, e_n \geq 1$ such that
+$z$ is integral over the subring $C'$ of $C$ generated by
+$t_1 = \varphi(x_1) + z^{pe_1}, \ldots, t_n = \varphi(x_n) + z^{pe_n}$.
+Of course, the elements $\varphi(x_1), \ldots, \varphi(x_n)$
+are also integral over $C'$ as are the elements
+$y_1, \ldots, y_s$. Finally, by our choice of $z$ the element
+$y_{s + 1}$ is integral over $C'$ too.
+
+\medskip\noindent
+Consider the ring map
+$$
+\varphi' : k[x_1, \ldots, x_n] \longrightarrow C, \quad
+x_i \longmapsto t_i
+$$
+with image $C'$. Since
+$\text{d}(\varphi(x_i)) = \text{d}(t_i) = \text{d}(\varphi'(x_i))$
+in $\Omega_{C/k}$ (and this is where we use the characteristic of $k$
+is $p > 0$) we conclude that $\varphi'$ is \'etale because $\varphi$ is
+\'etale, see
+Algebra, Lemma \ref{algebra-lemma-characterize-etale-over-polynomial-ring}.
+Observe that $\varphi'(x_i) - \varphi(x_i) = t_i - \varphi(x_i) = z^{pe_i}$
+is in the kernel $J$ of the map $C \to C/\varphi(I)C \to B$ by our
+choice of $z$ as an element of $J$.
+Hence for $f \in I$ the element
+$$
+\varphi'(f) =
+f(t_1, \ldots, t_n) =
+f(\varphi(x_1) + z^{pe_1}, \ldots, \varphi(x_n) + z^{pe_n}) =
+\varphi(f) + \text{element of }(z)
+$$
+is in $J$ as well. In other words, $\varphi'(I)C \subset J$ and
+we obtain a surjection
+$$
+\tau' : C/\varphi'(I)C \longrightarrow C/J \cong B
+$$
+of algebras \'etale over $A$. Finally, the algebra
+$C$ is generated by the elements
+$\varphi(x_1), \ldots, \varphi(x_n), y_1, \ldots, y_r$
+over $C' = \Im(\varphi')$ with
+$\varphi(x_1), \ldots, \varphi(x_n), y_1, \ldots, y_{s + 1}$
+integral over $C' = \Im(\varphi')$. Hence
+$NF(C, \varphi', \tau') < r - s = NF(C, \varphi, \tau)$.
+This finishes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-affine-etale-over-affine-space}
+Let $k$ be a field of characteristic $p > 0$. Let $X \to \mathbf{A}^n_k$ be an
+\'etale morphism with $X$ affine. Then there exists a finite \'etale
+morphism $X \to \mathbf{A}^n_k$.
+\end{lemma}
+
+\begin{proof}
+Write $X = \Spec(C)$. Set $A = 0$ and denote $I = k[x_1, \ldots, x_n]$.
+By assumption there exists some \'etale $k$-algebra map
+$\varphi : k[x_1, \ldots, x_n] \to C$. Denote $\tau : C/\varphi(I)C \to 0$
+the unique surjection. We may choose $\varphi$ and $\tau$ such
+that $N(C, \varphi, \tau)$ is minimal. By Lemma \ref{lemma-lower-invariant}
+we get $N(C, \varphi, \tau) = 0$. Hence $\varphi$ is finite \'etale.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-dominate-affine-space}
+Let $k$ be a field of characteristic $p > 0$. Let $Z \subset \mathbf{A}^n_k$
+be a closed subscheme. Let $Y \to Z$ be finite \'etale. There exists a
+finite \'etale morphism $f : U \to \mathbf{A}^n_k$ such that
+there is an open and closed immersion $Y \to f^{-1}(Z)$ over $Z$.
+\end{lemma}
+
+\begin{proof}
+Let us turn the problem into algebra. Write
+$\mathbf{A}^n_k = \Spec(k[x_1, \ldots, x_n])$.
+Then $Z = \Spec(A)$ where $A = k[x_1, \ldots, x_n]/I$
+for some ideal $I \subset k[x_1, \ldots, x_n]$.
+Write $Y = \Spec(B)$ so that $Y \to Z$ corresponds to
+the finite \'etale $k$-algebra map $A \to B$.
+
+\medskip\noindent
+By Algebra, Lemma \ref{algebra-lemma-lift-etale}
+there exists an \'etale ring map
+$$
+\varphi : k[x_1, \ldots, x_n] \to C
+$$
+and a surjective $A$-algebra map $\tau : C/\varphi(I)C \to B$.
+(We can even choose $C, \varphi, \tau$ such that $\tau$ is an isomorphism,
+but we won't use this). We may choose $\varphi$ and $\tau$ such
+that $N(C, \varphi, \tau)$ is minimal. By Lemma \ref{lemma-lower-invariant}
+we get $N(C, \varphi, \tau) = 0$. Hence $\varphi$ is finite \'etale.
+
+\medskip\noindent
+Let $f : U = \Spec(C) \to \mathbf{A}^n_k$ be the finite \'etale
+morphism corresponding to $\varphi$. The morphism
+$Y \to f^{-1}(Z) = \Spec(C/\varphi(I)C)$ induced by $\tau$
+is a closed immersion as $\tau$ is surjective and open as
+it is an \'etale morphism by Morphisms, Lemma
+\ref{morphisms-lemma-etale-permanence}. This finishes the proof.
+\end{proof}
+
+\noindent
+Here is the main result.
+
+\begin{proposition}
+\label{proposition-injective}
+Let $p$ be a prime number. Let $i : Z \to X$ be a closed immersion
+of connected affine schemes over $\mathbf{F}_p$. For any geometric
+point $\overline{z}$ of $Z$ the map
+$$
+\pi_1(Z, \overline{z}) \to \pi_1(X, \overline{z})
+$$
+is injective.
+\end{proposition}
+
+\begin{proof}
+Let $Y \to Z$ be a finite \'etale morphism. It suffices to construct
+a finite \'etale morphism $f : U \to X$ such that $Y$ is isomorphic to
+an open and closed subscheme of $f^{-1}(Z)$, see
+Lemma \ref{lemma-functoriality-galois-injective}.
+Write $Y = \Spec(A)$ and $X = \Spec(R)$ so the closed immersion
+$Y \to X$ is given by a surjection $R \to A$. We may write
+$A = \colim A_i$ as the filtered colimit of its $\mathbf{F}_p$-subalgebras
+of finite type. By Lemma \ref{lemma-limit}
+we can find an $i$ and a finite \'etale morphism $Y_i \to Z_i = \Spec(A_i)$
+such that $Y = Z \times_{Z_i} Y_i$.
+
+\medskip\noindent
+Choose a surjection $\mathbf{F}_p[x_1, \ldots, x_n] \to A_i$.
+This determines a closed immersion
+$$
+Z_i = \Spec(A_i)
+\longrightarrow
+X_i = \mathbf{A}^n_{\mathbf{F}_p} = \Spec(\mathbf{F}_p[x_1, \ldots, x_n])
+$$
+By the universal property of polynomial algebras and since
+$R \to A$ is surjective, we can find a commutative diagram
+$$
+\xymatrix{
+\mathbf{F}_p[x_1, \ldots, x_n] \ar[r] \ar[d] &
+A_i \ar[d] \\
+R \ar[r] &
+A
+}
+$$
+of $\mathbf{F}_p$-algebras. Thus we have a commutative diagram
+$$
+\xymatrix{
+Y_i \ar[r] &
+Z_i \ar[r] &
+X_i \\
+Y \ar[u] \ar[r] &
+Z \ar[u] \ar[r] &
+X \ar[u]
+}
+$$
+whose right square is cartesian. Clearly, if we can
+find $f_i : U_i \to X_i$ finite \'etale such that $Y_i$ is
+isomorphic to an open and closed subscheme of $f_i^{-1}(Z_i)$,
+then the base change $f : U \to X$ of $f_i$ by $X \to X_i$
+is a solution to our problem. Thus we conclude by applying
+Lemma \ref{lemma-dominate-affine-space} to
+$Y_i \to Z_i \to X_i = \mathbf{A}^n_{\mathbf{F}_p}$.
+\end{proof}
 
 
 

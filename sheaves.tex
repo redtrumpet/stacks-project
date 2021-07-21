@@ -143,7 +143,7 @@ of abelian groups.
 
 \begin{example}
 \label{example-singleton-presheaf}
-Let $X$ be a topological space $X$. Consider a rule $\mathcal{F}$ that
+Let $X$ be a topological space. Consider a rule $\mathcal{F}$ that
 associates to every open subset a singleton set. Since every set
 has a unique map into a singleton set, there exist unique restriction
 maps $\rho^U_V$. The resulting structure is a presheaf of sets.
@@ -1401,7 +1401,7 @@ presheaves are exactly the surjective (resp.\ injective) maps
 of presheaves.
 \item Epimorphisms (resp.\ monomorphisms) in the category of
 sheaves are exactly the surjective (resp.\ injective) maps
-of sheaves, and are exactly those maps with are surjective
+of sheaves, and are exactly those maps which are surjective
 (resp.\ injective) on all the stalks.
 \item The sheafification of a surjective (resp.\ injective)
 morphism of presheaves of sets is surjective (resp.\ injective).
@@ -1495,8 +1495,8 @@ $$
 \prod\nolimits_{v \in V} \mathcal{F}_v
 $$
 maps elements of $\mathcal{F}^{\#}(U)$ into $\mathcal{F}^{\#}(V)$.
-In other words, we get the structure of a presheaf of sets
-on $\mathcal{F}^{\#}$.
+Using these maps as the restriction mappings, we turn $\mathcal{F}^\#$
+into a presheaf of sets on $X$.
 
 \medskip\noindent
 Furthermore, the map $\mathcal{F}(U) \to \prod_{u \in U} \mathcal{F}_u$
@@ -2160,18 +2160,27 @@ by the formula
 $$
 f^{-1}\mathcal{G} = (f_p\mathcal{G})^\# .
 $$
-Sheafification is a left adjoint to the inclusion
-of sheaves in presheaves, and $f_p$ is a left
-adjoint to $f_*$ on presheaves. As a formal consequence
-we obtain that $f^{-1}$ is a left adjoint of
+The pullback $f^{-1}$ is a left adjoint of
 pushforward on sheaves. In other words,
 $$
 \Mor_{\Sh(X)}(f^{-1}\mathcal{G}, \mathcal{F})
 =
 \Mor_{\Sh(Y)}(\mathcal{G}, f_*\mathcal{F}).
 $$
-The formal argument is given in the setting of abelian
-sheaves in the next section.
+Namely, we have
+\begin{eqnarray*}
+\Mor_{\Sh(X)}(f^{-1}\mathcal{G}, \mathcal{F})
+& = &
+\Mor_{\textit{PSh}(X)}(f_p\mathcal{G}, \mathcal{F}) \\
+& = &
+\Mor_{\textit{PSh}(Y)}(\mathcal{G}, f_*\mathcal{F}) \\
+& = &
+\Mor_{\Sh(Y)}(\mathcal{G}, f_*\mathcal{F})
+\end{eqnarray*}
+For the first equality we use that sheafification is a left adjoint
+to the inclusion of sheaves in presheaves. For the second equality
+we use that $f_p$ is a left adjoint to $f_*$ on presheaves. We will return
+to this statement in the proof of Lemma \ref{lemma-f-map}.
 
 \begin{lemma}
 \label{lemma-stalk-pullback}
@@ -2200,7 +2209,6 @@ use that adjoint functors are unique up to unique isomorphism,
 and Lemma \ref{lemma-pushforward-composition}.
 \end{proof}
 
-
 \begin{definition}
 \label{definition-f-map}
 Let $f : X \to Y$ be a continuous map.
@@ -2221,21 +2229,69 @@ $$
 commutes for all $V' \subset V \subset Y$ open.
 \end{definition}
 
+\noindent
+In the literature we sometimes find this defined alternatively
+as in part (4) of Lemma \ref{lemma-f-map} but as the lemma shows there
+is really no difference.
+
 \begin{lemma}
 \label{lemma-f-map}
 Let $f : X \to Y$ be a continuous map.
-Let $\mathcal{F}$ be a sheaf of sets on $X$ and
-let $\mathcal{G}$ be a sheaf of sets on $Y$.
-There are canonical bijections between the following three sets:
+There are bijections between the following four sets
 \begin{enumerate}
-\item The set of maps $\mathcal{G} \to f_*\mathcal{F}$.
-\item The set of maps $f^{-1}\mathcal{G} \to \mathcal{F}$.
-\item The set of $f$-maps $\xi : \mathcal{G} \to \mathcal{F}$.
+\item the set of maps $\mathcal{G} \to f_*\mathcal{F}$,
+\item the set of maps $f^{-1}\mathcal{G} \to \mathcal{F}$,
+\item the set of $f$-maps $\xi : \mathcal{G} \to \mathcal{F}$, and
+\item the set of all collections of maps
+$\xi_{U, V} : \mathcal{G}(V) \to \mathcal{F}(U)$ for all
+$U \subset X$ and $V \subset Y$ open such that $f(U) \subset V$
+compatible with all restriction maps,
 \end{enumerate}
+functorially in $\mathcal{F} \in \Sh(X)$ and $\mathcal{G} \in \Sh(Y)$.
 \end{lemma}
 
 \begin{proof}
-We leave the easy verification to the reader.
+A map of sheaves $a : \mathcal{G} \to f_*\mathcal{F}$
+is by definition a rule which to each open $V$ of $Y$ assigns
+a map $a_V : \mathcal{G}(V) \to f_*\mathcal{F}(V)$
+and we have $f_*\mathcal{F}(V) = \mathcal{F}(f^{-1}(V))$.
+Thus at least the "data" corresponds exactly to what you need
+for an $f$-map $\xi$ from $\mathcal{G}$ to $\mathcal{F}$.
+To show that (1) and (2) are in bijection is that the fact that
+$a$ is a map of sheaves if and only if corresponding family of maps
+satisfy the condition in Definition \ref{definition-f-map}.
+
+\medskip\noindent
+Recall that $f^{-1}\mathcal{G}$ is the sheafification of $f_p\mathcal{G}$.
+By the universal property of sheafification a map of sheaves
+$b : f^{-1}\mathcal{G} \to \mathcal{F}$ is the same thing as a map of
+presheaves $b_p : f_p\mathcal{G} \to \mathcal{F}$ where $f_p$ is the
+functor defined earlier in the section. To give such a map $b_p$
+you need to specify for each open $U$ of $X$ a map
+$$
+b_{p, U} :
+\colim_{f(U) \subset V} \mathcal{G}(V)
+\longrightarrow
+\mathcal{F}(U)
+$$
+compatible with restriction mappings. We may and do view $b_{p, U}$
+as a collection of maps $b_{p, U, V} : \mathcal{G}(V) \to \mathcal{F}(U)$
+for all $V$ open in $Y$ with $f(U) \subset V$. These maps have to be
+compatible with all possible restriction mappings you can think of.
+In other words, we see that $b_p$ corresponds to a collection of maps
+as in (4). Of course, conversely such a collection defines a map
+$b_p$ and in turn a map $b : f^{-1}\mathcal{G} \to \mathcal{F}$.
+
+\medskip\noindent
+To finish the proof of the lemma you have to show that by
+"forgetting structure" the rule that to a collection $\xi_{U, V}$
+as in (4) associates the $f$-map $\xi$ with $\xi_V = \xi_{f^{-1}(V), V}$
+is bijective. To do this, if $\xi$ is a usual $f$-map then we just
+define $\tilde \xi_{U, V}$ to be the composition of
+$\xi_V : \mathcal{G}(V) \to \mathcal{F}(f^{-1}(V))$
+by the restruction map $\mathcal{F}(f^{-1}(V)) \to \mathcal{F}(U)$
+which makes sense exactly because $f(U) \subset V$, i.e.,
+$U \subset f^{-1}(V)$. This finishes the proof.
 \end{proof}
 
 \noindent
@@ -2971,8 +3027,9 @@ on $X$. And if $f : X \to Y$ is a ``suitable'' map, then by composition
 a function on $Y$ turns into a function on $X$.
 Thus there should be a natural
 $f$-map from $\mathcal{O}_Y$ to $\mathcal{O}_X$
-See Definition \ref{definition-f-map}, and the remarks in
-previous sections for terminology. For a precise example, see
+See Definition \ref{definition-f-map} and
+Lemma \ref{lemma-f-map}.
+For a precise example, see
 Example \ref{example-continuous-map-ringed} below. Here is the
 relevant abstract definition.
 
@@ -3142,7 +3199,8 @@ a sheaf of $\mathcal{O}_Y$-modules $\mathcal{G}$ on $Y$,
 the notion of an {\it $f$-map $\varphi : \mathcal{G} \to \mathcal{F}$
 of sheaves of modules} makes sense. We can just define
 it as an $f$-map $\varphi : \mathcal{G} \to \mathcal{F}$
-of abelian sheaves such that for all open $V \subset Y$ the map
+of abelian sheaves (see Definition \ref{definition-f-map} and
+Lemma \ref{lemma-f-map}) such that for all open $V \subset Y$ the map
 $$
 \mathcal{G}(V) \longrightarrow \mathcal{F}(f^{-1}V)
 $$
@@ -3317,7 +3375,7 @@ $$
 $$
 \item Let $x \in X$ be a point. In general the stalk of
 $\lim_i \mathcal{F}_i$ at $x$ is not equal to
-the limit of the stalks. But if the diagram category is finite
+the limit of the stalks. But if the index category is finite
 then it is the case. In other words, the stalk functor is
 left exact (see Categories, Definition \ref{categories-definition-exact}).
 \item Let $x \in X$. We always have
@@ -3356,7 +3414,7 @@ $$
 $$
 \item Let $x \in X$ be a point. In general the stalk of
 $\lim_i \mathcal{F}_i$ at $x$ is not equal to
-the limit of the stalks. But if the diagram category is finite
+the limit of the stalks. But if the index category is finite
 then it is the case. In other words, the stalk functor is
 left exact.
 \item Let $x \in X$. We always have
@@ -4356,7 +4414,7 @@ $\varphi : \mathcal{G} \to \mathcal{F}$
 recovering $\varphi_V^U$ as the composition
 $$
 \mathcal{G}(V) \xrightarrow{\varphi_V}
-\mathcal{F}(f^{-1}(V)) \xrightarrow{\text{restrc.}}
+\mathcal{F}(f^{-1}(V)) \xrightarrow{\text{restr.}}
 \mathcal{F}(U)
 $$
 for every pair $(U, V)$ as above.
@@ -5127,7 +5185,7 @@ collection by setting $s_i = s$ and $s_j = \varphi_{ij}(s_i|_{W \cap U_j})$.
 
 \medskip\noindent
 Second proof (sketch). Let $\mathcal{B}$ be the set of opens $U \subset X$
-such that $U \subset U_i$ for somje $i \in I$. Then $\mathcal{B}$
+such that $U \subset U_i$ for some $i \in I$. Then $\mathcal{B}$
 is a base for the topology on $X$. For $U \in \mathcal{B}$ we pick
 $i \in I$ with $U \subset U_i$ and we set $\mathcal{F}(U) = \mathcal{F}_i(U)$.
 Using the isomorphisms $\varphi_{ij}$ we see that this prescription

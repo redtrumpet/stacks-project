@@ -61,8 +61,6 @@ More on Algebra, Sections \ref{more-algebra-section-descent-flatness-integral},
 \ref{more-algebra-section-flat-finite}, and
 \ref{more-algebra-section-blowup-flat}.
 \end{enumerate}
-
-\medskip\noindent
 As applications of the material on flatness we discuss the following
 topics: a non-Noetherian version of Grothendieck's existence theorem,
 blowing up and flatness, Nagata's theorem on compactifications,
@@ -6450,7 +6448,20 @@ such that $\mathcal{F}_{S'}$ is flat over $S'$ and such that a
 morphism $T \to S$ factors through $S'$ if and only if $\mathcal{F}_T$
 is flat over $T$.
 
-\medskip\noindent
+\begin{example}
+\label{example-no-universal-flattening}
+Let $X = S = \Spec(k[x, y])$ where $k$ is a field. Let
+$\mathcal{F} = \widetilde{M}$ where $M = k[x, x^{-1}, y]/(y)$.
+For a $k[x, y]$-algebra $A$ set $F_{flat}(A) = F_{flat}(\Spec(A))$.
+Then $F_{flat}(k[x, y]/(x, y)^n) = \{*\}$ for all $n$, while
+$F_{flat}(k[[x, y]]) = \emptyset$. This means that $F_{flat}$ isn't
+representable (even by an algebraic space, see
+Formal Spaces, Lemma
+\ref{formal-spaces-lemma-map-into-algebraic-space}).
+Thus the universal flattening does not exist in this case.
+\end{example}
+
+\noindent
 We define (compare with
 Topology, Remark \ref{topology-remark-locally-finite-stratification})
 a (locally finite, scheme theoretic) {\it stratification} of a scheme $S$
@@ -6488,10 +6499,11 @@ if $\mathcal{O}_X$ has a flattening stratification.
 \noindent
 When a flattening stratification exists, it is often important
 to understand the index set labeling the strata and its partial ordering.
-This often has to do with ranks of modules, as in the case of
-the stratification of a scheme by the Fitting ideals of a finite
-type quasi-coherent module discussed in
-Divisors, Section \ref{divisors-section-fitting-ideals}.
+This often has to do with ranks of modules. For example if
+$X = S$ and $\mathcal{F}$ is a finitely presented $\mathcal{O}_S$-module,
+then the flattening stratification exists and is given by the Fitting ideals
+of $\mathcal{F}$, see
+Divisors, Lemma \ref{divisors-lemma-finite-presentation-module}.
 
 \medskip\noindent
 We end this section showing that if we do not insist on a canonical
@@ -8577,7 +8589,7 @@ if we only assume $X \to \Spec(A)$ to be separated, of finite presentation,
 and $K_n$ pseudo-coherent relative to $A_n$ supported on a closed
 subset of $X_n$ proper over $A_n$. The outcome will be a $K$ which
 is pseudo-coherent relative to $A$ supported on a closed subset
-proper over $A$.. If we ever need this, we will
+proper over $A$. If we ever need this, we will
 formulate a precise statement and prove it here.
 \end{remark}
 
@@ -8590,8 +8602,11 @@ formulate a precise statement and prove it here.
 \label{section-blowup-flat}
 
 \noindent
-In this section we begin our discussion of results of the form: ``After a
-blowup the strict transform becomes flat''. We will use the following
+In this section we continue our discussion of results of the form: ``After a
+blowup the strict transform becomes flat'', see
+More on Algebra, Section \ref{more-algebra-section-blowup-flat} and
+Divisors, Section \ref{divisors-section-blowup-flat}.
+We will use the following
 (more or less standard) notation in this section. If $X \to S$ is
 a morphism of schemes, $\mathcal{F}$ is a quasi-coherent module
 on $X$, and $T \to S$ is a morphism of schemes, then we denote
@@ -8921,7 +8936,7 @@ the strict transform of $\mathcal{F}$ is flat over $S'$.
 \begin{proof}
 We claim that the hypotheses of the lemma are preserved under $U$-admissible
 blowups. Namely, suppose $b : S' \to S$ is a $U$-admissible blowup in
-the quasi-coherent sheaf of ideals $\mathcal{I}$. Moreover, let $S'_i \to S_i$
+the quasi-coherent sheaf of ideals $\mathcal{I}$. Moreover, let $S^*_i \to S_i$
 be the blowup in the quasi-coherent sheaf of ideals $\mathcal{J}_i$.
 Then the collection of morphisms $e'_i : S'_i = S_i \times_S S' \to S'$
 and $j'_i : X_i' = X_i \times_S S' \to X \times_S S'$ satisfy conditions
@@ -9283,29 +9298,50 @@ in the next section, see Theorem \ref{theorem-nagata}.
 
 \medskip\noindent
 Let $S$ be a quasi-compact and quasi-separated scheme.
-Let $X$ be a scheme over $S$. The category
-of {\it compactifications of $X$ over $S$} is the category whose
-objects are open immersions $j : X \to \overline{X}$ over $S$ with
-$\overline{X} \to S$ proper and whose morphisms
-$(j' : X' \to \overline{X}') \to (j : X \to \overline{X})$
+Let $X \to S$ be a separated finite type morphism of schemes. The category
+of {\it compactifications of $X$ over $S$} is the category defined
+as follows:
+\begin{enumerate}
+\item Objects are open immersions $j : X \to \overline{X}$ over $S$ with
+$\overline{X} \to S$ proper.
+\item Morphisms $(j' : X \to \overline{X}') \to (j : X \to \overline{X})$
 are morphisms $f : \overline{X}' \to \overline{X}$ of schemes over $S$
 such that $f \circ j' = j$.
+\end{enumerate}
+If $j : X \to \overline{X}$ is a compactification, then $j$ is a
+quasi-compact open immersion, see
+Schemes, Remark \ref{schemes-remark-quasi-compact-and-quasi-separated}.
+
+\medskip\noindent
+{\bf Warning.} We do {\it not} assume compactifications $j : X \to \overline{X}$
+to have dense image. Consequently, if $f : \overline{X}' \to \overline{X}$
+is a morphism of compactifications, it may not be the case that
+$f^{-1}(j(X)) = j'(X)$.
 
 \begin{lemma}
 \label{lemma-compactifications-cofiltered}
 Let $S$ be a quasi-compact and quasi-separated scheme.
 Let $X$ be a compactifyable scheme over $S$.
-The category of compactifications of $X$ over $S$ is
+\begin{enumerate}
+\item[(a)] The category of compactifications of $X$ over $S$ is
 cofiltered.
+\item[(b)] The full subcategory consisting of compactifications
+$j : X \to \overline{X}$ such that $j(X)$ is dense and
+scheme theoretically dense in $\overline{X}$ is initial
+(Categories, Definition \ref{categories-definition-initial}).
+\item[(c)] If $f : \overline{X}' \to \overline{X}$ is a morphism
+of compactifications of $X$ such that $j'(X)$ is dense in $\overline{X}'$,
+then $f^{-1}(j(X)) = j'(X)$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-We have to check conditions (1), (2), (3) of
+To prove part (a) we have to check conditions (1), (2), (3) of
 Categories, Definition \ref{categories-definition-codirected}.
 Condition (1) holds exactly because we assumed that $X$
 is compactifyable.
 Let $j_i : X \to \overline{X}_i$, $i = 1, 2$ be two compactifications.
-Then we can consider the scheme theoretic closure $\overline{X}$
+Then we can consider the scheme theoretic image $\overline{X}$
 of $(j_1, j_2) : X \to \overline{X}_1 \times_S \overline{X}_2$.
 This determines a third compactification $j : X \to \overline{X}$
 which dominates both $j_i$:
@@ -9324,8 +9360,27 @@ and hence proper over $S$. Moreover, we obtain an
 open immersion $X \to \overline{X}$ because $f_1|_X = f_2|_X = \text{id}_X$.
 The morphism $(X \to \overline{X}) \to (j_1 : X \to \overline{X}_1)$
 given by the closed immersion $\overline{X} \to \overline{X}_1$
-equalizes $f_1$ and $f_2$ which proves condition (3) and
-finishes the proof.
+equalizes $f_1$ and $f_2$ which proves condition (3).
+
+\medskip\noindent
+Proof of (b). Let $j : X \to \overline{X}$ be a compactification.
+If $\overline{X}'$ denotes the scheme theoretic closure of $X$
+in $\overline{X}$, then $X$ is dense and scheme theoretically dense
+in $\overline{X}'$ by
+Morphisms, Lemma \ref{morphisms-lemma-quasi-compact-immersion}.
+This proves the first condition of
+Categories, Definition \ref{categories-definition-initial}.
+Since we have already shown the category of compactifications
+of $X$ is cofiltered, the second condition of
+Categories, Definition \ref{categories-definition-initial}
+follows from the first (we omit the solution to this
+categorical exercise).
+
+\medskip\noindent
+Proof of (c). After replacing $\overline{X}'$ with the scheme theoretic
+closure of $j'(X)$ (which doesn't change the underlying topological space)
+this follows from Morphisms, Lemma
+\ref{morphisms-lemma-scheme-theoretic-image-of-partial-section}.
 \end{proof}
 
 \noindent
@@ -9343,16 +9398,18 @@ over $Y$.
 \end{lemma}
 
 \begin{proof}
-Let $f : X \to Y$ be a morphism of schemes over $S$ with $Y$ separated
-and of finite type over $S$. Let $j : X \to \overline{X}$ be a
-compactification of $X$ over $S$. Then we let $\overline{X}'$ be
+Let $j : X \to \overline{X}$ be a compactification of $X$ over $S$.
+Then we let $\overline{X}'$ be
 the scheme theoretic image of $(j, f) : X \to \overline{X} \times_S Y$.
 The morphism $\overline{X}' \to Y$ is proper because
 $\overline{X} \times_S Y \to Y$ is proper as a base change of
 $\overline{X} \to S$. On the other hand, since $Y$ is separated
 over $S$, the morphism $(1, f) : X \to X \times_S Y$ is a closed
 immersion (Schemes, Lemma \ref{schemes-lemma-semi-diagonal})
-and hence $X \to \overline{X}'$ is an open immersion.
+and hence $X \to \overline{X}'$ is an open immersion by Morphisms, Lemma
+\ref{morphisms-lemma-scheme-theoretic-image-of-partial-section} applied
+to the ``partial section'' $s = (j, f)$ to the projection
+$\overline{X} \times_S Y \to \overline{X}$.
 \end{proof}
 
 \noindent
@@ -9718,7 +9775,7 @@ extends to a proper morphism $V' \to U$.
 \end{lemma}
 
 \begin{proof}
-Consider the scheme theoretic closure $Z \subset Y \times_S U$
+Consider the scheme theoretic image $Z \subset Y \times_S U$
 of the ``diagonal'' morphism $V \to Y \times_S U$. If we replace
 $Y$ by a $V$-admissible blowing up, then $Z$ is replaced by
 the strict transform with respect to this blowing up, see
@@ -9783,10 +9840,13 @@ Observe that this property is preserved if we replace $X_i$
 by a further $V_i$-admissible blowup.
 
 \medskip\noindent
-Consider the scheme theoretic closure $X_{12} \subset X_1 \times_S X_2$
-of the immersion $(U_1 \cap U_2) \to X_1 \times_S X_2$ given by
-$(U_1 \cap U_2) \to U_1 \to X_1$ and $(U_1 \cap U_2) \to U_2 \to X_2$.
-The projection morphisms
+Set $V_{12} = V_1 \times_U V_2$. We have an immersion
+$V_{12} \to X_1 \times_S X_2$ which is the composition of the closed
+immersion $V_{12} = V_1 \times_U V_2 \to V_1 \times_S V_2$
+(Schemes, Lemma \ref{schemes-lemma-fibre-product-after-map})
+and the open immersion $V_1 \times_S V_2 \to X_1 \times_S X_2$.
+Let $X_{12} \subset X_1 \times_S X_2$ be the scheme theoretic
+image of $V_{12} \to X_1 \times_S X_2$. The projection morphisms
 $$
 p_1 : X_{12} \to X_1
 \quad\text{and}\quad
@@ -9798,20 +9858,19 @@ the strict transform with respect to this blowing up, see
 Lemma \ref{lemma-replaced-by-strict-transform}.
 
 \medskip\noindent
-Denote $V_{12} \subset X_{12}$ the open subscheme
-$V_{12} = p_1^{-1}(V_1) = p_2^{-1}(V_2)$ and denote
-$\psi : V_{12} \to U$ the compositions
+Denote $\psi : V_{12} \to U$ the compositions
 $\psi = \psi_1 \circ p_1|_{V_{12}} = \psi_2 \circ p_2|_{V_{12}}$.
 Consider the closed subscheme
 $$
-Z_{12, 2} = p_1^{-1}(Z_{1, 2}) = p_2^{-1}(Z_{2, 2}) = \psi^{-1}(Z_2)
-\subset V_{12}
+Z_{12, 2} =
+(p_1|_{V_{12}})^{-1}(Z_{1, 2}) =
+(p_2|_{V_{12}})^{-1}(Z_{2, 2}) =
+\psi^{-1}(Z_2) \subset V_{12}
 $$
 The morphism $p_1|_{V_{12}} : V_{12} \to V_1$ is an isomorphism
 over an open neighbourhood of $Z_{1, 2}$ because $\psi_2 : V_2 \to U$
-is an isomorphism over an open neighbourhood of $Z_2$, see
-Morphisms, Lemma
-\ref{morphisms-lemma-scheme-theoretic-image-of-partial-section}.
+is an isomorphism over an open neighbourhood of $Z_2$ and
+$V_{12} = V_1 \times_U V_2$.
 By Lemma \ref{lemma-blowup-iso-along}
 there exists a $V_1$-admissible blowing up $X_1' \to X_1$
 such that the strict tranform $p'_1 : X'_{12} \to X'_1$
@@ -9911,7 +9970,7 @@ $X \to X'$ with $X' \to S$ of finite presentation and separated.
 See Limits, Proposition
 \ref{limits-proposition-separated-closed-in-finite-presentation}.
 If we find a compactification of $X'$ over $S$, then
-taking the scheme theoretic closure of $X$ in this will give
+taking the scheme theoretic image of $X$ in this will give
 a compactification of $X$ over $S$. Thus we may assume
 $X \to S$ is separated and of finite presentation.
 We may write $S = \lim S_i$ as a directed
@@ -9936,7 +9995,7 @@ irreducible components. For each $i$ we can choose an $n_i \geq 0$ and an
 immersion $U_i \to \mathbf{A}^{n_i}_S$ by
 Morphisms, Lemma \ref{morphisms-lemma-quasi-affine-finite-type-over-S}.
 Hence $U_i$ has a compactification over $S$ for $i = 1, \ldots, n$
-by taking the scheme theoretic closure in $\mathbf{P}^{n_i}_S$.
+by taking the scheme theoretic image in $\mathbf{P}^{n_i}_S$.
 Applying Lemma \ref{lemma-two-compactifications}
 $(n - 1)$ times we conclude that the theorem is true.
 \end{proof}
@@ -10255,7 +10314,7 @@ we can write
 $$
 Y = \lim Y_\lambda
 $$
-as a direct limit of schemes $Y_\lambda$ proper and of finite presentation
+as a directed limit of schemes $Y_\lambda$ proper and of finite presentation
 over $X$ such that the morphisms $Y \to Y_\lambda$ and the
 the transition morphisms are closed immersions. Observe that
 each $Y_\lambda \to X$ is surjective.
@@ -10429,7 +10488,7 @@ Topologies, Lemma \ref{topologies-lemma-ph-induced}.
 
 \begin{definition}
 \label{definition-big-small-h}
-Let $S$ be a scheme. Let $\Sch_h$ be a big ph site containing $S$.
+Let $S$ be a scheme. Let $\Sch_h$ be a big h site containing $S$.
 \begin{enumerate}
 \item The {\it big h site of $S$}, denoted
 $(\Sch/S)_h$, is the site $\Sch_h/S$
@@ -10756,18 +10815,20 @@ a h covering and the proof is complete.
 \begin{lemma}
 \label{lemma-extend-sheaf-h}
 Let $S$ be a scheme contained in a big site $\Sch_h$.
-Let $\mathcal{F}$ be a sheaf on $(\Sch/S)_h$ satisfying
-property (b) of Topologies, Lemma \ref{topologies-lemma-extend}.
-Then the extension $F$ of $\mathcal{F}$ to the category of all
+Let $F : (\Sch/S)_h^{opp} \to \textit{Sets}$ be an h sheaf satisfying
+property (b) of Topologies, Lemma \ref{topologies-lemma-extend}
+with $\mathcal{C} = (\Sch/S)_h$.
+Then the extension $F'$ of $F$ to the category of all
 schemes over $S$ satisfies the sheaf condition for all h coverings
 and is limit preserving (Limits, Remark \ref{limits-remark-limit-preserving}).
 \end{lemma}
 
 \begin{proof}
-The proof is exactly the same as the proof of
-Topologies, Lemma \ref{topologies-lemma-extend-sheaf}
-except that it uses Lemmas \ref{lemma-limit-h-topology} and
-\ref{lemma-h-induced}.
+This is proven by the arguments given in the proofs of
+Topologies, Lemmas \ref{topologies-lemma-extend-sheaf-general} and
+\ref{topologies-lemma-extend-sheaf} using
+Lemmas \ref{lemma-limit-h-topology} and \ref{lemma-h-induced}.
+Details omitted.
 \end{proof}
 
 
@@ -11400,8 +11461,8 @@ be a finitely generated ideal annihilated by a power of $f$.
 Then
 $$
 \xymatrix{
-\Spec(A/fA + J) \ar[r] \ar[d] & \Spec(A/J) \ar[d] \\
-\Spec(A/fA) \ar[r] & \Spec(A)
+E = \Spec(A/fA + J) \ar[r] \ar[d] & \Spec(A/J) = X' \ar[d] \\
+Z = \Spec(A/fA) \ar[r] & \Spec(A) = X
 }
 $$
 is an almost blowup square.
@@ -11412,9 +11473,9 @@ is an almost blowup square.
 Let $A$ be a ring. Let $f_1, f_2 \in A$ be elements.
 $$
 \xymatrix{
-\text{Proj}(A/(f_1, f_2)[T_0, T_1]) \ar[r] \ar[d] &
-\text{Proj}(A[T_0, T_1]/(f_2 T_0 - f_1 T_1) \ar[d] \\
-\Spec(A/(f_1, f_2)) \ar[r] & \Spec(A)
+E = \text{Proj}(A/(f_1, f_2)[T_0, T_1]) \ar[r] \ar[d] &
+\text{Proj}(A[T_0, T_1]/(f_2 T_0 - f_1 T_1) = X' \ar[d] \\
+Z = \Spec(A/(f_1, f_2)) \ar[r] & \Spec(A) = X
 }
 $$
 is an almost blowup square.
@@ -12467,8 +12528,8 @@ $$
 K = R\Gamma(X, \mathcal{E}) \longrightarrow
 R\Gamma(S, \sigma^*\mathcal{E}) = A^{\oplus r}
 $$
-in $D(A)$. Arguing as above, we see $\mathcal{E}$ is free if
-the induced map $H^0(X, \mathcal{E}) \to A^{\oplus r}$ is surjective.
+in $D(A)$. Arguing as above, we see $\mathcal{E}$ is free if (and only if)
+the induced map $H^0(K) = H^0(X, \mathcal{E}) \to A^{\oplus r}$ is surjective.
 
 \medskip\noindent
 Set $L = R\Gamma(X, \mathcal{O}_X^{\oplus r})$ and observe that the
@@ -12538,10 +12599,10 @@ such that $A/\pi^eA$ occurs as a summand of $H^i(X, \mathcal{O}_X)$,
 or equivalently $H^i(L)$, for some $i$. Then taking $m = e + 1$
 we see that $H^i(L \otimes_A^\mathbf{L} A/\pi^m A)$ is a direct sum of
 $\beta_i$ copies of $A/\pi^m A$ and some other cyclic modules
-each annihilated by $\pi^e$. By the same reasoning
-$H^i(L \otimes_A^\mathbf{L} A/\pi^m A)$ is a direct sum of
-$\beta_i$ copies of $A/\pi^m A$ and some other cyclic modules.
-It immediately follows that $H^i(K)$
+each annihilated by $\pi^e$. By the same reasoning for $K$
+and the isomorphism
+$K \otimes_A^\mathbf{L} A/\pi^m A \cong L \otimes_A^\mathbf{L} A/\pi^m A$
+it follows that $H^i(K)$
 cannot have any cyclic summands of the form $A/\pi^l A$
 with $l > e$. (It also follows that $K$ is isomorphic to $L$
 as an object of $D(A)$, but we won't need this.)
@@ -12550,7 +12611,7 @@ $$
 H^0(K \otimes^\mathbf{L}_A A/\pi^{e + 1} A) =
 H^0(K)/\pi^{e + 1}H^0(K) \oplus H^1(K)[\pi^{e + 1}]
 \longrightarrow
-A/\pi^{e + 1} A
+(A/\pi^{e + 1} A)^{\oplus r}
 $$
 is surjective, is if it is surjective on the
 first summand. This is what we wanted to show.
@@ -12883,89 +12944,6 @@ This section finds normal forms for perfect objects of the derived category
 after blowups.
 
 \begin{lemma}
-\label{lemma-blowup-fitting-ideal}
-Let $X$ be a scheme. Let $\mathcal{F}$ be a finitely presented
-$\mathcal{O}_X$-module. Let $U \subset X$ be a scheme theoretically
-dense open such that $\mathcal{F}|_U$ is finite locally free of
-constant rank $r$. Then
-\begin{enumerate}
-\item the blowup $b : X' \to X$ of $X$ in the $r$th Fitting
-ideal of $\mathcal{F}$ is $U$-admissible,
-\item there is a canonical short exact sequence
-$0 \to \mathcal{K} \to b^*\mathcal{F} \to \mathcal{F}' \to 0$
-with $\mathcal{F}'$ finite locally free of rank $r$ and $\mathcal{K}$
-finitely presented with $\mathcal{K}|_U = 0$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-During this proof we will use some general properties of
-Fitting ideals given in More on Algebra, Section
-\ref{more-algebra-section-fitting-ideals}
-and Divisors, Section \ref{divisors-section-fitting-ideals}.
-Consider an affine open $V = \Spec(R)$. Let $M$ be the $R$-module
-corresponding to $\mathcal{F}|_V$ and choose a presentation
-$$
-R^{\oplus m} \xrightarrow{A} R^{\oplus n} \to M \to 0
-$$
-Let $I_k \subset R$ be the ideal generated by the minors of $A$
-of size $n - k$. This is the $k$th Fitting ideal of $M$.
-For any prime $\mathfrak p \subset R$ corresponding to
-a point of $V \cap U$ we see that $(I_{r - 1})_\mathfrak p = 0$
-and $(I_r)_\mathfrak p = R_\mathfrak p$, see
-More on Algebra, Lemma
-\ref{more-algebra-lemma-fitting-ideal-finite-locally-free}.
-In particular this implies that $V(I_r) \cap U = \emptyset$
-and therefore $b : X' \to X$ is $U$-admissible, see
-Divisors, Definition \ref{divisors-definition-admissible-blowup}
-(we also use that the fitting ideal of $\mathcal{F}$ is finitely generated
-as follows since there are only a finite number of minors of a given size).
-Since $U$ is scheme theoretically dense, the map
-$R = \Gamma(V, \mathcal{O}_X) \to \Gamma(U \cap V, \mathcal{O}_X)$
-is injective, and looking at stalks we find that $I_{r - 1} = 0$.
-
-\medskip\noindent
-Let $f \in I_r$ and consider the affine blowup algebra
-$R' = R[\frac{I_r}{f}]$. We obtain the presentation
-$$
-(R')^{\oplus m} \xrightarrow{A'} (R')^{\oplus n} \to M \otimes_R R' \to 0
-$$
-Let $I'_k$ be the $k$th Fitting ideal of $M \otimes_R R'$, i.e.,
-the ideal generated by the $n - k$ size minors of $A'$.
-Since $I'_k = I_k R'$ we see that $I'_{r - 1} = 0$
-and $I'_r = fR'$. Consider the $R'$-modules
-$$
-K = (M \otimes_R R')[f]
-\quad\text{and}\quad
-M' = (M \otimes_R R')/K
-$$
-By More on Algebra, Lemma \ref{more-algebra-lemma-principal-fitting-ideal}
-we see that $M'$ is a finite $R'$-module which can locally
-be generated by $\leq r$ elements. Thus the $r$th Fitting ideal
-of $M'$ is equal to $R'$. On the other hand, since $f$
-is a nonzerodivisor on $R'$ we see
-$$
-\text{Fit}_{r - 1}(M') \subset
-\text{Fit}_{r - 1}((M')_f) =
-\text{Fit}_{r - 1}(M \otimes_R R'_f) = (I'_{r - 1})_f = 0
-$$
-The first equality because $M'_f \cong M \otimes_R R'_f$.
-Thus $M'$ is finite locally free by
-More on Algebra, Lemma
-\ref{more-algebra-lemma-fitting-ideal-finite-locally-free}.
-Then $M'$ is a projective $R'$ module and we can split the
-short exact sequence
-$$
-0 \to K \to M \otimes_R R' \to M' \to 0
-$$
-Since $M \otimes_R R'$ is finitely presented (see displayed
-presentation above), we conclude that $K$ is too (as a direct summand).
-This finishes the proof as the blowup has an affine open covering
-by spectra of affine blowup algebras, see
-Divisors, Lemma \ref{divisors-lemma-blowing-up-affine}.
-\end{proof}
-
-\begin{lemma}
 \label{lemma-fitting-ideals-complex}
 Let $X$ be a scheme. Let $E \in D(\mathcal{O}_X)$ be pseudo-coherent.
 For every $p, k \in \mathbf{Z}$ there is an finite type quasi-coherent
@@ -13066,7 +13044,7 @@ $$
 in the sense that the cokernel of $d_i$ is finite locally
 free of rank $n_{i + 1} - \rho_i$. Let
 $\mathcal{I}_i \subset \mathcal{O}_V$ be the ideal generated by the minors
-of zero $\rho_i$ in the matrix of $d_i$.
+of size $\rho_i \times \rho_i$ in the matrix of $d_i$.
 
 \medskip\noindent
 On the one hand, comparing with Lemma \ref{lemma-fitting-ideals-complex}
@@ -13081,100 +13059,31 @@ We let $b : X' \to X$ be the blowing up in the product of the ideals
 $\text{Fit}_{i, k_i}(E)$; this makes sense as locally on $X$
 almost all of these ideals are equal to the unit ideal (see above).
 This blowup dominates the blowups $b_i : X'_i \to X$ in
-the ideals $\text{Fit}_{i, k_i}(E)$. Moreover, we see
-from Lemma \ref{lemma-blowup-fitting-ideal} and looking over $V$
-that $b_i$ is a $U$-admissible blowing up.
-Thus $b$ is a $U$-admissible blowing up, see
-Divisors, Lemma \ref{divisors-lemma-blowing-up-two-ideals}
-and see
-Divisors, Lemma \ref{divisors-lemma-dominate-admissible-blowups}
-and its proof.
+the ideals $\text{Fit}_{i, k_i}(E)$, see
+Divisors, Lemma \ref{divisors-lemma-blowing-up-two-ideals}.
+By Divisors, Lemma \ref{divisors-lemma-blowup-fitting-ideal}
+each $b_i$ is a $U$-admissible blowup. It follows that
+$b$ is a $U$-admissible blowup (tiny detail omitted; compare with
+the proof of Divisors, Lemma \ref{divisors-lemma-dominate-admissible-blowups}).
 Finally, $U$ is still a scheme theoretically dense open subscheme of $X'$.
 Thus after replacing $X$ by $X'$ we end up in the situation
 discussed in the next paragraph.
 
 \medskip\noindent
 Assume $\text{Fit}_{i, k_i}(E)$ is an invertible ideal for all $i$.
-Choose an affine open $V$ and a complex of finite
-free modules representing $E|_V$ as above.
-Set
+Choose an affine open $V$ and a complex of finite free modules
+representing $E|_V$ as above. It follows from
+Divisors, Lemma \ref{divisors-lemma-blowup-fitting-ideal}
+that $\Coker(d_i)$ has tor dimension $\leq 1$. Thus
+$\Im(d_i)$ is finite locally free as the kernel of a map
+from a finite locally free module to a finitely presented
+module of tor dimension $\leq 1$. Hence $\Ker(d_i)$
+is finite locally free as well (same argument). Thus the short
+exact sequence
 $$
-\mathcal{F}_{i + 1} = \Coker(d_i)
+0 \to \Im(d_{i - 1}) \to \Ker(d_i) \to H^i(E)|_V \to 0
 $$
-Since $\text{Fit}_{i, k_i}(E)|_V$
-is the $(n_{i + 1} - \rho_i)$th Fitting ideal of $\mathcal{F}_{i + 1}$
-we conclude from Lemma \ref{lemma-blowup-fitting-ideal}
-that there exists a short exact sequence
-$$
-0 \to \mathcal{K}_{i + 1} \to \mathcal{F}_{i + 1} \to
-\mathcal{F}'_{i + 1} \to 0
-$$
-where $\mathcal{F}'_{i + 1}$ is finite locally free of rank $\rho_i$
-and $\mathcal{K}_{i + 1}$ restricts to zero on $V \cap U$.
-Since $U \cap V$ is scheme theoretically dense in $V$
-we conclude that $d_{i + 1}$ factors as
-$$
-\mathcal{O}_V^{\oplus n_{i + 1}} \to
-\mathcal{F}'_{i + 1} \to
-\mathcal{O}_V^{\oplus n_{i + 2}}
-$$
-where the first arrow is surjective and in particular locally split.
-
-\medskip\noindent
-Observe that we have $\sum (-1)^in_i = \sum (-1)^i r_i$
-by looking at the definition of $r_i$.
-Consider the dual perfect object $E^\vee$ of $D(\mathcal{O}_X)$, see
-Cohomology, Lemma \ref{cohomology-lemma-dual-perfect-complex}.
-On $V$ this corresponds to the dual complex
-$$
-\mathcal{O}_V^{\oplus n_b} \xrightarrow{d_{b - 1}^\vee}
-\ldots \xrightarrow{d_a^\vee} \mathcal{O}_V^{\oplus n_a}
-$$
-to the one given above with $\mathcal{O}_V^{\oplus n_i}$
-placed in degree $-i$. The analogue of $k_i$ for $E^\vee$ is
-$k^\vee_i = r_{-i - 1} - r_{-i - 2} + \ldots + (-1)^{-a + i + 1}r_a$.
-We claim that the ideal $\text{Fit}_{i, k^\vee_i}(E^\vee)$
-is the same as the ideal $\text{Fit}_{-i, k_{-i}}(E)$.
-This follows from the equality at the beginning
-of this paragraph and the fact that the minors
-of a matrix and its transpose agree (up to renumbering).
-It follows that $\text{Fit}_{i, k^\vee_i}(E^\vee)$
-is an invertible ideal. Applying the results proved above
-to $E^\vee$ we find factorizations
-$$
-\mathcal{O}_V^{\oplus n_{i + 1}} \to
-\mathcal{G}'_{i + 1} \to
-\mathcal{O}_V^{\oplus n_i}
-$$
-of $d_i^\vee$ where $\mathcal{G}'_{i + 1}$ is finite locally free
-and the first arrow is surjective (and hence locally split).
-Moreover, $\mathcal{G}'_{i + 1}|_U$ is the cokernel of $d_{i + 1}^\vee|_U$.
-Dualizing back we find factorizations
-$$
-\mathcal{O}_V^{\oplus n_i} \to
-(\mathcal{G}'_{i + 1})^\vee \to
-\mathcal{O}_V^{\oplus n_{i + 1}}
-$$
-where the second arrow is the embedding of a locally direct summand.
-But here we actually find that
-$$
-0 \to (\mathcal{G}'_{i + 1})^\vee \to
-\mathcal{O}_V^{\oplus n_{i + 1}} \to
-\mathcal{O}_V^{\oplus n_{i + 2}}
-$$
-is an exact sequence: this is true over $U \cap V$ and
-the cokernel of the first arrow is locally free hence
-has no sections supported outside of $V \cap U$
-(by scheme theoretic density again).
-Putting everything together we see that
-$H^{i + 1}(E)|_V$ sits
-in a short exact sequence
-$$
-0 \to \mathcal{F}'_i \to
-(\mathcal{G}'_{i + 1})^\vee \to
-H^{i + 1}(E)|_V \to 0
-$$
-which proves what we want.
+shows what we want and the proof is complete.
 \end{proof}
 
 \begin{lemma}
@@ -13203,6 +13112,97 @@ are isomorphic. This proves the first assertion. The second follows from the
 first and Lemma \ref{lemma-blowup-complex} as any nonempty open is
 scheme theoretically dense in the integral scheme $X$.
 \end{proof}
+
+\begin{remark}
+\label{remark-when-you-have-a-complex}
+Let $X$ be a scheme. Let $E \in D(\mathcal{O}_X)$ be a perfect object such
+that $H^i(E)$ is a perfect $\mathcal{O}_X$-module of tor dimension $\leq 1$
+for all $i \in \mathbf{Z}$. This property sometimes allows one to reduce
+questions about $E$ to questions about $H^i(E)$. For example, suppose
+$$
+\mathcal{E}^a \xrightarrow{d^a} \ldots
+\xrightarrow{d^{b - 2}} \mathcal{E}^{b - 1}
+\xrightarrow{d^{b - 1}} \mathcal{E}^b
+$$
+is a bounded complex of finite locally free $\mathcal{O}_X$-modules
+representing $E$. Then $\Im(d^i)$ and $\Ker(d^i)$ are finite locally
+free $\mathcal{O}_X$-modules for all $i$. Namely, suppose by induction
+we know this for all indices bigger than $i$. Then we can first use the
+short exact sequence
+$$
+0 \to \Im(d^i) \to \Ker(d^{i + 1}) \to H^{i + 1}(E) \to 0
+$$
+and the assumption that $H^{i + 1}(E)$ is perfect of tor dimension $\leq 1$
+to conclude that $\Im(d^i)$ is finite locally free.
+The same argument used again for the short exact sequence
+$$
+0 \to \Ker(d^i) \to \mathcal{E}^i \to \Im(d^i) \to 0
+$$
+then gives that $\Ker(d^i)$ is finite locally free.
+It follows that the distinguished triangles
+$$
+\tau_{\leq k - 1}E \to \tau_{\leq k}E \to H^k(E)[-k] \to
+(\tau_{\leq k - 1}E)[1]
+$$
+are represented by the following short exact sequences of
+bounded complexes of finite locally free modules
+$$
+\begin{matrix}
+& &
+& &
+& &
+0 \\
+& &
+& &
+& &
+\downarrow \\
+\mathcal{E}^a & \to &
+\ldots & \to &
+\mathcal{E}^{k - 2} & \to &
+\Ker(d^{k - 1}) \\
+\downarrow & &
+& &
+\downarrow & &
+\downarrow \\
+\mathcal{E}^a & \to &
+\ldots & \to &
+\mathcal{E}^{k - 2} & \to &
+\mathcal{E}^{k - 1} & \to &
+\Ker(d^k) \\
+& &
+& &
+& &
+\downarrow & &
+\downarrow \\
+& &
+& &
+& &
+\Im(d^{k - 1}) & \to &
+\Ker(d^k) \\
+& &
+& &
+& &
+\downarrow \\
+& &
+& &
+& &
+0
+\end{matrix}
+$$
+Here the complexes are the rows and the ``obvious'' zeros
+are omitted from the display.
+\end{remark}
+
+
+
+
+
+\section{Blowing up perfect modules}
+\label{section-blowup-perfect-modules}
+
+\noindent
+This section tries to find normal forms for perfect modules of tor dimension
+$\leq 1$ after blowups. We are only partially successful.
 
 \begin{lemma}
 \label{lemma-blowup-pd1-derived}
@@ -13242,8 +13242,8 @@ of tor dimension $\leq 1$ whose restriction to $U$ is zero.
 \end{lemma}
 
 \begin{proof}
-Combine Lemmas \ref{lemma-blowup-fitting-ideal} and
-\ref{lemma-blowup-pd1-derived}.
+Combine Divisors, Lemma \ref{divisors-lemma-blowup-fitting-ideal} and
+Lemma \ref{lemma-blowup-pd1-derived}.
 \end{proof}
 
 \begin{lemma}
@@ -13268,7 +13268,7 @@ F^i/F^{i - 1}
 \quad\text{and}\quad
 F_i/F_{i + 1}
 $$
-are finite locally free of rank $i$ on $D_n$.
+are finite locally free of rank $i$ on $D_i$.
 \end{lemma}
 
 \begin{proof}
@@ -13368,6 +13368,587 @@ and hence is going to be perfect of tor dimension $\leq 1$ as well.
 \end{proof}
 
 
+
+
+
+
+
+
+\section{An operator introduced by Berthelot and Ogus}
+\label{section-eta}
+
+\noindent
+This section continuous the discussion started in
+More on Algebra, Section \ref{more-algebra-section-eta}.
+We encourage the reader to read that section first.
+
+\medskip\noindent
+Let $X$ be a scheme and let $D \subset X$ be an effective Cartier divisor
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$. If $\mathcal{F}$
+is an $\mathcal{O}_X$-module\footnote{In this section we work with
+$\mathcal{O}_X$-modules which are not necessarily quasi-coherent.},
+then the following are equivalent
+\begin{enumerate}
+\item the subsheaf $\mathcal{F}[\mathcal{I}] \subset \mathcal{F}$
+of sections annihilated by $\mathcal{I}$ (compare with Properties, Definition
+\ref{properties-definition-subsheaf-sections-annihilated-by-ideal}) is zero,
+\item the multiplication map
+$\mathcal{I} \otimes_{\mathcal{O}_X} \mathcal{F} \to \mathcal{F}$
+is injective,
+\item for every affine open $U = \Spec(A)$ such that $D \cap U = V(f)$
+for a nonzerodivisor $f \in A$
+(Divisors, Lemma \ref{divisors-lemma-characterize-effective-Cartier-divisor}),
+the map $f : \mathcal{F}|_U \to \mathcal{F}|_U$ is injective,
+\item for every $x \in D$ and generator $f$ of the ideal
+$\mathcal{I}_x \subset \mathcal{O}_{X, x}$ the element $f$
+is a nonzerodivisor on the stalk $\mathcal{F}_x$.
+\end{enumerate}
+If these equivalent conditions hold, then
+we will say that $\mathcal{F}$ is {\it $\mathcal{I}$-torsion free}.
+If so, then for any $i \in \mathbf{Z}$ we will denote
+$$
+\mathcal{I}^i\mathcal{F} =
+\mathcal{I}^{\otimes i} \otimes_{\mathcal{O}_X} \mathcal{F} =
+\mathcal{O}_X(-iD) \otimes_{\mathcal{O}_X} \mathcal{F} =
+\mathcal{F}(-iD)
+$$
+so that we have inclusions
+$$
+\ldots \subset
+\mathcal{I}^{i + 1}\mathcal{F} \subset
+\mathcal{I}^i\mathcal{F} \subset
+\mathcal{I}^{i - 1}\mathcal{F} \subset \ldots
+$$
+The modules $\mathcal{I}^i\mathcal{F}$ are locally isomorphic to
+$\mathcal{F}$ as $\mathcal{O}_X$-modules, but not globally.
+
+\medskip\noindent
+Let $\mathcal{F}^\bullet$ be a complex of $\mathcal{O}_X$-modules with
+differentials $d^i : \mathcal{F}^i \to \mathcal{F}^{i + 1}$
+and assume $\mathcal{F}^i$ is $\mathcal{I}$-torsion free for all $i$.
+In this case we define $\eta_\mathcal{I}\mathcal{F}^\bullet$
+to be the complex with terms
+\begin{align*}
+(\eta_\mathcal{I}\mathcal{F})^i
+& =
+\Ker\left(
+d^i, -1 :
+\mathcal{I}^i\mathcal{F}^i \oplus \mathcal{I}^{i + 1}\mathcal{F}^{i + 1}
+\to
+\mathcal{I}^i\mathcal{F}^{i + 1}
+\right) \\
+& =
+\Ker\left(d^i :
+\mathcal{I}^i\mathcal{F}^i
+\to
+\mathcal{I}^i\mathcal{F}^{i + 1}/
+\mathcal{I}^{i + 1}\mathcal{F}^{i + 1}
+\right)
+\end{align*}
+and differential induced by $d^i$. In other words, a local section
+$s$ of $(\eta_\mathcal{I}\mathcal{F})^i$ is the same thing as a local section
+$s$ of $\mathcal{I}^i\mathcal{F}^i$ such that its image $d^i(s)$
+in $\mathcal{I}^i\mathcal{F}^{i + 1}$ is in the subsheaf
+$\mathcal{I}^{i + 1}\mathcal{F}^{i + 1}$.
+Observe that $\eta_\mathcal{I}\mathcal{F}^\bullet$
+is another complex whose terms are $\mathcal{I}$-torsion free modules.
+
+\begin{lemma}
+\label{lemma-eta-stalks}
+Let $X$ be a scheme and let $D \subset X$ be an effective Cartier divisor
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Let $\mathcal{F}^\bullet$ be a complex of $\mathcal{O}_X$-modules
+such that $\mathcal{F}^i$ is $\mathcal{I}$-torsion free for all $i$.
+\begin{enumerate}
+\item For $x \in X$ choose a generator $f \in \mathcal{I}_x$. Then
+the stalk of $\eta_\mathcal{I}\mathcal{F}^\bullet$ is canonically
+isomorphic to $\eta_f\mathcal{F}^\bullet_x$.
+\item If the $\mathcal{F}^i$ are quasi-coherent $\mathcal{O}_X$-modules,
+then so are the $(\eta_\mathcal{I}\mathcal{F})^i$ and in this case
+if $U = \Spec(A) \subset X$ is affine open and $D \cap U = V(f)$,
+then $\eta_f(\mathcal{F}^\bullet(U))$ is canonically isomorphic
+to $(\eta_\mathcal{I}\mathcal{F}^\bullet)(U)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-eta-first-property}
+Let $X$ be a scheme and let $D \subset X$ be an effective Cartier divisor
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Let $\mathcal{F}^\bullet$ be a complex of $\mathcal{O}_X$-modules
+such that $\mathcal{F}^i$ is $\mathcal{I}$-torsion free for all $i$.
+There is a canonical isomorphism
+$$
+\mathcal{I}^{\otimes i} \otimes_{\mathcal{O}_X}
+\left(
+H^i(\mathcal{F}^\bullet)/H^i(\mathcal{F}^\bullet)[\mathcal{I}]
+\right)
+\longrightarrow H^i(\eta_\mathcal{I}\mathcal{F}^\bullet)
+$$
+of cohomology sheaves.
+\end{lemma}
+
+\begin{proof}
+Via Lemma \ref{lemma-eta-stalks} this translates into the result of
+More on Algebra, Lemma \ref{more-algebra-lemma-eta-first-property}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-eta-qis}
+Let $X$ be a scheme and let $D \subset X$ be an effective Cartier divisor
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Let $\mathcal{F}^\bullet \to \mathcal{G}^\bullet$ be a map of complexes
+of $\mathcal{O}_X$-modules such that $\mathcal{F}^i$ and $\mathcal{G}^i$
+are $\mathcal{I}$-torsion free for all $i$.
+Then the induced map
+$\eta_\mathcal{I}\mathcal{F}^\bullet \to \eta_\mathcal{I}\mathcal{G}^\bullet$
+is a quasi-isomorphism too.
+\end{lemma}
+
+\begin{proof}
+This is true because the isomorphisms of Lemma \ref{lemma-eta-first-property}
+are compatible with maps of complexes.
+\end{proof}
+
+\begin{remark}
+\label{remark-Leta}
+Let $X$ be a scheme and let $D \subset X$ be an effective Cartier divisor
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Let $\mathcal{G}^\bullet$ be a complex of $\mathcal{O}_X$-modules.
+By Cohomology, Lemma \ref{cohomology-lemma-K-flat-resolution}
+there exists a quasi-isomorphism $\mathcal{F}^\bullet \to \mathcal{G}^\bullet$
+such that $\mathcal{F}^\bullet$ is a K-flat complex whose terms are flat
+$\mathcal{O}_X$-modules. (Even if $\mathcal{G}^\bullet$ is a
+complex of quasi-coherent $\mathcal{O}_X$-modules, in general
+$\mathcal{F}^\bullet$ will not be so.)
+It follows that $\mathcal{F}^i$ is
+$\mathcal{I}$-torsion free for all $i$. In this situation we define
+$$
+L\eta_\mathcal{I} \mathcal{G}^\bullet = \eta_\mathcal{I} \mathcal{F}^\bullet
+$$
+This is independent of the choice of the K-flat resolution
+by Lemma \ref{lemma-eta-qis}. We obtain a functor
+$L\eta_\mathcal{I} : D(\mathcal{O}_X) \to D(\mathcal{O}_X)$.
+Beware that this functor isn't exact, i.e.,
+does not tranform distinguished triangles into distinguished triangles.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-eta-tensor-invertible}
+Let $X$ be a scheme and let $D \subset X$ be an effective Cartier divisor
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Let $\mathcal{F}^\bullet$ be a complex of $\mathcal{O}_X$-modules
+such that $\mathcal{F}^i$ is $\mathcal{I}$-torsion free for all $i$.
+Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
+Then $\eta_\mathcal{I}(\mathcal{F}^\bullet \otimes \mathcal{L}) =
+(\eta_\mathcal{I}\mathcal{F}^\bullet) \otimes \mathcal{L}$.
+\end{lemma}
+
+\begin{proof}
+Immediate from the construction.
+\end{proof}
+
+
+
+
+
+
+
+
+\section{Blowing up complexes, II}
+\label{section-blowup-complexes-II}
+
+\noindent
+The material in this section will be used to construct a version of
+Macpherson's graph construction in Section \ref{section-blowup-complexes-III}.
+ 
+\begin{situation}
+\label{situation-complex-and-divisor}
+Here $X$ is a scheme, $D \subset X$ is an effective Cartier divisor
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$, and
+$\mathcal{E}^\bullet$ is a bounded complex of finite locally free
+$\mathcal{O}_X$-modules with differentials
+$d^i : \mathcal{E}^i \to \mathcal{E}^{i + 1}$.
+\end{situation}
+
+\noindent
+We are going to construct a canonical blowing up of this situation.
+
+\begin{remark}
+\label{remark-complex-and-divisor-ideal}
+In Situation \ref{situation-complex-and-divisor} for any $i \in \mathbf{Z}$
+there exists a finite type quasi-coherent sheaf of ideals
+$\mathcal{J}_i \subset \mathcal{O}_X$ with the following property:
+for any $U \subset X$ open such that $\mathcal{I}|_U$,
+$\mathcal{E}^i|_U$, and $\mathcal{E}^{i + 1}|_U$ are
+free of ranks $1$, $r_i$, and $r_{i + 1}$, the ideal
+$\mathcal{J}_i$ is generated by the $r_i \times r_i$ minors of the map
+$$
+1, d^i :
+\mathcal{I}\mathcal{E}^i
+\longrightarrow
+\mathcal{E}^i \oplus \mathcal{I}\mathcal{E}^{i + 1}
+$$
+with notation as in Section \ref{section-eta}. By convention we set
+$\mathcal{J}_i|_U = \mathcal{O}_U$ if $r_i = 0$. Observe that
+$\mathcal{I}^{r_i}|_U \subset \mathcal{J}_i|_U$ in other words,
+the closed subscheme $V(\mathcal{J})$ is set theoretically
+contained in $D$. Formation of the
+ideal $\mathcal{J}_i$ commutes with base change by any morphism
+$f : Y \to X$ such that the pullback of $D$ by $f$ is defined
+(Divisors, Definition
+\ref{divisors-definition-pullback-effective-Cartier-divisor}).
+\end{remark}
+
+\begin{lemma}
+\label{lemma-complex-and-divisor-blowup}
+In Situation \ref{situation-complex-and-divisor} let $b : X' \to X$
+be the blowing up of the product of the ideals $\mathcal{J}_i$ from
+Remark \ref{remark-complex-and-divisor-ideal}.
+Denote $D' = b^{-1}D$ with ideal sheaf
+$\mathcal{I}' \subset \mathcal{O}_{X'}$. Then
+$$
+\mathcal{Q}^\bullet =
+\eta_{\mathcal{I}'}b^*\mathcal{E}^\bullet
+$$
+is a bounded complex of finite locally free $\mathcal{O}_{X'}$-modules.
+\end{lemma}
+
+\begin{proof}
+Recall that $D'$ is an effective Cartier divisor
+(Divisors, Lemma \ref{divisors-lemma-blow-up-pullback-effective-Cartier}).
+Observe that $\mathcal{J}_i$ pulls back to an invertible ideal
+sheaf on $X'$ as $X'$ dominates the blowing up in $\mathcal{J}_i$, see
+Divisors, Lemma \ref{divisors-lemma-blowing-up-two-ideals}.
+By Remark \ref{remark-complex-and-divisor-ideal} we may replace
+$X$ by $X'$ and assume $\mathcal{J}_i$ is invertible for all $i$.
+Via Lemma \ref{lemma-eta-stalks} we obtain the result from
+More on Algebra, Lemma \ref{more-algebra-lemma-eta-locally-free}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-complex-and-divisor-eta-pull}
+In Situation \ref{situation-complex-and-divisor} let $f : Y \to X$
+be a morphism of schemes such that the inverse image $f^{-1}D$
+is an effective Cartier divisor with ideal sheaf $\mathcal{J}$.
+Assume $\mathcal{J}_i$ as in Remark \ref{remark-complex-and-divisor-ideal}
+is invertible for all $i$. Then $f^*(\eta_\mathcal{I}\mathcal{E}^\bullet) =
+\eta_\mathcal{J}(f^*\mathcal{E}^\bullet)$.
+\end{lemma}
+
+\begin{proof}
+Follows from
+More on Algebra, Lemma \ref{more-algebra-lemma-eta-base-change}
+via Lemma \ref{lemma-eta-stalks}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-complex-and-divisor-blowup-base-change}
+In Situation \ref{situation-complex-and-divisor} let $f : Y \to X$
+be a morphism of schemes such that the inverse image $f^{-1}D$
+is an effective Cartier divisor. Let $X' \to X$ and $\mathcal{Q}^\bullet$,
+resp.\ $Y' \to Y$ and $\mathcal{Q}_{Y'}^\bullet$, be as constructed in
+Lemma \ref{lemma-complex-and-divisor-blowup} for
+$D \subset X$ and $\mathcal{E}^\bullet$,
+resp.\ $f^{-1}D \subset Y$ and $f^*\mathcal{E}^\bullet$.
+Then $Y'$ is the strict transform of $Y$ with respect to $X' \to X$
+and $\mathcal{Q}_{Y'}^\bullet = (Y' \to X')^*\mathcal{Q}^\bullet$.
+\end{lemma}
+
+\begin{proof}
+In Remark \ref{remark-complex-and-divisor-ideal} we have seen that
+$\mathcal{J}_i$ pulls back to the corresponding ideal on $Y$. Hence
+$Y'$ is the strict transform of $Y$ by
+Divisors, Lemma \ref{divisors-lemma-strict-transform}.
+The final statement follows from
+Lemma \ref{lemma-complex-and-divisor-eta-pull}
+applied to $Y' \to X'$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-complex-and-divisor-blowup-good}
+In Situation \ref{situation-complex-and-divisor} let $U \subset X$
+be the maximal open subscheme over which the cohomology sheaves
+of $\mathcal{E}^\bullet$ are locally free. Then the blowing up
+$b : X' \to X$
+of Lemma \ref{lemma-complex-and-divisor-blowup} is an isomorphism
+over $U$.
+\end{lemma}
+
+\begin{proof}
+Over $U$ all of the modules $\Im(d^i)$ and $\Ker(d^i)$ are finite
+locally free, see for example the discussion in
+Remark \ref{remark-when-you-have-a-complex}.
+Let $x \in U$. Choose an open neighbourhood $x \in V \subset U$
+such that $\mathcal{I}|_V$, $\mathcal{E}^i$, $\Ker(d^i)$, $\Im(d^i)$,
+and $H^i(\mathcal{E}^\bullet)$
+are free and choose splittings for the short exact sequences
+$$
+0 \to \Im(d^i) \to \Ker(d^{i + 1}) \to H^{i + 1}(\mathcal{E}^\bullet) \to 0
+\quad\text{and}\quad
+0 \to \Ker(d^i) \to \mathcal{E}^i \to \Im(d^i) \to 0
+$$
+Then we see that our complex looks like
+$$
+\ldots \to
+\mathcal{O}_V^{\oplus n_{i - 1} + m_i + n_i} \to
+\mathcal{O}_V^{\oplus n_i + m_{i + 1} + n_{i + 1}} \to \ldots
+$$
+where the map identifies the last $n_i$ summands with the first
+$n_i$ summands. Thus $\mathcal{J}_i|V$ is the ideal generated by
+$f^{n_{i - 1} + m_i}$ where $f \in \mathcal{O}_X(V)$
+is a generator for $\mathcal{I}|_V$. Thus over $V$ we are blowing up
+an invertible ideal, which produces the identity morphism
+(Divisors, Lemma \ref{divisors-lemma-blow-up-effective-Cartier-divisor}).
+\end{proof}
+
+\begin{lemma}
+\label{lemma-complex-and-divisor-blowup-T}
+In Situation \ref{situation-complex-and-divisor}. Let $b : X' \to X$,
+$D' \subset X'$, and $\mathcal{Q}^\bullet$ be as in
+Lemma \ref{lemma-complex-and-divisor-blowup}.
+Let $U \subset X$ be as in Lemma \ref{lemma-complex-and-divisor-blowup-good}.
+Then there exists a closed immersion $T \to D'$ of finite presentation
+with $D' \cap b^{-1}(U) \subset T$ scheme theoretically
+such that $\mathcal{Q}^\bullet|_T$ has finite locally free cohomology sheaves.
+\end{lemma}
+
+\begin{proof}
+Arguing exactly as in the proof of Lemma \ref{lemma-complex-and-divisor-blowup}
+we may replace $X$ by $X'$ and $U$ by $b^{-1}(U)$ and assume that the ideals
+$\mathcal{J}_i$ are invertible for all $i$.
+
+\medskip\noindent
+Assume $\mathcal{J}_i$ invertible for all $i$ so that $b = \text{id}_X$
+and $\mathcal{Q}^\bullet = \eta_{\mathcal{I}}\mathcal{E}^\bullet$.
+Let $x \in D \cap U$ and choose a generator $f \in \mathcal{I}_x$.
+Since $H^i(\mathcal{E}^\bullet)_x$ is a finite free
+$\mathcal{O}_{X, x}$-module for all $i$ (by choice of $U$),
+we see that
+$$
+\Ker(d^i : \mathcal{E}^i_x/f^2\mathcal{E}^i_x \to
+\mathcal{E}^{i + 1}_x/f^2\mathcal{E}^{i + 1}_x)
+\to
+\Ker(d^i : \mathcal{E}^i_x/f\mathcal{E}^i_x \to
+\mathcal{E}^{i + 1}_x/f\mathcal{E}^{i + 1}_x)
+$$
+is surjective, see
+More on Algebra, Lemma \ref{more-algebra-lemma-vanishing-beta}.
+This means that if $X = \Spec(A)$ is affine, then via
+Lemma \ref{lemma-eta-stalks} we may apply
+More on Algebra, Lemma \ref{more-algebra-lemma-eta-vanishing-beta}
+to get a closed subscheme $T \subset D$ with all the desired
+properties (some details omitted).
+
+\medskip\noindent
+To glue this affine local construction, we remark that in the proof of 
+More on Algebra, Lemma \ref{more-algebra-lemma-eta-vanishing-beta-plus}
+the ideal cutting out $T$ is constructed with a certain universal
+property. Namely, the result of
+More on Algebra, Lemma \ref{more-algebra-lemma-eta-locally-free}
+tells us that the canonical maps
+$$
+c^i : \mathcal{Q}^i \to
+\mathcal{I}^i\mathcal{E}^i \oplus \mathcal{I}^{i + 1}\mathcal{E}^{i + 1}
+$$
+are locally split. The closed subscheme $T \subset D$ is characterized
+by the property that a morphism of schemes $g : W \to D$ factors through
+$T$ if and only if $g^*\mathcal{Q}^i$ is a direct sum of sheaves compatible
+with the map $g^*c^i$ for all $i$. Hence it is clear
+that the affine locally constructed closed subschemes glue.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-complex-and-divisor-blowup-T-ranks}
+In Situation \ref{situation-complex-and-divisor}. Let $b : X' \to X$,
+$D' \subset X'$, and $\mathcal{Q}^\bullet$ be as in
+Lemma \ref{lemma-complex-and-divisor-blowup}.
+Given integers $\rho_i \geq 0$ almost all zero, let $U' \subset X$ be
+the maximal open subscheme where $H^i(\mathcal{E}^\bullet)$ is finite locally
+free of rank $\rho_i$ for all $i$.
+Let $T \subset D'$ be as in Lemma \ref{lemma-complex-and-divisor-blowup-T}.
+Then there exists an open and closed subscheme $T' \subset T$
+containing $D' \cap b^{-1}(U')$ scheme theoretically
+such that $\mathcal{Q}^\bullet|_{T'}$ has finite locally free
+cohomology sheaves $H^i(\mathcal{Q}^\bullet|_{T'})$ of
+rank $\rho_i$.
+\end{lemma}
+
+\begin{proof}
+This is obvious.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-complex-and-divisor-derived}
+Let $X$ be a scheme and let $D \subset X$ be an effective Cartier divisor. Let
+$E \in D(\mathcal{O}_X)$ be a perfect object. Let $U \subset X$ be the maximal
+open over which the cohomology sheaves $H^i(E)$ are locally free.
+There exists a proper morphism
+$b : X' \longrightarrow X$ and an object $Q \in D(\mathcal{O}_{X'})$
+with the following properties
+\begin{enumerate}
+\item $D' = b^{-1}D$ is an effective Cartier divisor,
+\item $Q = L\eta_{\mathcal{I}'}Lb^*E$ where $\mathcal{I}'$
+is the ideal sheaf of $D'$,
+\item $Q$ is a perfect object of $D(\mathcal{O}_{X'})$,
+\item there exists a closed immersion $T \to D'$ of finite presentation
+with $D' \cap b^{-1}(U) \subset T$ scheme theoretically such that
+$Q|_T$ has finite locally free cohomology sheaves,
+\item for any open subscheme $V \subset X$ such that
+$E|_V$ can be represented by a bounded complex $\mathcal{E}^\bullet$
+of finite locally free $\mathcal{O}_V$-modules, the base changes
+of $X' \to X$, $Q$, $D'$, and $T$ to $V$ are given by the
+constructions of Lemmas \ref{lemma-complex-and-divisor-blowup} and
+\ref{lemma-complex-and-divisor-blowup-T}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We first construct the morphism $b : X' \to X$ by glueing the blowings up
+constructed over opens $V \subset X$ as in (5). By
+Constructions, Lemma \ref{constructions-lemma-relative-glueing}
+to do this it suffices to show that given $V \subset X$ open
+and two bounded complexes $\mathcal{E}^\bullet$
+and $(\mathcal{E}')^\bullet$ of finite locally free $\mathcal{O}_V$-modules
+representing $E|_V$ the resulting blowing ups are canonically isomorphic.
+To do this, it suffices, by the universal property of blowing up
+of Divisors, Lemma \ref{divisors-lemma-universal-property-blowing-up},
+to show that the ideals $\mathcal{J}_i$ and $\mathcal{J}'_i$ from
+Remark \ref{remark-complex-and-divisor-ideal}
+constructed using $\mathcal{E}^\bullet$ and $(\mathcal{E}')^\bullet$ 
+locally differ by multiplication by an invertible ideal.
+We will in fact show that they differ locally by a power of the
+ideal sheaf $\mathcal{I}$ of $D$. By More on Algebra, Lemma
+\ref{more-algebra-lemma-compare-representatives-perfect}
+working locally it suffices to prove the relationship when
+$$
+(\mathcal{E}')^\bullet =
+\mathcal{E}^\bullet \oplus ( \ldots \to 0 \to
+\mathcal{O}_V \xrightarrow{1} \mathcal{O}_V \to 0 \to \ldots)
+$$
+with the two summands $\mathcal{O}_V$ placed in degrees $i$ and $i + 1$ say.
+Computing minors explicitly one finds that
+$\mathcal{J}'_{i + 1} = \mathcal{I}\mathcal{J}_{i + 1}$
+and all other ideals stay the same.
+
+\medskip\noindent
+Thus we have the morphism $b : X' \to X$ agreeing locally with the
+blowing ups in (5). Of course this immediately gives us the
+effective Cartier divisor $D' = b^{-1}D$, its invertible ideal sheaf
+$\mathcal{I}'$ and the object $Q = L\eta_{\mathcal{I}'}Lb^*E$.
+See Remark \ref{remark-Leta} for the construction of $L\eta_{\mathcal{I}'}$.
+Since the construction commutes with restricting to opens we find
+that $Q|_{V'}$ is represented by the complex
+$\mathcal{Q}^\bullet$ over the open $V' = b^{-1}(V)$ constructed
+using $\mathcal{E}^\bullet$ over $V$.
+
+\medskip\noindent
+To finish the proof it suffices to show that the closed subschemes
+$T_V \subset V'$ constructed in Lemma \ref{lemma-complex-and-divisor-blowup-T}
+glue. Again by relative glueing, it suffices to show that the construction
+of $T$ does not depend on the choice of the complex $\mathcal{E}^\bullet$
+representing $E|_V$. Again we reduce to the case where
+$$
+(\mathcal{E}')^\bullet =
+\mathcal{E}^\bullet \oplus ( \ldots \to 0 \to
+\mathcal{O}_V \xrightarrow{1} \mathcal{O}_V \to 0 \to \ldots)
+$$
+with the two summands $\mathcal{O}_V$ placed in degrees $i$ and $i + 1$ say.
+Note that in this case $(\mathcal{Q}')^\bullet$ and $\mathcal{Q}^\bullet$
+differ as follows
+$$
+(\mathcal{Q}')^\bullet = \mathcal{Q}^\bullet \oplus
+( \ldots \to 0 \to
+(\mathcal{I}')^{i + 1}|_{V'} \xrightarrow{1}
+(\mathcal{I}')^{i + 1}|_{V'} \to 0 \to \ldots)
+$$
+In the proof of Lemma \ref{lemma-complex-and-divisor-blowup-T}
+we defined $T \subset D'$ as the largest closed subscheme of $D'$ such
+that $\mathcal{Q}^i|_T$ is a direct sum of two parts compatible with
+the restriction to $T$ of the canonical split injective maps
+$$
+c^i :
+\mathcal{Q}^i
+\longrightarrow
+(\mathcal{I}')^ib^*\mathcal{E}^i \oplus
+(\mathcal{I}')^{i + 1}b^*\mathcal{E}^{i + 1}
+$$
+for all $i$. The direct sum decomposition for $(\mathcal{Q}')^\bullet$
+in terms of $\mathcal{Q}^\bullet$ and the explicit complex
+$(\mathcal{I}')^{i + 1}|_{V'} \to (\mathcal{I}')^{i + 1}|_{V'}$
+implies in a straightforward manner that $T$ plays the same
+role for $(\mathcal{Q}')^\bullet$ and the proof is complete.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Blowing up complexes, III}
+\label{section-blowup-complexes-III}
+
+\noindent
+In this section we give an ``algebra version'' of the version of
+Macpherson's graph construction given in \cite[Section 18.1]{F}.
+
+\medskip\noindent
+Let $X$ be a scheme. Let $\mathcal{E}^\bullet$ be a bounded complex of
+finite locally free $\mathcal{O}_X$-modules. Let $U \subset X$ be the
+maximal open subscheme such that $\mathcal{E}^\bullet|_U$ has finite
+locally free cohomology sheaves.
+
+\medskip\noindent
+Consider the projection morphism $p : \mathbf{P}^1_X \to X$.
+The complement of the open subscheme $\mathbf{A}^1_X \subset \mathbf{P}^1_X$
+is the image $(\mathbf{P}^1_X)_\infty$ of the section
+$\infty : X \to \mathbf{P}^1_X$ of $p$ or equivalently the
+inverse image of the divisor at $\infty$ in $\mathbf{P}^1_\mathbf{Z}$.
+Thus $(\mathbf{P}^1_X)_\infty \subset \mathbf{P}^1_X$ is an effective
+Cartier divisor. Let
+$$
+b : W \longrightarrow \mathbf{P}^1_X
+$$
+be the blowing up constructed in Lemma \ref{lemma-complex-and-divisor-blowup}
+starting with the effective Cartier divisor
+$(\mathbf{P}^1_X)_\infty \subset \mathbf{P}^1_X$ and the bounded complex
+$p^*\mathcal{E}^\bullet$ of finite locally free modules. We also denote
+$$
+\mathcal{Q}^\bullet = \eta_\mathcal{I} b^*p^*\mathcal{E}^\bullet
+$$
+the complex considered in Lemma \ref{lemma-complex-and-divisor-blowup}
+where $\eta_\mathcal{I}$ is the operator of Section \ref{section-eta}
+associated to the ideal sheaf $\mathcal{I}$
+of the effective Cartier divisor $W_\infty = b^{-1}(\mathbf{P}^1_X)_\infty$
+on $W$.
+
+\begin{lemma}
+\label{lemma-graph-construction}
+The construction above has the following properties:
+\begin{enumerate}
+\item $b$ is an isomorphism over $\mathbf{P}^1_U \cup \mathbf{A}^1_X$,
+\item the restriction of $\mathcal{Q}^\bullet$ to $\mathbf{A}^1_X$
+is equal to the pullback of $\mathcal{E}^\bullet$,
+\item there exists a closed immersion $T \to W_\infty$ of finite presentation
+such that $\infty(U) \subset T$ scheme theoretically and
+such that $\mathcal{Q}^\bullet|_T$ has finite locally free cohomology
+sheaves.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This follows immediately from the results in
+Section \ref{section-blowup-complexes-II},
+especially Lemma \ref{lemma-complex-and-divisor-blowup-T}.
+\end{proof}
 
 
 

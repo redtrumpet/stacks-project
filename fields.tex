@@ -405,7 +405,7 @@ over $E$ (the scalar action is just multiplication in $F$).
 \label{definition-degree}
 Let $F/E$ be an extension of fields. The dimension of $F$ considered as an
 $E$-vector space is called the {\it degree} of the extension and is
-denoted $[F : E]$. If $[F : E]<\infty$ then $F$ is said to be a
+denoted $[F : E]$. If $[F : E] < \infty$ then $F$ is said to be a
 {\it finite} extension of $E$.
 \end{definition}
 
@@ -452,7 +452,7 @@ In particular, it could not be zero.
 \medskip\noindent
 Amusingly, this leads to a quick proof of the Hilbert Nullstellensatz over
 the complex numbers. For a slightly more general result, see
-Algebra, Theorem \ref{algebra-theorem-uncountable-nullstellensatz}. 
+Algebra, Theorem \ref{algebra-theorem-uncountable-nullstellensatz}.
 \end{example}
 
 \begin{lemma}
@@ -478,7 +478,7 @@ Then the degree $[E : k]$ is just the degree $d = \deg(P)$ of the
 polynomial $P$. Indeed, say
 \begin{equation}
 \label{equation-P}
-P = a_d t^d + a_1 t^{d - 1} + \ldots + a_0.
+P = a_d t^d + a_{d - 1} t^{d - 1} + \ldots + a_0.
 \end{equation}
 with $a_d \not = 0$. Then the images of $1, t, \ldots, t^{d - 1}$ in
 $k[t]/(P)$ are linearly independent over $k$, because any relation involving
@@ -614,7 +614,7 @@ Let $K/E/F$ be a tower of field extensions.
 \begin{enumerate}
 \item If $\alpha \in K$ is algebraic over $F$, then $\alpha$ is algebraic
 over $E$.
-\item if $K$ is algebraic over $F$, then $K$ is algebraic over $E$.
+\item If $K$ is algebraic over $F$, then $K$ is algebraic over $E$.
 \end{enumerate}
 \end{lemma}
 
@@ -644,7 +644,7 @@ linear dependence now gives the desired polynomial that $\alpha$ must satisfy.
 
 \medskip\noindent
 For the last assertion, note that a monogenic extension $k(\alpha)/k$ is
-finite if and only $\alpha$ is algebraic over $k$, by
+finite if and only if $\alpha$ is algebraic over $k$, by
 Examples \ref{example-degree-rational-function-field} and
 \ref{example-degree-simple-algebraic-extension}.
 So if $E/k$ is algebraic, then each $k(\alpha)/k$, $\alpha \in E$, is a finite
@@ -780,7 +780,7 @@ $f : E \to E$ is an automorphism.
 \end{lemma}
 
 \begin{proof}
-If $E/F$ is finite, then $f : E \to E$ is an $F$-linear 
+If $E/F$ is finite, then $f : E \to E$ is an $F$-linear
 injective map (Lemma \ref{lemma-field-maps-injective})
 of finite dimensional vector spaces, and hence bijective.
 In general we still see that $f$ is injective.
@@ -1107,7 +1107,7 @@ to $x$. Then one of the following two cases happens
 \item $P$ and $P'$ are relatively prime, or
 \item $P'$ is the zero polynomial.
 \end{enumerate}
-Then second case can only happen if $F$ has characteristic $p > 0$.
+The second case can only happen if $F$ has characteristic $p > 0$.
 In this case $P(x) = Q(x^q)$ where $q = p^f$ is a power of $p$ and
 $Q \in F[x]$ is an irreducible polynomial such that $Q$ and $Q'$
 are relatively prime.
@@ -1142,7 +1142,9 @@ if it is relatively prime to its derivative.
 {\it separable} over $F$ if its minimal polynomial is separable over $F$.
 \item If $K$ is an algebraic extension of $F$, we say $K$ is
 {\it separable}\footnote{For nonalgebraic extensions
-this definition does not make sense and is not the correct one.}
+this definition does not make sense and is not the correct one. We refer
+the reader to Algebra, Sections \ref{algebra-section-separability} and
+\ref{algebra-section-separability-continued}.}
 over $F$ if every element of $K$ is separable over $F$.
 \end{enumerate}
 \end{definition}
@@ -1329,6 +1331,7 @@ not separable over $K_{i - 1}$.
 
 \medskip\noindent
 Finally, assume again that each $\alpha_i$ is separable over $K_{i - 1}$.
+We will show $K/F$ is separable.
 Let $\gamma = \gamma_1 \in K$ be arbitrary. Then we can find additional
 elements $\gamma_2, \ldots, \gamma_m$ such that
 $K = F(\gamma_1, \ldots, \gamma_m)$ (for example we could take
@@ -1430,7 +1433,7 @@ If $n = 1$ this is true because $\chi_1(e) = 1$ if $e \in G$ is the
 neutral (identity) element. We prove the result by induction for $n > 1$.
 Suppose that $\lambda_1, \ldots, \lambda_n \in L$ not all zero.
 If $\lambda_i = 0$ for some, then we win by induction on $n$.
-Since we want to show that $\sum \lambda_i\sigma_i(g) \not = 0$
+Since we want to show that $\sum \lambda_i\chi_i(g) \not = 0$
 for some $g \in G$ we may after dividing by $-\lambda_n$
 assume that $\lambda_n = -1$. Then the only way we get in trouble
 is if
@@ -1558,11 +1561,11 @@ K = F[x]/(P) = F[t^{1/p}]
 $$
 is a field. And $K$ is purely inseparable over $F$ because every element
 $$
-a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{p - 1/p}, a_i \in F
+a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{(p - 1)/p},\quad a_i \in F
 $$
-has $p$th power equal to
+of $K$ has $p$th power equal to
 $$
-(a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{p - 1/p})^p =
+(a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{(p - 1)/p})^p =
 a_0^p + a_1^p t + \ldots + a_{p - 1}^pt^{p - 1} \in F
 $$
 This situation occurs for the field
@@ -1662,13 +1665,13 @@ Any algebraic field extension is uniquely a separable field extension
 followed by a purely inseparable one.
 \end{slogan}
 Let $E/F$ be an algebraic field extension. There exists a unique subextension
-$F \subset E_{sep} \subset E$ such that $E_{sep}/F$ is separable and
-$E/E_{sep}$ is purely inseparable.
+$E/E_{sep}/F$ such that $E_{sep}/F$ is separable and $E/E_{sep}$ is
+purely inseparable.
 \end{lemma}
 
 \begin{proof}
 If the characteristic is zero we set $E_{sep} = E$. Assume the characteristic
-if $p > 0$. Let $E_{sep}$ be the set of elements of $E$ which are separable
+is $p > 0$. Let $E_{sep}$ be the set of elements of $E$ which are separable
 over $F$. This is a subextension by Lemma \ref{lemma-separable-elements}
 and of course $E_{sep}$ is separable over $F$. Given an $\alpha$ in $E$
 there exists a $p$-power $q$ such that $\alpha^q$ is separable over $F$.
@@ -1908,7 +1911,7 @@ Let $L/M/K$ be a tower of algebraic extensions.
 \begin{enumerate}
 \item If $M/K$ is normal, then any automorphism $\tau$ of $L/K$
 induces an automorphism $\tau|_M : M \to M$.
-\item If $L/K$ is normal, then $K$-algebra map $\sigma : M \to L$
+\item If $L/K$ is normal, then any $K$-algebra map $\sigma : M \to L$
 extends to an automorphism of $L$.
 \end{enumerate}
 \end{lemma}
@@ -2123,7 +2126,7 @@ of the normal closure.
 
 \begin{lemma}
 \label{lemma-normal-closure-tensor-product}
-Let $L/K$ be a finite normal extension. Let $M/L$ be the normal
+Let $L/K$ be a finite extension. Let $M/L$ be the normal
 closure of $L$ over $K$. Then there is a surjective map
 $$
 L \otimes_K L \otimes_K \ldots \otimes_K L \longrightarrow M
@@ -2134,11 +2137,11 @@ $[L : K]_s \leq [L : K]$.
 
 \begin{proof}
 Choose an algebraic closure $\overline{K}$ of $K$.
-Recall that $[L : K]_s = |\Mor_K(L, \overline{K})|$, see
+Set $n = [L : K]_s = |\Mor_K(L, \overline{K})|$ with equality by
 Lemma \ref{lemma-separable-degree}.
-Let $M' \subset \overline{K}$ be the $K$-subalgebra
-generated by $\sigma(L)$, $\sigma \in \Mor_K(L, \overline{K})$.
 Say $\Mor_K(L, \overline{K}) = \{\sigma_1, \ldots, \sigma_n\}$.
+Let $M' \subset \overline{K}$ be the $K$-subalgebra
+generated by $\sigma_i(L)$, $i = 1, \ldots, n$.
 It follows from Lemma \ref{lemma-characterize-normal}
 that $M'$ is normal over $K$ and that it is the
 smallest normal subextension of $\overline{K}$ containing
@@ -2289,7 +2292,7 @@ Next, assume $F$ is infinite and there are at most finitely many proper
 subfields $E/K/F$. List them, say $K_1, \ldots, K_N$. Then
 each $K_i \subset E$ is a proper sub $F$-vector space. As $F$ is infinite
 we can find a vector $\alpha \in E$ with $\alpha \not \in K_i$ for all $i$
-(a finite union of proper subvector spaces is never a subvector space;
+(a vector space can never be equal to a finite union of proper subvector spaces;
 details omitted). Then $\alpha$ is a primitive element for $E$ over $F$.
 
 \medskip\noindent
@@ -2700,7 +2703,7 @@ The key to the whole lemma is that this polynomial is invariant
 under the action of $G$ and hence has coefficients in $K^G$.
 Namely, for $\tau \in G$ we have
 $$
-P^\sigma = \prod\nolimits_{\beta \in G \cdot \alpha} (x - \tau(\beta)) =
+P^\tau = \prod\nolimits_{\beta \in G \cdot \alpha} (x - \tau(\beta)) =
 \prod\nolimits_{\beta \in G \cdot \alpha} (x - \beta) = P
 $$
 because the map $\beta \mapsto \tau(\beta)$ is a permutation of
@@ -2894,7 +2897,7 @@ is the induced topology from $G$. An element $(f_S) \in G$ is in
 the image of $c$ exactly if
 (A) $f_S(\alpha) + f_S(\beta) = f_S(\alpha + \beta)$ and
 (M) $f_S(\alpha)f_S(\beta) = f_S(\alpha\beta)$ whenever
-this makes sense (i.e., 
+this makes sense (i.e.,
 $\alpha, \beta, \alpha + \beta, \alpha\beta \in S$).
 Namely, this means
 $\lim f_S : E \to E$ will be an $F$-algebra map
@@ -3196,7 +3199,23 @@ Then $L = K[z]$ with $z^n \in K$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $\zeta \in K$ be a primitive $n$th root of $1$.
+Let $\sigma$ be a generator of $\text{Gal}(L/K)$.
+Consider $\sigma : L \to L$ as a $K$-linear operator.
+Note that $\sigma^n - 1 = 0$ as a linear operator.
+Applying linear independence of characters
+(Lemma \ref{lemma-independence-characters}), we see
+that there cannot be a polynomial over $K$ of degree $< n$
+annihilating $\sigma$. Hence the minimal polynomial of $\sigma$
+as a linear operator is $x^n - 1$. 
+Since $\zeta$ is a root of $x^n - 1$ by linear algebra
+there is a $0 \neq z \in L$ such that $\sigma(z) = \zeta z$.
+This $z$ satisfies $z^n \in K$ because
+$\sigma(z^n) = (\zeta z)^n = z^n$. Moreover, we see that
+$z, \sigma(z), \ldots, \sigma^{n - 1}(z) =
+z, \zeta z, \ldots \zeta^{n - 1} z$ are pairwise distinct
+which guarantees that $z$ generates $L$ over $K$.
+Hence $L = K[z]$ as required.
 \end{proof}
 
 \begin{lemma}
@@ -3226,7 +3245,7 @@ Then any sub extension $L/L'/K$ is generated by $\alpha^d$ for some $d | e$.
 
 \begin{proof}
 Observe that for $d | e$ the subfield $K(\alpha^d)$ has
-$[K(\alpha^d) : K] = d$ and $[L : K(\alpha^d)] = e/d$
+$[K(\alpha^d) : K] = e/d$ and $[L : K(\alpha^d)] = d$
 and that both extensions $K(\alpha^d)/K$ and $L/K(\alpha^d)$
 are extensions as in the lemma.
 
@@ -3329,8 +3348,26 @@ $z^p - z \in K$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $\sigma$ be a generator of $\text{Gal}(L/K)$.
+Consider $\sigma : L \to L$ as a $K$-linear operator.
+Observe that $\sigma^p - 1 = 0$ as a linear operator.
+Applying linear independence of characters
+(Lemma \ref{lemma-independence-characters}),
+there cannot be a polynomial of degree $< p$
+annihilating $\sigma$. We conclude that the minimal
+polynomial of $\sigma$ is $x^p - 1 = (x - 1)^p$.
+This implies that there exists $w \in L$ such that
+$(\sigma - 1)^{p - 1}(w) = y$ is nonzero. Then
+$\sigma(y) = y$, i.e., $y \in K$. Thus
+$z = y^{-1}(\sigma - 1)^{p - 2}(w)$ satisfies
+$\sigma(z) = z + 1$. Since $z \not \in K$ we have $L = K[z]$.
+Moreover since $\sigma(z^p - z) = (z + 1)^p - (z + 1) = z^p - z$
+we see that $z^p - z \in K$ and the proof is complete.
 \end{proof}
+
+
+
+
 
 
 
@@ -3391,7 +3428,7 @@ contains $A$ and is contained in $G$. By Zorn's lemma, there is a maximal
 element $B \in \mathcal{B}$. Now we claim $E$ is algebraic over $F(B)$.
 This is because if it wasn't then there would be an element
 $f \in G$ transcendental over $F(B)$ since $F(G) = E$. Then
-$B \cup\{f\}$ wold be algebraically independent contradicting the
+$B \cup\{f\}$ would be algebraically independent contradicting the
 maximality of $B$. Thus $B$ is our transcendence basis.
 
 \medskip\noindent
@@ -3433,7 +3470,7 @@ E/ F(B^*, \alpha_1) / F(B^*)
 $$
 since $\alpha_1$ is algebraic over $F(B^*)$.
 Now we claim that $B^*$ (counting multiplicity of elements) is
-algebraically independent over $E$ because if it weren't, then there would be an
+algebraically independent over $F$ because if it weren't, then there would be an
 irreducible $g\in F[x, y_2, \ldots, y_n]$ such that
 $g(\beta_1, \alpha_2, \ldots, \alpha_n) = 0$
 which must involve $x$ making $\beta_1$
@@ -3441,7 +3478,7 @@ algebraic over $F(\alpha_2, \ldots, \alpha_n)$ which would make $\alpha_1$
 algebraic over $F(\alpha_2, \ldots, \alpha_n)$ which is impossible.
 So this means that $\{\alpha_2, \ldots, \alpha_n\}$ and
 $\{\beta_2, \ldots, \beta_m\}$ are bases for $E$ over $F(\beta_1)$
-which means by induction, $m = n$. 
+which means by induction, $m = n$.
 \end{proof}
 
 \begin{definition}
@@ -3478,7 +3515,7 @@ degree at least $1$ since both $e$ and $\pi$ are transcendental over the
 rationals. However, this field extension might have transcendence
 degree $2$ if $e$ and $\pi$ are algebraically independent. Whether or
 not this is true is unknown and whence the problem of determining
-$trdeg(\mathbf{Q}(e, \pi))$ is open.
+$\text{trdeg}(\mathbf{Q}(e, \pi))$ is open.
 \end{example}
 
 \begin{example}
@@ -3529,6 +3566,31 @@ contained in $k$.
 \end{definition}
 
 \begin{lemma}
+\label{lemma-purely-transcendental-degree}
+Let $k'/k$ be a finite extension of fields. Let
+$k'(x_1, \ldots, x_r)/k(x_1, \ldots, x_r)$ be the
+induced extension of purely transcendental extensions.
+Then $[k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] = [k' : k] < \infty$.
+\end{lemma}
+
+\begin{proof}
+By multiplicativity of degrees of extensions
+(Lemma \ref{lemma-multiplicativity-degrees})
+it suffices to prove this when $k'$ is generated by a single element
+$\alpha \in k'$ over $k$. Let $f \in k[T]$ be the minimal polynomial
+of $\alpha$ over $k$. Then $k'(x_1, \ldots, x_r)$ is generated
+by $\alpha, x_1, \ldots, x_r$ over $k$ and hence $k'(x_1, \ldots, x_r)$
+is generated by $\alpha$ over $k(x_1, \ldots, x_r)$.
+Thus it suffices to show that $f$ is still irreducible as
+an element of $k(x_1, \ldots, x_r)[T]$. We only sketch the proof.
+It is clear that $f$ is irreducible as an element of
+$k[x_1, \ldots, x_r, T]$ for example because $f$ is monic
+as a polynomial in $T$ and any putative factorization in
+$k[x_1, \ldots, x_r, T]$ would lead to a factorization in $k[T]$
+by setting $x_i$ equal to $0$. By Gauss' lemma we conclude.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-algebraic-closure-in-finitely-generated}
 Let $k \subset K$ be a finitely generated field extension.
 The algebraic closure of $k$ in $K$ is finite over $k$.
@@ -3539,11 +3601,12 @@ Let $x_1, \ldots, x_r \in K$ be a transcendence basis for $K$
 over $k$. Then $n = [K : k(x_1, \ldots, x_r)] < \infty$.
 Suppose that $k \subset k' \subset K$ with $k'/k$ finite.
 In this case
-$[k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] = [k' : k] < \infty$.
+$[k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] = [k' : k] < \infty$, see
+Lemma \ref{lemma-purely-transcendental-degree}.
 Hence
 $$
-[k' : k] = [k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)]
-< [K : k(x_1, \ldots, x_r)] = n.
+[k' : k] = [k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] \leq
+[K : k(x_1, \ldots, x_r)] = n.
 $$
 In other words, the degrees of finite subextensions are bounded
 and the lemma follows.
@@ -3592,7 +3655,7 @@ $\mathbf{Q}$. However, if we embed $K = \mathbf{Q}[x]/(x^8 - 2)$ into
 $\mathbf{C}$ by mapping $x$ to $2^{1/8}e^{2\pi i/8}$, then the compositum
 $\mathbf{Q}(2^{1/12}, 2^{1/8}e^{2\pi i/8})$ contains $i = e^{2\pi i/4}$ and has
 degree $48$ over $\mathbf{Q}$ (we omit showing the degree is $48$, but
-the existence of $i$ certainly proves the two composita are not isomorphic). 
+the existence of $i$ certainly proves the two composita are not isomorphic).
 
 \begin{definition}
 \label{definition-linearly-disjoint}

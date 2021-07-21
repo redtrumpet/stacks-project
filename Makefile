@@ -10,13 +10,14 @@ LIJST = introduction conventions sets categories \
 	homology derived simplicial \
 	more-algebra smoothing \
 	modules sites-modules \
-	injectives cohomology sites-cohomology dga dpa hypercovering \
+	injectives cohomology sites-cohomology dga dpa sdga hypercovering \
 	schemes constructions properties morphisms coherent divisors limits \
 	varieties topologies descent perfect more-morphisms flat groupoids \
 	more-groupoids etale \
-	chow intersection pic \
-	adequate dualizing duality discriminant local-cohomology \
-	algebraization curves resolve models pione etale-cohomology \
+	chow intersection pic weil \
+	adequate dualizing duality discriminant derham local-cohomology \
+	algebraization curves resolve models equiv \
+	pione etale-cohomology \
 	crystalline proetale more-etale trace \
 	spaces spaces-properties spaces-morphisms decent-spaces \
 	spaces-cohomology spaces-limits spaces-divisors spaces-over-fields \

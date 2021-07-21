@@ -1260,7 +1260,7 @@ are automatically representable, for example
 separated, locally quasi-finite morphisms (Morphisms of Spaces, Lemma
 \ref{spaces-morphisms-lemma-locally-quasi-finite-separated-representable}),
 and flat monomorphisms (More on Morphisms of Spaces, Lemma
-\ref{spaces-more-morphisms-lemma-flat-case})
+\ref{spaces-more-morphisms-lemma-flat-case}).
 In Section \ref{section-schematic-and-field-extension}
 we will study what happens with the schematic
 locus under extension of base field.
@@ -2047,7 +2047,7 @@ Part (2) follows immediately from part (1).
 \noindent
 If $X$ is a connected algebraic space over a field, then it can happen that
 $X$ becomes disconnected after extending the ground field. This does not
-happen for geometrically connected schemes.
+happen for geometrically connected algebraic spaces.
 
 \begin{definition}
 \label{definition-geometrically-connected}
@@ -2092,11 +2092,11 @@ induces a bijection between connected components.
 \end{lemma}
 
 \begin{proof}
-Let $y \in |Y|$ be represented by a morphism $\Spec(K) \to Y$ be a morphism
+Let $y \in |Y|$ be represented by a morphism $\Spec(K) \to Y$
 where $K$ is a field. The fibre of $|X \times_k Y| \to |Y|$ over $y$
-is the image of $|Y_K| \to |X \times_k Y|$ by
+is the image of $|X_K| \to |X \times_k Y|$ by
 Properties of Spaces, Lemma \ref{spaces-properties-lemma-points-cartesian}.
-Thus these fibres are connected by our assumption that $Y$ is
+Thus these fibres are connected by our assumption that $X$ is
 geometrically connected. By
 Morphisms of Spaces, Lemma
 \ref{spaces-morphisms-lemma-space-over-field-universally-open}
@@ -2238,7 +2238,7 @@ The following are equivalent
 \begin{enumerate}
 \item $X$ is geometrically connected,
 \item for every finite separable field extension $k \subset k'$
-the scheme $X_{k'}$ is connected.
+the algebraic space $X_{k'}$ is connected.
 \end{enumerate}
 \end{lemma}
 
@@ -3230,7 +3230,7 @@ The equality follows from Lemma \ref{lemma-euler-characteristic-morphism}
 and the projection formula
 (Cohomology, Lemma \ref{cohomology-lemma-projection-formula}).
 If $f(Z)$ has dimension $< d$, then the right hand side
-is a polynomial of total degree $<d$ by
+is a polynomial of total degree $< d$ by
 Lemma \ref{lemma-numerical-polynomial-from-euler}
 and the result is true. Assume $\dim(f(Z)) = d$. Then
 by dimension theory (Lemma \ref{lemma-alteration-dimension})

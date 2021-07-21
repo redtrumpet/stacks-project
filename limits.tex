@@ -334,8 +334,14 @@ Let $S = \lim S_i$ be the limit of a directed inverse system
 of schemes with affine transition morphisms
 (Lemma \ref{lemma-directed-inverse-system-has-limit}).
 Let $s \in S$ with images $s_i \in S_i$.
-Then $\overline{\{s\}} = \lim_i \overline{\{s_i\}}$ as sets
-and as schemes if endowed with the reduced induced scheme structure.
+Then
+\begin{enumerate}
+\item $s = \lim s_i$ as schemes, i.e., $\kappa(s) = \colim \kappa(s_i)$,
+\item $\overline{\{s\}} = \lim \overline{\{s_i\}}$ as sets, and
+\item $\overline{\{s\}} = \lim \overline{\{s_i\}}$ as schemes
+where $\overline{\{s\}}$ and $\overline{\{s_i\}}$ are
+endowed with the reduced induced scheme structure.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -346,11 +352,11 @@ and set $U_j = f_0^{-1}(U_{0, j})$.
 Here $f_{i'i} : S_{i'} \to S_i$ is the transtion morphism
 and $f_i : S \to S_i$ is the projection.
 For $j \in J$ the following are equivalent:
-(a) $x \in U_j$, (b) $x_0 \in U_{0, j}$,
-(c) $x_i \in U_{i, j}$ for all $i \geq 0$.
+(a) $s \in U_j$, (b) $s_0 \in U_{0, j}$,
+(c) $s_i \in U_{i, j}$ for all $i \geq 0$.
 Let $J' \subset J$ be the set of indices for which (a), (b), (c) are true.
 Then $\overline{\{s\}} = \bigcup_{j \in J'} (\overline{\{s\}} \cap U_j)$
-and simiarly for $\overline{\{s_i\}}$ for $i \geq 0$.
+and similarly for $\overline{\{s_i\}}$ for $i \geq 0$.
 Note that $\overline{\{s\}} \cap U_j$ is the closure of the
 set $\{s\}$ in the topological space $U_j$. Similarly for
 $\overline{\{s_i\}} \cap U_{i, j}$ for $i \geq 0$.
@@ -371,6 +377,8 @@ This follows from Lemma \ref{lemma-inverse-limit-sets}
 because $A/\mathfrak p = \colim A_i/\mathfrak p_i$.
 This equality of rings also shows the final statement
 about reduced induced scheme structures holds true.
+The equality $\kappa(\mathfrak p) = \colim \kappa(\mathfrak p_i)$
+follows from the statement as well.
 \end{proof}
 
 \noindent
@@ -517,7 +525,7 @@ Lemma \ref{lemma-limit-nonempty}.
 In Situation \ref{situation-descent}.
 Suppose we are given an $i$ and a locally constructible subset
 $E \subset S_i$ such that $f_i(S) \subset E$.
-Then $f_{ii'}(S_{i'}) \subset E$ for all sufficiently large $i'$.
+Then $f_{i'i}(S_{i'}) \subset E$ for all sufficiently large $i'$.
 \end{lemma}
 
 \begin{proof}
@@ -533,7 +541,7 @@ Algebra, Lemma \ref{algebra-lemma-constructible-is-image}.
 By
 Lemma \ref{lemma-limit-fibre-product-empty}
 we see that $T \times_{S_i} S_{i'}$ is empty for all sufficiently large
-$i'$, and hence $f_{ii'}(S_{i'}) \subset E$ for all sufficiently large $i'$.
+$i'$, and hence $f_{i'i}(S_{i'}) \subset E$ for all sufficiently large $i'$.
 \end{proof}
 
 \begin{lemma}
@@ -674,8 +682,8 @@ By Lemma \ref{lemma-limit-quasi-affine} we may assume that $S_0$ is
 quasi-affine for some $0 \in I$. Set $R_0 = \Gamma(S_0, \mathcal{O}_{S_0})$.
 Then $S_0$ is a quasi-compact open of $T_0 = \Spec(R_0)$. Denote
 $j_0 : S_0 \to T_0$ the corresponding quasi-compact open immersion.
-For $i \geq 0$ set $\mathcal{A}_i = f_{0i, *}\mathcal{O}_{S_i}$.
-Since $f_{0i}$ is affine we see that
+For $i \geq 0$ set $\mathcal{A}_i = f_{i0, *}\mathcal{O}_{S_i}$.
+Since $f_{i0}$ is affine we see that
 $S_i = \underline{\Spec}_{S_0}(\mathcal{A}_i)$.
 Set $T_i = \underline{\Spec}_{T_0}(j_{0, *}\mathcal{A}_i)$.
 Then $T_i \to T_0$ is affine, hence $T_i$ is affine. Thus
@@ -717,11 +725,11 @@ we see that $U_{i, j_1} \cap U_{i, j_2}$ is affine for large $i$
 by Lemma \ref{lemma-limit-affine}. To show that $S_i$ is separated
 for large $i$ it now suffices to show that
 $$
-\mathcal{O}_{S_i}(V_{i, j_1})
+\mathcal{O}_{S_i}(U_{i, j_1})
 \otimes_{\mathcal{O}_S(S)}
-\mathcal{O}_{S_i}(V_{i, j_2})
+\mathcal{O}_{S_i}(U_{i, j_2})
 \longrightarrow
-\mathcal{O}_{S_i}(V_{i, j_1} \cap V_{i, j_2})
+\mathcal{O}_{S_i}(U_{i, j_1} \cap U_{i, j_2})
 $$
 is surjective for large $i$
 (Schemes, Lemma \ref{schemes-lemma-characterize-separated}).
@@ -734,7 +742,7 @@ We have to show that
 $\mathcal{O}(U_i) \otimes \mathcal{O}(V_i) \to
 \mathcal{O}(U_i \cap V_i)$
 is surjective for $i$ large enough and we know that
-$\mathcal{O}(U_) \otimes \mathcal{O}(V) \to \mathcal{O}(U \cap V)$
+$\mathcal{O}(U) \otimes \mathcal{O}(V) \to \mathcal{O}(U \cap V)$
 is surjective. Note that
 $\mathcal{O}(U_0) \otimes \mathcal{O}(V_0) \to
 \mathcal{O}(U_0 \cap V_0)$
@@ -973,6 +981,33 @@ of $x_j$ in $A_{i'}$ for $j = 1, \ldots, m$. Since $A_i \to A_{i'}$
 is surjective this implies that $R \to A_{i'}$ is surjective.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-eventually-immersion}
+Let $S$ be a scheme. Let $X = \lim X_i$ be a directed limit of schemes
+over $S$ with affine transition morphisms. Assume
+\begin{enumerate}
+\item $S$ quasi-separated,
+\item $X_i$ quasi-compact and quasi-separated,
+\item the transition morphisms $X_{i'} \to X_i$ are closed immersions,
+\item $X_i \to S$ locally of finite type, and
+\item $X \to S$ an immersion.
+\end{enumerate}
+Then $X_i \to S$ is an immersion for $i$ large enough.
+\end{lemma}
+
+\begin{proof}
+Choose an open subscheme $U \subset S$ such that $X \to S$ factors
+as a closed immersion $X \to U$ composed with the inclusion morphism
+$U \to S$. Since $X$ is quasi-compact, we may shrink $U$ and assume
+$U$ is quasi-compact. Denote $V_i \subset X_i$ the inverse image of $U$.
+Since $V_i$ pulls back to $X$ we see that $V_i = X_i$ for all $i$
+large enough by Lemma \ref{lemma-descend-opens}. Thus we may
+assume $X = \lim X_i$ in the category of schemes over $U$.
+Then we see that $X_i \to U$ is a closed immersion for $i$
+large enough by Lemma \ref{lemma-eventually-closed-immersion}.
+This proves the lemma.
+\end{proof}
+
 
 
 
@@ -1061,8 +1096,8 @@ such that
 \begin{enumerate}
 \item the transition morphisms $g_{jj'} : S_j \to S_{j'}$ are affine,
 \item each $S_j$ is of finite type over $\mathbf{Z}$,
-\item $g_{jj'}^{-1}(V_{j'}) = V_j$,
-\item $S = \lim S_j$ and $V = \lim V_j$, and
+\item $g_{jj'}^{-1}(V'_{j'}) = V'_j$,
+\item $S = \lim S_j$ and $V = \lim V'_j$, and
 \item the diagrams
 $$
 \vcenter{
@@ -1074,8 +1109,8 @@ V'_j \ar[r] & V_{\alpha(j)}
 \quad\text{and}\quad
 \vcenter{
 \xymatrix{
-V_j \ar[r] \ar[d] & V_{\alpha(j)} \ar[d] \\
-V_{j'} \ar[r] & V_{\alpha(j')}
+V'_j \ar[r] \ar[d] & V_{\alpha(j)} \ar[d] \\
+V'_{j'} \ar[r] & V_{\alpha(j')}
 }
 }
 $$
@@ -1106,10 +1141,11 @@ one affine open. Thus we may assume
 an inverse system over a directed set $I$, each $f_{ii'}$
 affine and each $V_i$ of finite type over $\mathbf{Z}$.
 \end{enumerate}
+Denote $f_i : V \to V_i$ the projections.
 Set $W = U \cap V$. As $S$ is quasi-separated, this is a quasi-compact open
 of $V$. By Lemma \ref{lemma-descend-opens}
 (and after shrinking $I$) we may assume that there exist
-opens $W_i \subset V_i$ such that $f_{ij}^{-1}(W_j) = W_i$
+opens $W_i \subset V_i$ such that $f_{ii'}^{-1}(W_{i'}) = W_i$
 and such that $f_i^{-1}(W_i) = W$. Since $W$ is a quasi-compact open
 of $U$ it is quasi-affine. Hence we may assume (after shrinking $I$ again)
 that $W_i$ is quasi-affine for all $i$, see
@@ -1165,7 +1201,7 @@ $R_i \to R_{i'}$. Then, by Lemma \ref{lemma-descend-opens} we can
 assume the corresponding opens $D(g_{l, i}) \subset \Spec(R_i)$
 are contained in $W_i$ for $l = 1, \ldots, m$ and cover $W_i$.
 We conclude that the morphism $W_i \to \Spec(R_i) \to \Spec(B_i)$
-is an open immersion, see Lemma \ref{lemma-diagram}
+is an open immersion, see Lemma \ref{lemma-diagram}.
 
 \medskip\noindent
 By Lemma \ref{lemma-quasi-affine-finite-type-over-Z}
@@ -1522,8 +1558,8 @@ X_a \ar[r] & S_b
 $$
 commute. Moreover the same proposition implies that, given a second
 triple $(a', b', f_{a', b'})$, there exists an $a'' \geq a'$ such that
-the compositions $X_{a''} \to X_a \to X_b$ and
-$X_{a''} \to X_{a'} \to X_{b'} \to X_b$ are equal.
+the compositions $X_{a''} \to X_a \to S_b$ and
+$X_{a''} \to X_{a'} \to S_{b'} \to S_b$ are equal.
 Consider the set of triples $(a, b, f_{a, b})$ endowed with the preorder
 $$
 (a, b, f_{a, b}) \geq (a', b', f_{a', b'})
@@ -2447,9 +2483,12 @@ Let $S = \lim S_i$ be the limit of a directed system of quasi-compact and
 quasi-separated schemes $S_i$ with affine transition morphisms. Then
 \begin{enumerate}
 \item any finite locally free $\mathcal{O}_S$-module is the pullback
-of a finite locally free $\mathcal{O}_{S_i}$-module for some $i$, and
+of a finite locally free $\mathcal{O}_{S_i}$-module for some $i$,
 \item any invertible $\mathcal{O}_S$-module is the pullback of an invertible
-$\mathcal{O}_{S_i}$-module for some $i$.
+$\mathcal{O}_{S_i}$-module for some $i$, and
+\item any finite type quasi-coherent ideal $\mathcal{I} \subset \mathcal{O}_S$
+is of the form $\mathcal{I}_i \cdot \mathcal{O}_S$ for some $i$ and some
+finite type quasi-coherent ideal $\mathcal{I}_i \subset \mathcal{O}_{S_i}$.
 \end{enumerate}
 \end{lemma}
 
@@ -2479,7 +2518,22 @@ $\mathcal{L}_i \otimes_{\mathcal{O}_{S_i}} \mathcal{N}_i \to
 \mathcal{O}_{S_i}$. And after increasing $i$ further, we
 may assume it is an isomorphism. It follows that
 $\mathcal{L}_i$ is an invertible module
-(Modules, Lemma \ref{modules-lemma-invertible}) and the proof is complete.
+(Modules, Lemma \ref{modules-lemma-invertible}) and
+the proof of (2) is complete.
+
+\medskip\noindent
+Given $\mathcal{I}$ as in (3) we see that
+$\mathcal{O}_S \to \mathcal{O}_S/\mathcal{I}$
+is a map of finitely presented $\mathcal{O}_S$-modules.
+Hence by Lemma \ref{lemma-descend-modules-finite-presentation}
+this is the pullback of some
+map $\mathcal{O}_{S_i} \to \mathcal{F}_i$ of finitely
+presented $\mathcal{O}_{S_i}$-modules. After increasing $i$
+we may assume this map is surjective (details omitted; hint: use
+Algebra, Lemma \ref{algebra-lemma-module-map-property-in-colimit}
+on affine open cover). Then the kernel of $\mathcal{O}_{S_i} \to \mathcal{F}_i$
+is a finite type quasi-coherent ideal in $\mathcal{O}_{S_i}$
+whose pullback gives $\mathcal{I}$.
 \end{proof}
 
 \begin{lemma}
@@ -2678,7 +2732,7 @@ that $X$ is affine.
 \medskip\noindent
 By Proposition \ref{proposition-approximate} we may write
 $S = \lim_{i \in I} S_i$ as
-a directed limits as schemes of finite type over $\mathbf{Z}$.
+a directed limits of schemes of finite type over $\mathbf{Z}$.
 By Lemma \ref{lemma-descend-finite-presentation} we can
 after shrinking $I$ assume there exist schemes $X_i \to S_i$
 of finite presentation such that $X_{i'} = X_i \times_S S_{i'}$
@@ -2913,6 +2967,33 @@ $X_i$ over $S_i$, then the assertion holds for $X$. The case
 $X_i \to S_i$ is treated by
 Cohomology of Schemes, Lemma \ref{coherent-lemma-chow-Noetherian}.
 \end{proof}
+
+\begin{remark}
+\label{remark-chow-finite-type}
+In the situation of Chow's Lemma \ref{lemma-chow-finite-type}:
+\begin{enumerate}
+\item The morphism $\pi$ is actually H-projective (hence projective, see
+Morphisms, Lemma \ref{morphisms-lemma-H-projective})
+since the morphism $X' \to \mathbf{P}^n_S \times_S X = \mathbf{P}^n_X$
+is a closed immersion (use the fact that $\pi$ is proper, see
+Morphisms, Lemma \ref{morphisms-lemma-image-proper-scheme-closed}).
+\item We may assume that $X'$ is reduced as we can replace $X'$ by
+its reduction without changing the other assertions of the lemma.
+\item We may assume that $X' \to X$ is of finite presentation
+without changing the other assertions of the lemma. This can be deduced
+from the proof of Lemma \ref{lemma-chow-finite-type} but we can also prove
+this directly as follows. By (1) we have a closed immersion
+$X' \to \mathbf{P}^n_X$. By
+Lemma \ref{lemma-closed-is-limit-closed-and-finite-presentation} we can write
+$X' = \lim X'_i$ where $X'_i \to \mathbf{P}^n_X$ is a closed
+immersion of finite presentation. In particular $X'_i \to X$ is
+of finite presentation, proper, and surjective. For large enough
+$i$ the morphism $X'_i \to \mathbf{P}^n_S$ is an immersion by
+Lemma \ref{lemma-finite-type-eventually-closed}. Replacing
+$X'$ by $X'_i$ we get what we want.
+\end{enumerate}
+Of course in general we can't simultaneously achieve both (2) and (3).
+\end{remark}
 
 \noindent
 Here is a variant of Chow's lemma where we assume the scheme

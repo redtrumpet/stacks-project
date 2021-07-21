@@ -380,6 +380,8 @@ Combining these two statements we get the result of the lemma.
 Let $S$ be a scheme. There exists a unique topology on the sets of points
 of algebraic spaces over $S$ with the following properties:
 \begin{enumerate}
+\item if $X$ is a scheme over $S$, then the topology on $|X|$ is the usual one
+(via the identification of Lemma \ref{lemma-scheme-points}),
 \item for every morphism of algebraic spaces $X \to Y$ over $S$
 the map $|X| \to |Y|$ is continuous, and
 \item for every \'etale morphism $U \to X$ with $U$ a scheme
@@ -400,7 +402,7 @@ Let us prove that the topology is independent of the choice of
 the presentation. To do this it suffices to show that if $U'$ is a scheme,
 and $U' \to X$ is an \'etale morphism, then the map $|U'| \to |X|$
 (with topology on $|X|$ defined using $U \to X$ as above)
-is open and continuous; which in addition will prove that (2) holds.
+is open and continuous; which in addition will prove that (3) holds.
 Set $U'' = U \times_X U'$, so that we have the commutative diagram
 $$
 \xymatrix{
@@ -431,7 +433,7 @@ again.) Hence it follows formally that the right vertical
 arrow is continuous and open.
 
 \medskip\noindent
-To finish the proof we prove (1).
+To finish the proof we prove (2).
 Let $a : X \to Y$ be a morphism of algebraic spaces. According to
 Spaces, Lemma \ref{spaces-lemma-lift-morphism-presentations}
 we can find a diagram
@@ -1152,9 +1154,9 @@ Let $W' \subset U'$ be an affine open. Since $\text{pr}_2$ is
 \'etale and hence open, we can choose a quasi-compact open
 $W'' \subset U \times_X U'$ with $\text{pr}_2(W'') = W'$.
 Then $\text{pr}_2|_{W''} : W'' \to W'$ is quasi-compact.
-We have $W \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
+We have $W' \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
 as $\varphi$ is surjective, see Lemma \ref{lemma-points-cartesian}.
-Thus $W \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
+Thus $W' \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
 is locally constructible by
 Morphisms, Theorem \ref{morphisms-theorem-chevalley} as desired.
 \end{proof}
@@ -1371,28 +1373,6 @@ We have already defined reduced algebraic spaces in
 Section \ref{section-types-properties}.
 Here we just prove some simple lemmas regarding reduced algebraic
 spaces.
-
-\begin{lemma}
-\label{lemma-reduced-space}
-Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
-The following are equivalent
-\begin{enumerate}
-\item $X$ is reduced,
-\item for every $x \in |X|$ the local ring of $X$ at $x$ is
-reduced (Remark \ref{remark-list-properties-local-ring-local-etale-topology}).
-\end{enumerate}
-In this case $\Gamma(X, \mathcal{O}_X)$ is a reduced ring and
-if $f \in \Gamma(X, \mathcal{O}_X)$ has $X = V(f)$, then $f = 0$.
-\end{lemma}
-
-\begin{proof}
-The equivalence of (1) and (2) follows from
-Properties, Lemma \ref{properties-lemma-characterize-reduced}
-applied to affine schemes \'etale over $X$. The final statements
-follow the cited lemma and fact that $\Gamma(X, \mathcal{O}_X)$ is
-a subring of $\Gamma(U, \mathcal{O}_U)$ for some
-reduced scheme $U$ \'etale over $X$.
-\end{proof}
 
 \begin{lemma}
 \label{lemma-subspace-induced-topology}
@@ -1763,14 +1743,15 @@ a morphism of schemes. Let $a : G \times_S X \to X$ be an action. Assume that
 \item the action $a$ is free,
 \item $X \to S$ is affine, or quasi-affine, or projective, or
 quasi-projective, or $X$ is isomorphic to an open subscheme of an
-affine scheme or isomorphic to an open subscheme of $\text{Proj}(A)$
-for some graded ring $A$.
+affine scheme, or $X$ is isomorphic to an open subscheme of $\text{Proj}(A)$
+for some graded ring $A$, or $G \to S$ is radicial.
 \end{enumerate}
-Then the fppf quotient sheaf $X/G$ is a scheme.
+Then the fppf quotient sheaf $X/G$ is a scheme and $X \to X/G$
+is an fppf $G$-torsor.
 \end{lemma}
 
 \begin{proof}
-Since the action is free the morphism
+We first show that $X/G$ is a scheme. Since the action is free the morphism
 $j = (a, \text{pr}) : G \times_S X \to X \times_S X$
 is a monomorphism and hence an equivalence relation, see
 Groupoids, Lemma \ref{groupoids-lemma-free-action}. The maps
@@ -1784,8 +1765,22 @@ affine open of $X$. If $X$ is isomorphic to an open subscheme of an
 affine scheme or isomorphic to an open subscheme of $\text{Proj}(A)$
 for some graded ring $A$ this follows from
 Properties, Lemma \ref{properties-lemma-ample-finite-set-in-affine}.
-In the remaining cases, we may replace $S$ by an affine open and we
-get back to the case we just dealt with. Some details omitted.
+If $X \to S$ is affine, or quasi-affine, or projective, or
+quasi-projective, we may replace $S$ by an affine open and we
+get back to the case we just dealt with. If $G \to S$ is radicial,
+then the orbits of points on $X$ under the action of $G$ are singletons
+and the condition trivially holds. Some details omitted.
+
+\medskip\noindent
+To see that $X \to X/G$ is an fppf $G$-torsor
+(Groupoids, Definition \ref{groupoids-definition-principal-homogeneous-space})
+we have to show that $G \times_S X \to X \times_{X/G} X$
+is an isomorphism and that $X \to X/G$ fppf locally has sections.
+The second part is clear from the fact that $X \to X/G$ is surjective
+as a map of fppf sheaves (by construction). The first part follows from
+the isomorphism $R = U \times_M U$ in the conclusion of
+Proposition \ref{proposition-finite-flat-equivalence-global}
+(note that $R = G \times_S X$ in our case).
 \end{proof}
 
 \begin{lemma}
@@ -2334,7 +2329,7 @@ $a : T \to X$ whose composition with $T' \to T$ is $c$. Choose an
 affine scheme $U$ and an \'etale morphism $U \to X$ such that the image
 of $|U| \to |X|$ contains the image of $|c| : |T'| \to |X|$.
 This is possible by Lemmas \ref{lemma-topology-points} and
-\ref{lemma-cover-by-union-affines}, the fact that a finite union of
+\ref{lemma-cover-by-union-affines}, the fact that a finite disjoint union of
 affines is affine, and the fact that $|T'|$ is quasi-compact
 (small argument omitted). Since $U \to X$ is separated
 (Lemma \ref{lemma-separated-cover}), we see that
@@ -3054,7 +3049,7 @@ write $\overline{x} = \Spec(k)$.
 
 \noindent
 It turns out that we can take stalks of sheaves on $X_\etale$
-at geometric point exactly in the same way as was done in the
+at geometric points exactly in the same way as was done in the
 case of the small \'etale site of a scheme. In order to do this we
 define the notion of an \'etale neighbourhood as follows.
 
@@ -3160,7 +3155,7 @@ lying over $x \in |X|$. Let $\varphi : U \to X$ be an \'etale morphism
 of algebraic spaces and let $u \in |U|$ with $\varphi(u) = x$.
 Then there exists a geometric point
 $\overline{u} : \Spec(k) \to U$ lying over $u$ with
-$\overline{x} = f \circ \overline{u}$.
+$\overline{x} = \varphi \circ \overline{u}$.
 \end{lemma}
 
 \begin{proof}
@@ -3187,7 +3182,7 @@ But $k$ is algebraically closed, so all these extensions are trivial,
 so $\Spec(k) \times_{\overline{x}, X, \varphi} U$
 is a disjoint union of copies of $\Spec(k)$ and each of
 these corresponds to a geometric point $\overline{u}$ with
-$f \circ \overline{u} = \overline{x}$. By
+$\varphi \circ \overline{u} = \overline{x}$. By
 Lemma \ref{lemma-points-cartesian}
 the map
 $$
@@ -3830,6 +3825,28 @@ and hence indeed gives an $f$-map.
 We omit checking compatibility with compositions and agreement with the
 construction in
 Descent, Remark \ref{descent-remark-change-topologies-ringed}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-reduced-space}
+Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
+The following are equivalent
+\begin{enumerate}
+\item $X$ is reduced,
+\item for every $x \in |X|$ the local ring of $X$ at $x$ is
+reduced (Remark \ref{remark-list-properties-local-ring-local-etale-topology}).
+\end{enumerate}
+In this case $\Gamma(X, \mathcal{O}_X)$ is a reduced ring and
+if $f \in \Gamma(X, \mathcal{O}_X)$ has $X = V(f)$, then $f = 0$.
+\end{lemma}
+
+\begin{proof}
+The equivalence of (1) and (2) follows from
+Properties, Lemma \ref{properties-lemma-characterize-reduced}
+applied to affine schemes \'etale over $X$. The final statements
+follow the cited lemma and fact that $\Gamma(X, \mathcal{O}_X)$ is
+a subring of $\Gamma(U, \mathcal{O}_U)$ for some
+reduced scheme $U$ \'etale over $X$.
 \end{proof}
 
 
@@ -4592,10 +4609,107 @@ Modules on Sites,
 Lemma \ref{sites-modules-lemma-relocalize-morphism-compare}.
 \end{proof}
 
+\noindent
+Finally, we discuss the relationship between sheaves of sets on the small
+\'etale site $Y_\etale$ of an algebraic space $Y$ and algebraic spaces
+\'etale over $Y$. Let $S$ be a scheme and let $Y$ be an algebraic space
+over $S$. Let $\mathcal{F}$ be an object of $\Sh(Y_\etale)$. Consider
+the functor
+$$
+X : (\Sch/S)_{fppf}^{opp} \longrightarrow \textit{Sets}
+$$
+defined by the rule
+$$
+X(T) = \{(y, s) \mid y : T \to Y\text{ is a morphism over }S\text{ and }
+s \in \Gamma(T, y_{small}^{-1}\mathcal{F})\}
+$$
+Given a morphism $g : T' \to T$ the restriction map sends
+$(y, s)$ to $(y \circ g, g_{small}^{-1}s)$. This makes sense
+as $y_{small} \circ g_{small} = (y \circ g)_{small}$ by
+Lemma \ref{lemma-functoriality-etale-site}.
 
+\begin{lemma}
+\label{lemma-sheaf-gives-space}
+Let $S$ be a scheme and let $Y$ be an algebraic space over $S$.
+Let $\mathcal{F}$ be a sheaf of sets on $Y_\etale$.
+Provided a set theoretic condition is satisfied (see proof)
+the functor $X$ associated to $\mathcal{F}$ above is an algebraic space
+and there is an \'etale morphism $f : X \to Y$ of algebraic spaces
+such that $\mathcal{F} = f_{small, *}*$ where $*$ is the final object
+of the category $\Sh(X_\etale)$ (constant sheaf with value a singleton).
+\end{lemma}
 
+\begin{proof}
+Let us prove that $X$ is a sheaf for the fppf topology. Namely, suppose
+that $\{g_i : T_i \to T\}$ is a covering of $(\Sch/S)_{fppf}$ and
+$(y_i, s_i) \in X(T_i)$ satisfy the glueing condition, i.e., the
+restriction of $(y_i, s_i)$ and $(y_j, s_j)$ to $T_i \times_T T_j$ agree.
+Then since $Y$ is a sheaf for the fppf topology, we see that
+the $y_i$ give rise to a unique morphism $y : T \to Y$ such that
+$y_i = y \circ g_i$. Then we see that
+$y_{i, small}^{-1}\mathcal{F} = g_{i, small}^{-1}y_{small}^{-1}\mathcal{F}$.
+Hence the sections $s_i$ glue uniquely to a section of
+$y_{small}^{-1}\mathcal{F}$ by
+\'Etale Cohomology, Lemma \ref{etale-cohomology-lemma-describe-pullback}.
 
+\medskip\noindent
+The construction that sends $\mathcal{F} \in \Ob(\Sh(Y_\etale))$
+to $X \in \Ob((\Sch/S)_{fppf})$ preserves finite limits and
+all colimits since each of the functors $y_{small}^{-1}$ have
+this property. Of course, if $V \in \Ob(Y_\etale)$, then
+the construction sends the representable sheaf $h_V$ on $Y_\etale$
+to the representable functor represented by $V$.
 
+\medskip\noindent
+By Sites, Lemma \ref{sites-lemma-sheaf-coequalizer-representable}
+we can find a set $I$, for each $i \in I$ an object $V_i$ of $Y_\etale$
+and a surjective map of sheaves
+$$
+\coprod h_{V_i} \longrightarrow \mathcal{F}
+$$
+on $Y_\etale$. The set theoretic condition we need is that the index
+set $I$ is not too large\footnote{It suffices if the supremum of the
+cardinalities of the stalks of $\mathcal{F}$ at geometric points of $Y$
+is bounded by the size of some object of $(\Sch/S)_{fppf}$.}.
+Then $V = \coprod V_i$ is an object of $(\Sch/S)_{fppf}$ and
+therefore an object of $Y_\etale$ and we have a surjective map
+$h_V \to \mathcal{F}$.
+
+\medskip\noindent
+Observe that the product of $h_V$ with itself in $\Sh(Y_\etale)$
+is $h_{V \times_Y V}$. Consider the fibre product
+$$
+h_V \times_\mathcal{F} h_V \subset h_{V \times_Y V}
+$$
+There is an open subscheme $R$ of $V \times_Y V$ such that
+$h_V \times_\mathcal{F} h_V = h_R$, see
+Lemma \ref{lemma-support-subsheaf-final} (small detail omitted).
+By the Yoneda lemma we obtain two morphisms $s, t : R \to V$ in $Y_\etale$
+and we find a coequalizer diagram
+$$
+\xymatrix{
+h_R \ar@<1ex>[r] \ar@<-1ex>[r] &
+h_V \ar[r] &
+\mathcal{F}
+}
+$$
+in $\Sh(Y_\etale)$. Of course the morphisms $s, t$ are \'etale
+and define an \'etale equivalence relation $(t, s) : R \to V \times_S V$.
+
+\medskip\noindent
+By the discussion in the preceding two paragraphs we find a
+coequalizer diagram
+$$
+\xymatrix{
+R \ar@<1ex>[r] \ar@<-1ex>[r] &
+V \ar[r] &
+X
+}
+$$
+in $(\Sch/S)_{fppf}$. Thus $X = V/R$ is an algebraic space by
+Spaces, Theorem \ref{spaces-theorem-presentation}.
+The other statements follow readily from this; details omitted.
+\end{proof}
 
 
 
@@ -5742,8 +5856,8 @@ $f : X = U/R \to T$ such that $U \to X \to T$ equals $g$. By construction
 the diagram
 $$
 \xymatrix{
-\Gamma(U, \mathcal{O}_U) & \Gamma(X, \mathcal{O}_X) \ar[l]^{f^\sharp} \\
-& \Gamma(T, \mathcal{O}_T) \ar[lu]^{g^\sharp} \ar[u]^\varphi
+\Gamma(U, \mathcal{O}_U) & \Gamma(X, \mathcal{O}_X) \ar[l] \\
+& \Gamma(T, \mathcal{O}_T) \ar[lu]^{g^\sharp} \ar[u]^{\varphi}_{f^\sharp}
 }
 $$
 commutes. Hence $f^\sharp$ equals $\varphi$ because $U \to X$ is an
